@@ -1,0 +1,33 @@
+@import "../../../../main";
+
+nav
+{
+  height: 45px;
+  background: $color-main-cold;
+  .nav-menu
+  {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li
+    {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 1.2rem;
+      color: $color-main-warm;
+      font-weight: 600;
+      height: 100%;
+      cursor: pointer;
+
+      &:hover
+      {
+        color: $color-main-cold;
+        background: $color-main-warm;
+      }
+    }
+  }
+}

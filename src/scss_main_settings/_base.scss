@@ -3,7 +3,7 @@
 
 html
 {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 body
@@ -13,12 +13,20 @@ body
   font-weight: 400;
   background: $color-background;
   height: 100vh;
+  letter-spacing: 0.05rem;
 }
 
 .container
 {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
   height: 100%;
+}
+
+h4
+{
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
 }
