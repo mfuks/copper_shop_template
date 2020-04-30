@@ -1,0 +1,24 @@
+@import '../scss_main_settings/colors';
+@import '../scss_main_settings/fonts';
+
+html
+{
+  font-size: 14px;
+}
+
+body
+{
+  width: 100%;
+  font-family: $font-base;
+  font-weight: 400;
+  background: $color-background;
+  height: 100vh;
+}
+
+.container
+{
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+}
