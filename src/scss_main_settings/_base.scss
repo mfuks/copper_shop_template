@@ -30,3 +30,11 @@ h4
   font-size: 1rem;
   letter-spacing: 0.05rem;
 }
+
+
+@mixin flex-center
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -8,10 +8,8 @@ class Header extends Component
     render() {
         return (
             <>
-                <header>
-                    <LogRegister/>
-                    <Navigation/>
-                </header>
+                <LogRegister/>
+                <Navigation/>
             </>
         )
     }

@@ -7,15 +7,11 @@ nav
   .nav-menu
   {
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-center;
 
     li
     {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
       padding: 0 20px;
       font-size: 1.2rem;
       color: $color-main-warm;

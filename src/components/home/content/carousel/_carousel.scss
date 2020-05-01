@@ -1,0 +1,82 @@
+@import "../../../../main";
+
+.carousel
+{
+  @include flex-center;
+  width: 100%;
+  margin: 50px 0;
+  height: 400px;
+
+  .carousel-cont
+  {
+    width: 100%;
+    @include flex-center;
+
+    li
+    {
+      display: none;
+    }
+
+    .visible-slide
+    {
+      display: inline-block;
+    }
+
+
+
+    .carousel-slide
+    {
+      height: 400px;
+      width: 600px;
+    }
+
+    .slide-1
+    {
+      background: url("/assets/carousel1.jpg") center/cover;
+    }
+
+    .slide-3
+    {
+      background: url("/assets/carousel2.jpg") center/cover;
+    }
+
+    .slide-2
+    {
+      background: $color-main-cold;
+      @include flex-center;
+
+      div
+      {
+        @include flex-center;
+        background: $color-main-cold;
+        height: 300px;
+        width: 500px;
+        border: 10px solid $color-main-warm;
+        padding: 40px;
+        color: $color-main-warm;
+        font-size: 1.3rem;
+        font-weight: 600;
+        text-align: center;
+        line-height: 1.5;
+      }
+    }
+
+    .carousel-btns
+    {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      i
+      {
+        color: $color-light-cold;
+        cursor: pointer;
+      }
+    }
+  }
+
+
+}
