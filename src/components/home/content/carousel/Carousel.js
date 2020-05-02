@@ -3,17 +3,13 @@ import "./_carousel.scss";
 
 class Carousel extends Component
 {
-
     state =
         {
             countSlide: 1,
             liSlideArrayList: []
         };
 
-    //onClickPrevious;
-    //onClickNext;
     carouselSlides;
-
 
     componentDidMount() {
 
@@ -21,8 +17,8 @@ class Carousel extends Component
         {
             const {countSlide} = this.state;
             const $slideLiList = document.querySelectorAll(".carousel li");
-
             const liSlideArrayList = [];
+
             for (let i = 0; i < $slideLiList.length; i++)
             {
                 liSlideArrayList.push($slideLiList[i]);
@@ -32,16 +28,6 @@ class Carousel extends Component
                     })
             }
 
-            for (let i = 0; i < liSlideArrayList.length; i++)
-            {
-                if (liSlideArrayList[i].className === "visible-slide")
-                {
-                    this.setState(
-                        {
-                            countSlide: i
-                        })
-                }
-            }
             liSlideArrayList[countSlide-1].classList.add("small-slide-left");
             liSlideArrayList[countSlide].classList.add("visible-slide");
             liSlideArrayList[countSlide+1].classList.add("small-slide-right");
@@ -152,7 +138,6 @@ class Carousel extends Component
         }
     };
 
-
     render() {
         return (
             <>
@@ -164,8 +149,8 @@ class Carousel extends Component
                             </li>
                             <li>
                                 <div className="carousel-slide slide-2">
-                                    <div className="slide-background">
-                                        <div>
+                                    <div className="carousel-slide-background">
+                                        <div className="carousel-slide-content">
                                             <p>
                                                 Icing pastry powder toffee cupcake gingerbread danish soufflé cake.
                                                 Macaroon lemon drops carrot cake pudding. Pastry cake chocolate bar wafer
