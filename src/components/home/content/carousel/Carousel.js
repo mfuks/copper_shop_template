@@ -42,8 +42,9 @@ class Carousel extends Component
                         })
                 }
             }
-
+            liSlideArrayList[countSlide-1].classList.add("small-slide-left");
             liSlideArrayList[countSlide].classList.add("visible-slide");
+            liSlideArrayList[countSlide+1].classList.add("small-slide-right");
         };
 
         this.carouselSlides();
@@ -55,21 +56,48 @@ class Carousel extends Component
 
         if(countSlide === liSlideArrayList.length-1)
         {
+            liSlideArrayList[countSlide-1].classList.remove("small-slide-left");
             liSlideArrayList[countSlide].classList.remove("visible-slide");
+            liSlideArrayList[0].classList.remove("small-slide-right");
+
+            liSlideArrayList[countSlide].classList.add("small-slide-left");
+            liSlideArrayList[0].classList.add("visible-slide");
+            liSlideArrayList[1].classList.add("small-slide-right");
+
             this.setState(
                 {
                     countSlide: 0
                 });
-            liSlideArrayList[0].classList.add("visible-slide");
         }
-        else if(0 < countSlide < liSlideArrayList.length-1)
+        else if(0 < countSlide && countSlide < liSlideArrayList.length-1)
         {
+            liSlideArrayList[0].classList.remove("small-slide-left");
             liSlideArrayList[countSlide].classList.remove("visible-slide");
+            liSlideArrayList[countSlide+1].classList.remove("small-slide-right");
+
+            liSlideArrayList[countSlide].classList.add("small-slide-left");
+            liSlideArrayList[countSlide+1].classList.add("visible-slide");
+            liSlideArrayList[0].classList.add("small-slide-right");
+
             this.setState(
                 {
                     countSlide: countSlide + 1
                 });
-            liSlideArrayList[countSlide + 1].classList.add("visible-slide");
+        }
+        else if (countSlide === 0)
+        {
+            liSlideArrayList[liSlideArrayList.length-1].classList.remove("small-slide-left");
+            liSlideArrayList[countSlide].classList.remove("visible-slide");
+            liSlideArrayList[countSlide+1].classList.remove("small-slide-right");
+
+            liSlideArrayList[countSlide].classList.add("small-slide-left");
+            liSlideArrayList[countSlide+1].classList.add("visible-slide");
+            liSlideArrayList[liSlideArrayList.length-1].classList.add("small-slide-right");
+
+            this.setState(
+                {
+                    countSlide: countSlide + 1
+                });
         }
     };
 
@@ -79,21 +107,48 @@ class Carousel extends Component
 
         if(countSlide === 0)
         {
+            liSlideArrayList[liSlideArrayList.length-1].classList.remove("small-slide-left");
             liSlideArrayList[countSlide].classList.remove("visible-slide");
+            liSlideArrayList[countSlide+1].classList.remove("small-slide-right");
+
+            liSlideArrayList[liSlideArrayList.length-2].classList.add("small-slide-left");
+            liSlideArrayList[liSlideArrayList.length-1].classList.add("visible-slide");
+            liSlideArrayList[0].classList.add("small-slide-right");
+
             this.setState(
                 {
                     countSlide: liSlideArrayList.length-1
                 });
-            liSlideArrayList[liSlideArrayList.length-1].classList.add("visible-slide");
         }
-        else if(0 < countSlide < liSlideArrayList.length)
+        else if(0 < countSlide && countSlide < liSlideArrayList.length-1)
         {
+            liSlideArrayList[countSlide-1].classList.remove("small-slide-left");
             liSlideArrayList[countSlide].classList.remove("visible-slide");
+            liSlideArrayList[countSlide+1].classList.remove("small-slide-right");
+
+            liSlideArrayList[liSlideArrayList.length-1].classList.add("small-slide-left");
+            liSlideArrayList[countSlide-1].classList.add("visible-slide");
+            liSlideArrayList[countSlide].classList.add("small-slide-right");
+
             this.setState(
                 {
                     countSlide: countSlide - 1
                 });
-            liSlideArrayList[countSlide - 1].classList.add("visible-slide");
+        }
+        else if(countSlide === liSlideArrayList.length-1)
+        {
+            liSlideArrayList[countSlide-1].classList.remove("small-slide-left");
+            liSlideArrayList[countSlide].classList.remove("visible-slide");
+            liSlideArrayList[0].classList.remove("small-slide-right");
+
+            liSlideArrayList[countSlide-2].classList.add("small-slide-left");
+            liSlideArrayList[countSlide-1].classList.add("visible-slide");
+            liSlideArrayList[countSlide].classList.add("small-slide-right");
+
+            this.setState(
+                {
+                    countSlide: countSlide - 1
+                });
         }
     };
 
@@ -109,13 +164,16 @@ class Carousel extends Component
                             </li>
                             <li>
                                 <div className="carousel-slide slide-2">
-                                    <div>
-                                        <p>
-                                            Icing pastry powder toffee cupcake gingerbread danish soufflé cake.
-                                            Macaroon lemon drops carrot cake pudding. Pastry cake chocolate bar wafer
-                                            dessert liquorice marshmallow. Lemon drops sugar plum cupcake.
-                                        </p>
+                                    <div className="slide-background">
+                                        <div>
+                                            <p>
+                                                Icing pastry powder toffee cupcake gingerbread danish soufflé cake.
+                                                Macaroon lemon drops carrot cake pudding. Pastry cake chocolate bar wafer
+                                                dessert liquorice marshmallow. Lemon drops sugar plum cupcake.
+                                            </p>
+                                        </div>
                                     </div>
+
                                 </div>
                             </li>
                             <li>

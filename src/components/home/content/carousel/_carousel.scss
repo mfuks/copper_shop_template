@@ -12,53 +12,119 @@
     width: 100%;
     @include flex-center;
 
+    ul{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      //padding: 0 50px;
+      position: relative;
+    }
+
     li
     {
-      display: none;
+
+      //display: none;
+      height: 100%;
+      width: 100%;
+      //display: flex;
+      justify-self: center;
+      align-self: center;
+      text-align: center;
+      position: absolute;
+
+
     }
 
     .visible-slide
     {
+      //position: absolute;
       display: inline-block;
+      top: auto;
+      left: auto;
+      height: 400px;
+      width: 600px;
+      z-index: 3;
+      font-size: 1.3rem;
     }
 
+    .small-slide-left
+    {
+      height: 250px;
+      width: 350px;
+      z-index: 2;
+      left: 0;
+      margin: 0 100px;
+      font-size: 0.8rem;
+    }
+
+    .small-slide-right
+    {
+      height: 250px;
+      width: 350px;
+      right: 0;
+      z-index: 2;
+      margin: 0 100px;
+      font-size: 0.8rem;
+    }
+
+    .hidden-slide
+    {
+      display: none;
+    }
 
 
     .carousel-slide
     {
-      height: 400px;
-      width: 600px;
+      //height: 400px;
+      //width: 600px;
     }
 
     .slide-1
     {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background: blue;
       background: url("/assets/carousel1.jpg") center/cover;
     }
 
     .slide-3
     {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background: red;
       background: url("/assets/carousel2.jpg") center/cover;
     }
 
     .slide-2
     {
-      background: $color-main-cold;
-      @include flex-center;
+      //@include flex-center;
+      height: 100%;
+      width: 100%;
 
-      div
+      .slide-background
       {
         @include flex-center;
+        height: 100%;
+        width: 100%;
         background: $color-main-cold;
-        height: 300px;
-        width: 500px;
-        border: 10px solid $color-main-warm;
-        padding: 40px;
-        color: $color-main-warm;
-        font-size: 1.3rem;
-        font-weight: 600;
-        text-align: center;
-        line-height: 1.5;
+        div
+        {
+          @include flex-center;
+          background: $color-main-cold;
+          height: 75%;
+          width: 83%;
+          border: 0.55em solid $color-main-warm;
+          padding: 9%;
+          color: $color-main-warm;
+          font-weight: 600;
+          text-align: center;
+          line-height: 1.5;
+        }
       }
+
     }
 
     .carousel-btns
