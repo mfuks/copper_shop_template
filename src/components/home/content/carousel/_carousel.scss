@@ -1,7 +1,5 @@
 @import "../../../../main";
 
-$shadow-slide: 10px 10px 40px -5px rgba($color-dark,0.70);
-
 .carousel
 {
   @include flex-center;
@@ -17,87 +15,61 @@ $shadow-slide: 10px 10px 40px -5px rgba($color-dark,0.70);
     ul
     {
       width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
       position: relative;
 
       li
       {
         height: 100%;
         width: 100%;
-        justify-self: center;
-        align-self: center;
-        text-align: center;
         position: absolute;
-
         box-shadow: $shadow-slide;
         -moz-box-shadow: $shadow-slide;
         -webkit-box-shadow: $shadow-slide;
-
-        .carousel-slide
-        {
-
-        }
-
       }
     }
 
     .visible-slide
     {
       display: inline-block;
-      top: auto;
-      left: auto;
       height: 400px;
       width: 600px;
       z-index: 1;
       font-size: 1.3rem;
     }
 
-    .small-slide-left
+    .small-slide-left,
+    .small-slide-right
     {
       height: 250px;
       width: 350px;
-      left: 0;
       margin: 0 100px;
       font-size: 0.8rem;
     }
 
     .small-slide-right
     {
-      height: 250px;
-      width: 350px;
       right: 0;
-      margin: 0 100px;
-      font-size: 0.8rem;
+    }
+    .small-slide-left
+    {
+      left: 0;
     }
 
-    .hidden-slide
+    .hidden
     {
       display: none;
     }
 
-    .slide-1
+    .carousel-slide
     {
       display: inline-block;
-      width: 100%;
       height: 100%;
-      background: url("/assets/carousel1.jpg") center/cover;
+      width: 100%;
     }
 
-    .slide-3
+    .slide-0
     {
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-      background: url("/assets/carousel2.jpg") center/cover;
-    }
-
-    .slide-2
-    {
-      height: 100%;
-      width: 100%;
-
       .carousel-slide-background
       {
         @include flex-center;
@@ -119,6 +91,21 @@ $shadow-slide: 10px 10px 40px -5px rgba($color-dark,0.70);
           line-height: 1.5;
         }
       }
+    }
+
+    .slide-1
+    {
+      background: url("/assets/carousel2.jpg") center/cover;
+    }
+
+    .slide-2
+    {
+      background: url("/assets/contact.jpg") center/cover;
+    }
+
+    .slide-3
+    {
+      background: url("/assets/carousel1.jpg") center/cover;
     }
 
     .carousel-btns

@@ -8,7 +8,7 @@ The main website itself was created here from the beginning.
 
 - npm
 - Node.js
-- npm init react-app
+- Create React App
 - JavaScript
 - React
 - JSX
