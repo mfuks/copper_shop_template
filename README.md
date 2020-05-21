@@ -8,11 +8,12 @@ The main website itself was created here from the beginning.
 
 - npm
 - Node.js
-- npm init react-app
-- JavaScript
-- React
-- JSX
+- Create React App
+- HTML5
 - Sass
+- JavaScript
+- React, JSX
+- JSON Server
 
 ## Installation:
 
