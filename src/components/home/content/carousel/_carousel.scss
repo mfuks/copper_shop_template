@@ -1,7 +1,5 @@
 @import "../../../../main";
 
-$shadow-slide: 10px 10px 40px -5px rgba($color-dark,0.70);
-
 .carousel
 {
   @include flex-center;
