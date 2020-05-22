@@ -1,0 +1,61 @@
+@import "../../../main";
+
+.info
+{
+  margin: 50px 0 30px 0;
+
+  .info-content
+  {
+    padding: 20px;
+    min-height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: $color-light-cold;
+
+    header
+    {
+      padding-bottom: 15px;
+      text-transform: uppercase;
+      color: $color-main-cold;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .ic
+    {
+      width: 25%;
+      height: 100%;
+      padding: 10px;
+      color: $color-main-cold;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.5rem;
+
+      ul
+      {
+        list-style-type: disc;
+        padding-left: 20px;
+      }
+    }
+
+    .info-content-info-1
+    {
+      width: 31%;
+      padding-left: 40px;
+    }
+
+    .info-content-social-section
+    {
+      width: 19%;
+      padding-right: 40px;
+
+      .info-content-social-section
+      {
+        padding-top: 10px;
+      }
+    }
+
+  }
+
+}

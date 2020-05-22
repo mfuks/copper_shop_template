@@ -35,12 +35,15 @@ class Products extends Component
                     <div className="container">
                         <div className="products-content">
                             <ul>
-                                {products.map( element =>
+                                {products.map(element =>
                                     <li key={element.id}>
                                         <div className="product">
                                             <figure className="product-img">
-                                                <img src={"./assets/products/" + element.id + ".jpeg"} alt={"product_" + element.id}/>
-                                                <figcaption className="product-name">product {element.id}</figcaption>
+                                                <img src={"./assets/products/" + element.id + ".jpeg"}
+                                                     alt={"product_" + element.id}/>
+                                                <figcaption className="product-name">
+                                                    product {element.id}
+                                                </figcaption>
                                             </figure>
                                             <section className="product-info">
                                                 <div className="product-info-price">

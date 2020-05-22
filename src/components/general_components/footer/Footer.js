@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "./_footer.scss"
+import SocialMedia from "../social_media/SocialMedia";
 
 class Footer extends Component
 {
@@ -14,9 +15,7 @@ class Footer extends Component
                                 &copy; Copper Shop 2020
                             </section>
                             <section className="footer-social">
-                                <i className="fab fa-2x fa-facebook-square"/>
-                                <i className="fab fa-2x fa-instagram-square"/>
-                                <i className="fab fa-2x fa-pinterest-square"/>
+                                <SocialMedia/>
                             </section>
                         </div>
                     </div>

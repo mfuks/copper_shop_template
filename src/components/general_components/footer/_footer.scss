@@ -24,22 +24,13 @@ footer
     font-weight: 600;
   }
 
-  .footer-social,
-  .footer-empty
+  .footer-empty,
+  .footer-social
   {
     display: flex;
     width: 25%;
     justify-content: flex-end;
     padding-right: 100px;
-
-    i
-    {
-      margin-left: 10px;
-      cursor: pointer;
-    }
   }
-
-
-
 
 }
