@@ -1,3 +1,8 @@
+
+
+
+
+
 @import "../../../../main";
 
 nav
@@ -11,18 +16,23 @@ nav
 
     li
     {
-      @include flex-center;
-      padding: 0 20px;
-      font-size: 1.2rem;
-      color: $color-main-warm;
-      font-weight: 600;
       height: 100%;
-      cursor: pointer;
 
-      &:hover
+      a
       {
-        color: $color-main-cold;
-        background: $color-main-warm;
+        font-size: 1.2rem;
+        font-weight: 600;
+        height: 100%;
+        cursor: pointer;
+        padding: 0 20px;
+        color: $color-main-warm;
+        @include flex-center;
+
+        &:hover
+        {
+          color: $color-main-cold;
+          background: $color-main-warm;
+        }
       }
     }
   }

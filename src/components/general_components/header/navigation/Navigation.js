@@ -1,21 +1,28 @@
 import React, {Component} from 'react';
 import "./_navigation.scss"
+import {Link} from "react-router-dom";
 
 class Navigation extends Component
 {
-    state =
-        {
-            menu: ["Home", "Sklep", "Kontakt", "O nas"]
-        };
 
     render() {
-        const {menu} = this.state;
         return (
             <>
                 <nav>
                     <div className="container">
                         <ul className="nav-menu">
-                            {menu.map( (e, i) => <li key={i + "-" + e}>{e}</li>)}
+                            <li>
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li>
+                                <Link to="/shop">Sklep</Link>
+                            </li>
+                            <li>
+                                <Link to="/contact">Kontakt</Link>
+                            </li>
+                            <li>
+                                <Link to="/about_us">O nas</Link>
+                            </li>
                         </ul>
                     </div>
                 </nav>
