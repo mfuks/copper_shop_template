@@ -4,7 +4,11 @@ Copper shop template is an example web template for online shops.
 Website general mockup was made in Wix website creator but without using any premade template. 
 The main website itself was created here from the beginning.
 
-## Technologies
+## Shop mockup:
+
+https://fuksmarta.wixsite.com/website-1/sklep
+
+## Technologies:
 
 - npm
 - Node.js
@@ -22,4 +26,7 @@ The main website itself was created here from the beginning.
 - #### install all dependencies
   `npm install`
 - #### preview
-  `npm start` and go to [http://localhost:3000/](http://localhost:3000/)
+   - in "data" folder:
+  `json-server --watch products.json`
+   - in "copper_shop_template" folder
+  `npm start` and go to [http://localhost:3001/](http://localhost:3000/)

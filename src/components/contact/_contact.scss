@@ -1,0 +1,182 @@
+@import "../../main";
+
+
+.contact
+{
+  position: relative;
+
+  padding-bottom: 100px;
+  margin-top: 70px;
+
+  .contact-header
+  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 100px 30px 100px;
+
+    .contact-header-logo
+    {
+      height: 77px;
+      width: 168px;
+      background: url("/assets/logo.png") center/cover;
+      margin: 10px;
+      line-height: 3rem;
+      z-index: 2;
+    }
+
+    .contact-header-title
+    {
+      font-family: $font-logo;
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: $color-main-warm;
+    }
+  }
+
+  .contact-header::before
+  {
+    content: "";
+    display: block;
+    width: 265px;
+    height: 350px;
+    background: $color-main-cold;
+    z-index: 1;
+    position: absolute;
+    top: -30px;
+    left: 60px;
+
+  }
+
+  .contact-content
+  {
+
+    .contact-content-address
+    {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .contact-content-address-img
+    {
+      height: 311px;
+      width: 470px;
+      background: url("/assets/contact.jpg") center/cover;
+      z-index: 2;
+    }
+
+    .contact-content-address-data
+    {
+      h3 {
+        font-weight: 600;
+        color: $color-main-warm;
+        line-height: 3.5rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        i
+        {
+          padding-right: 1rem;
+          color: $color-main-cold;
+        }
+
+
+      }
+    }
+
+    .contact-content-form
+    {
+      background: $color-main-cold;
+      width: 85%;
+      height: 330px;
+      margin: 60px auto 20px auto;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 50px;
+      flex-direction: column;
+      font-size: 1.2rem;
+      color: $color-main-warm;
+      font-weight: 600;
+      box-shadow: $shadow-slide;
+
+
+      legend
+      {
+        text-align: center;
+        font-size: 2rem;
+        letter-spacing: 0.1rem;
+      }
+
+      .form-btn
+      {
+        width: 40%;
+        height: 50px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $color-background;
+        background: $color-main-cold;
+        border-radius: 25px;
+        position: absolute;
+        bottom: -80px;
+        left: 30%;
+        letter-spacing: 0.1rem;
+        font-family: $font-base;
+        box-shadow: $shadow-slide;
+      }
+
+      .contact-content-form-section
+      {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+        padding-top: 20px;
+
+        fieldset
+        {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-around;
+          flex-direction: column;
+          width: 35%;
+
+          label
+          {
+            padding: 25px 0 7px 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+          }
+
+          input
+          {
+            height: 2rem;
+            width: 90%;
+            padding-left: 7px;
+            font-size: 1rem;
+            font-weight: 400;
+            font-family: $font-base;
+          }
+
+          textarea
+          {
+            height: 115px;
+            width: 100%;
+            padding: 7px;
+            font-size: 1rem;
+            font-weight: 400;
+            font-family: $font-base;
+          }
+
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
