@@ -1,0 +1,58 @@
+@import "../../main";
+
+
+.about-us
+{
+  margin-bottom: 95px;
+
+  .about-us-header
+  {
+    text-align: right;
+    padding: 70px 60px 0 0;
+    font-size: 1.5rem;
+    color: $color-main-warm;
+    font-weight: 600;
+    line-height: 2rem;
+    z-index: 3;
+  }
+
+  .about-us-content
+  {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+
+    .about-us-content-img
+    {
+      height: 380px;
+      width: 250px;
+      background: url("/assets/about_us.jpg") center/cover;
+      z-index: 2;
+    }
+
+    .about-us-content-text
+    {
+      padding: 60px;
+      width: 57%;
+      text-align: justify;
+      line-height: 1.5rem;
+      color: $color-main-warm;
+      font-size: 1.1rem;
+    }
+  }
+
+  .about-us-content::before
+  {
+    content: "";
+    display: block;
+    width: 30%;
+    height: 98%;
+    background: $color-main-cold;
+    z-index: 1;
+    position: absolute;
+    top: 50px;
+    left: 60px;
+  }
+
+}
