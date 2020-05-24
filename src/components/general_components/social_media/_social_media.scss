@@ -5,12 +5,20 @@
   display: flex;
   width: 100px;
   justify-content: space-between;
-  color: $color-main-cold;
 
-  i
+
+  a
   {
+    color: $color-main-cold;
     cursor: pointer;
+
+    &:hover
+    {
+      color: $color-main-warm;
+    }
   }
+
+
 }
 
 

@@ -7,9 +7,15 @@ class SocialMedia extends Component
         return (
             <>
                 <section className="social-media">
-                    <i className="fab fa-2x fa-facebook-square"/>
-                    <i className="fab fa-2x fa-instagram-square"/>
-                    <i className="fab fa-2x fa-pinterest-square"/>
+                    <a href="https://www.facebook.com/mojerekoczyny/" target="_blank" rel="noopener noreferrer">
+                        <i className="fab fa-2x fa-facebook-square"/>
+                    </a>
+                    <a href="https://www.instagram.com/mojerekoczyny/" target="_blank" rel="noopener noreferrer">
+                        <i className="fab fa-2x fa-instagram-square"/>
+                    </a>
+                    <a href="https://pin.it/bFDqYuV" target="_blank" rel="noopener noreferrer">
+                        <i className="fab fa-2x fa-pinterest-square"/>
+                    </a>
                 </section>
             </>
         )
