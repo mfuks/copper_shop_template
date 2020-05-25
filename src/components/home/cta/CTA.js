@@ -1,18 +1,15 @@
 import React, {Component} from 'react';
-import "./_ctn.scss"
+import "./_cta.scss"
+import {Link} from "react-router-dom";
 
-class CTN extends Component
+class CTA extends Component
 {
     render() {
         return (
             <>
                 <section className="ctn">
                     <div className="container">
-                        <div className="ctn-button">
-                            <button>
-                                do sklepu
-                            </button>
-                        </div>
+                        <Link className="ctn-button" to="/shop">do sklepu</Link>
                     </div>
                 </section>
             </>
@@ -20,4 +17,4 @@ class CTN extends Component
     }
 }
 
-export default CTN;
+export default CTA;

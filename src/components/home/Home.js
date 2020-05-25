@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Header from "./header/Header";
 import Content from "./content/Content";
 import Footer from "../general_components/footer/Footer";
-import CTN from "./ctn/CTN";
+import CTA from "./cta/CTA";
 
 class Home extends Component
 {
@@ -11,7 +11,7 @@ class Home extends Component
             <>
                 <Header/>
                 <Content/>
-                <CTN/>
+                <CTA/>
                 <Footer/>
             </>
         )

@@ -1,0 +1,35 @@
+@import "../../../main";
+
+.ctn
+{
+  @include flex-center;
+  margin-top: 70px;
+  margin-bottom: 60px;
+
+  .ctn-button
+  {
+    @include flex-center;
+    color:$color-main-warm;
+    background: $color-main-cold;
+    width: 300px;
+    height: 60px;
+    border-radius: 30px;
+    box-shadow: $shadow-slide;
+    -moz-box-shadow: $shadow-slide;
+    -webkit-box-shadow: $shadow-slide;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover
+    {
+      color: $color-main-cold;
+      background: $color-main-warm;
+
+    }
+
+
+
+  }
+}

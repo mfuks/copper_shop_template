@@ -28,5 +28,6 @@ https://fuksmarta.wixsite.com/website-1/sklep
 - #### preview
    - in "data" folder:
   `json-server --watch products.json`
+  `json-server --watch messages.json -p 3010`
    - in "copper_shop_template" folder
   `npm start` and go to [http://localhost:3001/](http://localhost:3000/)
