@@ -6,7 +6,7 @@ The main website itself was created here from the beginning.
 
 ## Shop mockup:
 
-https://fuksmarta.wixsite.com/website-1/sklep
+go see [mockup](https://fuksmarta.wixsite.com/website-1/sklep)
 
 ## Technologies:
 
@@ -22,12 +22,15 @@ https://fuksmarta.wixsite.com/website-1/sklep
 ## Installation:
 
 - #### clone the repository
-  `git clone https://github.com/mfuks/Start_helping_App.git`
+  `git clone https://github.com/mfuks/copper_shop_template.git`
 - #### install all dependencies
   `npm install`
-- #### preview
-   - in "data" folder:
+- #### start JSON Server
+   in "data" folder:
+   
   `json-server --watch products.json`
+
   `json-server --watch messages.json -p 3010`
-   - in "copper_shop_template" folder
+- #### preview
+   in "copper_shop_template" folder:
   `npm start` and go to [http://localhost:3001/](http://localhost:3000/)
