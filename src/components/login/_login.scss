@@ -1,0 +1,118 @@
+@import "../../main";
+
+
+.login
+{
+  height: calc(100vh - 97px - 50px);
+  width: 100%;
+  min-height: 560px;
+  min-width: 450px;
+
+  .login-cont
+  {
+    height: 100%;
+    width: 100%;
+    @include flex-center;
+
+    .login-content
+    {
+      height: calc(90% - 100px);
+      min-height: 430px;
+      width: 60%;
+      background: $color-main-cold;
+      @include flex-center;
+      margin-bottom: 100px;
+    }
+  }
+
+  form
+  {
+    @include flex-center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    position: relative;
+
+    legend
+    {
+      text-transform: uppercase;
+      color: $color-background;
+      font-weight: 600;
+      font-size: 1.5rem;
+      font-family: $font-base;
+      padding: 25px;
+    }
+
+    i
+    {
+      color: $color-main-warm;
+      position: absolute;
+      top: 22px;
+      left: 27px;
+    }
+
+    .login-content-form-img
+    {
+      height: 140px;
+      width: 140px;
+      border: 5px solid $color-main-warm;
+      border-radius: 70px;
+      margin: 5px;
+      position: relative;
+    }
+
+    label
+    {
+      @include flex-center;
+      width: calc(90% - 150px);
+      margin: 20px 0;
+      color: $color-main-warm;
+      font-family: $font-base;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    input
+    {
+      width: 60%;
+      margin: 10px;
+      padding: 5px;
+      color: $color-main-cold;
+      font-family: $font-base;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    .login-content-form-btns
+    {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      bottom: -80px;
+
+      input,
+      a
+      {
+        height: 50px;
+        width: 250px;
+        color: $color-background;
+        background: $color-main-cold;
+        font-family: $font-base;
+        font-weight: 600;
+        text-transform: uppercase;
+        @include flex-center;
+        font-size: 1.5rem;
+        border-radius: 25px;
+        box-shadow: $shadow-slide;
+        padding: 0;
+        margin: 0;
+
+      }
+
+    }
+  }
+
+
+}
