@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import "./../_lar.scss"
 import "./_login.scss"
-import Logo from "../general_components/header/logo/Logo";
-import Footer from "../general_components/footer/Footer";
+import Logo from "../../general_components/header/logo/Logo";
+import Footer from "../../general_components/footer/Footer";
 import {Link} from "react-router-dom";
 
 class Login extends Component
@@ -11,7 +12,7 @@ class Login extends Component
             <>
                 <Logo/>
                 <section className="login">
-                    <div className="container login-cont">
+                    <div className="container lar-cont">
                         <div className="login-content">
                             <form>
                                 <legend>
@@ -28,7 +29,7 @@ class Login extends Component
                                     <input type="text"
                                            placeholder="Password"/>
                                 </label>
-                                <div className="login-content-form-btns">
+                                <div className="lar-content-form-btns">
                                     <Link to="/registration">do rejestracji</Link>
                                     <input type="submit" value="zaloguj"/>
                                 </div>

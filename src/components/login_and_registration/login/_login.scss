@@ -1,0 +1,50 @@
+@import "../../../main";
+
+
+.login
+{
+  height: calc(100vh - 97px - 50px);
+  width: 100%;
+  min-height: 560px;
+  min-width: 450px;
+
+  .login-content
+  {
+    height: calc(90% - 100px);
+    min-height: 430px;
+    width: 60%;
+    background: $color-main-cold;
+    @include flex-center;
+    margin-bottom: 100px;
+  }
+
+  i
+  {
+    color: $color-main-warm;
+    position: absolute;
+    top: 22px;
+    left: 27px;
+  }
+
+  .login-content-form-img
+  {
+    height: 140px;
+    width: 140px;
+    border: 5px solid $color-main-warm;
+    border-radius: 70px;
+    margin: 5px;
+    position: relative;
+  }
+
+  label
+  {
+    @include flex-center;
+    width: calc(90% - 150px);
+    margin: 20px 0;
+    color: $color-main-warm;
+    font-family: $font-base;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+}

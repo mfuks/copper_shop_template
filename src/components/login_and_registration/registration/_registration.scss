@@ -1,0 +1,81 @@
+@import "../../../main";
+
+
+.registration
+{
+  width: 100%;
+  min-height: 560px;
+  min-width: 450px;
+
+  .registration-content
+  {
+    width: 70%;
+    background: $color-main-cold;
+    @include flex-center;
+    margin-bottom: 100px;
+  }
+
+  .registration-content-form-sections
+  {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    position: relative;
+  }
+
+  label
+  {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 80%;
+    margin-bottom: 20px;
+    color: $color-main-warm;
+    font-family: $font-base;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  select
+  {
+    width: 62%;
+    margin: 10px;
+    padding: 5px;
+    color: $color-main-cold;
+    font-family: $font-base;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .registration-content-form
+  {
+    padding: 30px 0;
+
+    .registration-content-form-sections
+    {
+      @include flex-center;
+
+      .registration-content-form-sections-left
+      {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        input
+        {
+          margin-right: 20px;
+          width: 20px;
+        }
+      }
+    }
+  }
+
+  h2
+  {
+    color: $color-main-warm;
+  }
+}
