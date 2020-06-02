@@ -7,6 +7,14 @@ import {Link} from "react-router-dom";
 
 class Registration extends Component
 {
+
+
+
+
+
+
+
+
     render() {
         return (
             <>
@@ -20,38 +28,37 @@ class Registration extends Component
                                 </legend>
                                 <h2>Dane personalne</h2>
                                 <section className="registration-content-form-sections">
-                                    <label>Imię*:
+                                    <label>Imię:
+                                        <span className="big-x2">*</span>
                                         <input type="text"
                                                placeholder="Name"/>
                                     </label>
-                                    <label>E-mail*:
+                                    <label>Nazwisko:
+                                        <input type="text"
+                                               placeholder="Surname"/>
+                                    </label>
+                                    <label>E-mail:
+                                        <span className="big-x2">*</span>
                                         <input type="text"
                                                placeholder="E-mail"/>
-                                    </label>
-                                    <label>Płeć:
-                                        <select name="gender" placeholder="Gender">
-                                            <option value="male">Mężczyzna</option>
-                                            <option value="female">Kobieta</option>
-                                        </select>
-                                    </label>
-                                    <label>Data urodzenia:
-                                        <input type="date" placeholder="Date of birth"
-                                               value=""
-                                               min="1850-01-01"
-                                               max=""/>
                                     </label>
                                 </section>
                                 <h2>Dane do logowania</h2>
                                 <section className="registration-content-form-sections">
-                                    <label>Login*:
+                                    <label>Login:
+                                        <span className="big-x2">*</span>
                                         <input type="text"
                                                placeholder="Login"/>
                                     </label>
-                                    <label>Hasło*:
+                                    <label>Hasło:
+                                        <span className="big-x2">*</span>
                                         <input type="text"
                                                placeholder="Password"/>
                                     </label>
-                                    <label>Powtórz hasło*:
+                                    <label>Powtórz hasło:
+                                        <span className="big-x2">
+                                            *
+                                        </span>
                                         <input type="text"
                                                placeholder="Repeat password"/>
                                     </label>
@@ -77,22 +84,26 @@ class Registration extends Component
                                 </section>
                                 <h2>Zgody</h2>
                                 <section className="registration-content-form-sections">
-                                    <label className="registration-content-form-sections-left">*
-                                        <input type="checkbox"/>
-                                        Zapoznałem się z regulaminem sklepu internetowego i akceptuję jego treść.
-                                    </label>
-                                    <label className="registration-content-form-sections-left">&nbsp;
-                                        <input type="checkbox"/>
-                                        Zapisz się do newslettera
-                                    </label>
+                                    <div>
+                                        <input type="checkbox"
+                                               id="agreement"/>
+                                        <label className="registration-content-form-sections-left"
+                                               htmlFor="agreement">
+                                            <p className="big-x2">
+                                                *
+                                            </p>
+                                            <span/>
+                                            <p>
+                                                Zapoznałem się z regulaminem sklepu internetowego i akceptuję jego treść.
+                                            </p>
+                                        </label>
+                                    </div>
+                                    <p>
+                                        Pola oznaczone&nbsp;
+                                        <span className="big-x1">*</span>
+                                        &nbsp;są obowiązkowe
+                                    </p>
                                 </section>
-
-
-
-
-
-
-
                                 <div className="lar-content-form-btns">
                                     <Link to="/registration">do logowania</Link>
                                     <input type="submit" value="zarejestruj"/>
