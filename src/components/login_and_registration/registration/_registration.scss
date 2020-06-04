@@ -44,8 +44,13 @@
 
     input
     {
-      width: 350px;
+      width: 350px
     }
+  }
+
+  .obligatory
+  {
+    margin-bottom: 0;
   }
 
   p
@@ -81,7 +86,7 @@
         font-weight: 400;
       }
 
-      div
+      .agreements
       {
         @include flex-center;
 
@@ -143,5 +148,43 @@
     color: $color-main-warm;
   }
 
+  .form-error
+  {
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    padding-left: 41%;
+    height: 20px;
+  }
 
+  .form-error-invisible
+  {
+    height: 20px;
+    padding: 0;
+  }
+
+  .registration-end
+  {
+    height: 60vh;
+    @include flex-center;
+
+    h2
+    {
+      text-transform: uppercase;
+      color: $color-background;
+      padding: 0;
+    }
+
+    .lar-content-form-btns
+    {
+      justify-content: center;
+      bottom: 0;
+
+      a
+      {
+        width: 40%;
+        min-width: 310px;
+      }
+    }
+  }
 }

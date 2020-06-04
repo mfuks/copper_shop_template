@@ -64,8 +64,6 @@ class Form extends Component
     {
         e.preventDefault();
 
-        console.log("submit");
-
         const {name, email, message} = this.state;
 
         let nameValVar;
@@ -98,8 +96,6 @@ class Form extends Component
 
         if(nameValVar && emailValVar && messageValVar)
         {
-            console.log("wysłano");
-
             const url = "http://localhost:3010/messages";
 
             fetch(url,
