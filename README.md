@@ -31,6 +31,8 @@ go see [mockup](https://fuksmarta.wixsite.com/website-1/sklep)
   `json-server --watch products.json`
 
   `json-server --watch messages.json -p 3010`
+  
+  `json-server --watch users.json -p 3012`
 - #### preview
    in "copper_shop_template" folder:
   `npm start` and go to [http://localhost:3001/](http://localhost:3000/)

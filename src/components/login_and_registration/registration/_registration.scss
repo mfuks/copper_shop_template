@@ -5,11 +5,13 @@
 {
   width: 100%;
   min-height: 560px;
-  min-width: 450px;
+  min-width: 720px;
+  margin: 40px 0;
 
   .registration-content
   {
-    width: 70%;
+    width: 60%;
+    min-width: 720px;
     background: $color-main-cold;
     @include flex-center;
     margin-bottom: 100px;
@@ -28,27 +30,38 @@
 
   label
   {
+    margin-left: 50px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 80%;
+    width: 85%;
     margin-bottom: 20px;
     color: $color-main-warm;
     font-family: $font-base;
     font-size: 1.5rem;
     font-weight: 600;
     text-align: left;
+
+    input
+    {
+      width: 350px
+    }
   }
 
-  select
+  .obligatory
   {
-    width: 62%;
-    margin: 10px;
-    padding: 5px;
-    color: $color-main-cold;
+    margin-bottom: 0;
+  }
+
+  p
+  {
+    max-width: 100%;
+    @include flex-center;
+    color: $color-main-warm;
     font-family: $font-base;
-    font-size: 1.2rem;
     font-weight: 500;
+    font-size: 1.2rem;
+    margin: auto;
   }
 
   .registration-content-form
@@ -57,19 +70,75 @@
 
     .registration-content-form-sections
     {
-      @include flex-center;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
 
-      .registration-content-form-sections-left
+      .big-x2
       {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        font-size: 3rem;
+        font-weight: 400;
+      }
 
+      .big-x1
+      {
+        font-size: 2rem;
+        font-weight: 400;
+      }
+
+      .agreements
+      {
+        @include flex-center;
+
+        .registration-content-form-sections-left
+        {
+          width: 75%;
+          margin-left: 0;
+          display: flex;
+          justify-content: center;
+          justify-self: center;
+          align-self: center;
+
+        }
+
+        p
+        {
+          color: $color-main-warm;
+          font-family: $font-base;
+          font-size: 1.5rem;
+          font-weight: 600;
+          text-align: left;
+        }
+
+//niestandardowe pole wyboru checkbox
         input
         {
-          margin-right: 20px;
-          width: 20px;
+          display: none;
         }
+
+        input + label span
+        {
+          display: inline-block;
+          min-width: 30px;
+          min-height: 30px;
+          border: 1px solid $color-dark;
+          margin-right: 20px;
+          margin-left: 5px;
+          cursor: pointer;
+          background: $color-background;
+
+          &:hover
+          {
+            background: $color-light-warm;
+          }
+        }
+
+        input:checked + label span
+        {
+          background: url("/assets/checked.png") center/cover no-repeat,  $color-background;
+          background-size: 90%;
+        }
+//
       }
     }
   }
@@ -77,5 +146,45 @@
   h2
   {
     color: $color-main-warm;
+  }
+
+  .form-error
+  {
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    padding-left: 41%;
+    height: 20px;
+  }
+
+  .form-error-invisible
+  {
+    height: 20px;
+    padding: 0;
+  }
+
+  .registration-end
+  {
+    height: 60vh;
+    @include flex-center;
+
+    h2
+    {
+      text-transform: uppercase;
+      color: $color-background;
+      padding: 0;
+    }
+
+    .lar-content-form-btns
+    {
+      justify-content: center;
+      bottom: 0;
+
+      a
+      {
+        width: 40%;
+        min-width: 310px;
+      }
+    }
   }
 }
