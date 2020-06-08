@@ -1,0 +1,41 @@
+@import "../../../main";
+
+
+.lar-home-btn
+{
+  height: 430px;
+  width: 60%;
+  background: $color-main-cold;
+  @include flex-center;
+  margin-bottom: 80px;
+
+
+  .lar-home-btn-content
+  {
+    height: 60vh;
+    @include flex-center;
+
+    h2
+    {
+      text-transform: uppercase;
+      color: $color-background;
+      padding: 0;
+    }
+
+    .lar-content-form-btns
+    {
+      justify-content: center;
+      bottom: -50px;
+      margin-bottom: 50px;
+
+      a
+      {
+        width: 40%;
+        min-width: 310px;
+      }
+    }
+  }
+
+
+}
+
