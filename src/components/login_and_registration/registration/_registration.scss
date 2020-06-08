@@ -39,11 +39,6 @@
     text-align: left;
   }
 
-  .obligatory
-  {
-    margin-bottom: 0;
-  }
-
   p
   {
     max-width: 100%;
@@ -132,5 +127,10 @@
   h2
   {
     color: $color-main-warm;
+  }
+
+  .form-error
+  {
+    padding-left: calc(85% + 50px - 320px);
   }
 }

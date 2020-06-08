@@ -30,6 +30,11 @@
       flex-direction: column;
       position: relative;
 
+      .obligatory
+      {
+        margin-bottom: 0;
+      }
+
       legend
       {
         text-transform: uppercase;
@@ -103,7 +108,6 @@
     width: 100%;
     text-align: left;
     padding: 0;
-    padding-left: 41%;
     height: 20px;
   }
 

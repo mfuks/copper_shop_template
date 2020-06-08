@@ -7,7 +7,7 @@
   .login-content
   {
     height: calc(90% - 100px);
-    min-height: 430px;
+    min-height: 450px;
   }
 
   i
@@ -35,4 +35,8 @@
     margin: 20px 0;
   }
 
+  .form-error
+  {
+    text-align: center;
+  }
 }

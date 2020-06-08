@@ -132,7 +132,7 @@ class Login extends Component
                                 <div className="login-content-form-img">
                                     <i className="fas fa-5x fa-user-alt"/>
                                 </div>
-                                <label>Login:
+                                <label className="obligatory">Login:
                                     <input type="text"
                                            placeholder="Login"
                                            name="login"
@@ -144,7 +144,7 @@ class Login extends Component
                                         Podany login jest nieprawidłowy
                                     </div>:
                                     <div className="form-error-invisible"/>}
-                                <label>Hasło:
+                                <label className="obligatory">Hasło:
                                     <input type="password"
                                            placeholder="Password"
                                            name="password"
