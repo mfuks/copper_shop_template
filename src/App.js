@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
     HashRouter,
     Route,
@@ -10,19 +10,48 @@ import AboutUs from "./components/about_us/AboutUs";
 import Login from "./components/login_and_registration/login/Login";
 import Registration from "./components/login_and_registration/registration/Registration";
 
-function App() {
-  return (
-      <HashRouter>
-          <>
-              <Route exact path='/' render={() => <Home path="/"/>}/>
-              <Route exact path='/shop' render={() => <Shop path="/shop"/>}/>
-              <Route exact path='/contact' render={() => <Contact path="/contact"/>}/>
-              <Route exact path='/about_us' render={() => <AboutUs path="/about_us"/>}/>
-              <Route exact path='/login' render={() => <Login path="/login"/>}/>
-              <Route exact path='/registration' render={() => <Registration path="/registration"/>}/>
-          </>
-      </HashRouter>
-  );
+class App extends Component
+{
+    state =
+        {
+            login: ""
+        };
+
+    setLogin = (user) =>
+    {
+        this.setState({
+            login: user
+        })
+    };
+
+    setClearLogin = () =>
+    {
+        this.setState({
+            login: "",
+        })
+    };
+
+    render() {
+        return (
+            <HashRouter>
+                <>
+                    <Route exact path='/' render={() => <Home path="/"
+                                                              login={this.state.login}/>}/>
+                    <Route exact path='/shop' render={() => <Shop path="/shop"
+                                                                  login={this.state.login}/>}/>
+                    <Route exact path='/contact' render={() => <Contact path="/contact"
+                                                                        login={this.state.login}/>}/>
+                    <Route exact path='/about_us' render={() => <AboutUs path="/about_us"
+                                                                         login={this.state.login}/>}/>
+                    <Route exact path='/login' render={() => <Login path="/login"
+                                                                    setLogin={this.setLogin}
+                                                                    setClearLogin={this.setClearLogin}/>}/>
+                    <Route exact path='/registration' render={() => <Registration path="/registration"/>}/>
+                </>
+            </HashRouter>
+        );
+    }
+
 }
 
 export default App;

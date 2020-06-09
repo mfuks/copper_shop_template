@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import "./_contact.scss"
-import Navigation from "../general_components/header/navigation/Navigation";
-import LogRegister from "../general_components/header/log_register/LogRegister";
 import Footer from "../general_components/footer/Footer";
 import Form from "./form/Form";
+import Header from "../general_components/header/Header";
 
 class Contact extends Component
 {
@@ -11,8 +10,7 @@ class Contact extends Component
     render() {
         return (
             <>
-                <LogRegister/>
-                <Navigation/>
+                <Header login={this.props.login}/>
                 <section className="contact">
                     <div className="container">
                         <header className="contact-header">

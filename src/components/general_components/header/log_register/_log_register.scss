@@ -19,8 +19,15 @@
     {
       height: 77px;
       width: 168px;
-      background: url("/assets/logo.png") center/cover;
       margin: 10px;
+
+      .lr-logo-img
+      {
+        height: 77px;
+        width: 168px;
+        background: url("/assets/logo.png") center/cover;
+        cursor: pointer;
+      }
     }
 
     .lr-user
@@ -32,6 +39,17 @@
       i,h4
       {
         padding: 5px;
+      }
+
+      .lr-user-login-link
+      {
+        color: $color-main-cold;
+        cursor: pointer;
+
+        &:hover
+        {
+          color: $color-main-warm;
+        }
       }
     }
   }

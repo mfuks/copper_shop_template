@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Header from "./header/Header";
+import Header from "../general_components/header/Header";
 import Product from "./product/Product"
 import Footer from "../general_components/footer/Footer";
 import Info from "./info/Info";
@@ -9,7 +9,7 @@ class Shop extends Component
     render() {
         return (
             <>
-                <Header/>
+                <Header login={this.props.login}/>
                 <Product/>
                 <Info/>
                 <Footer/>

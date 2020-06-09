@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import "./_about_us.scss"
-import Navigation from "../general_components/header/navigation/Navigation";
 import Footer from "../general_components/footer/Footer";
-import LogRegister from "../home/header/log_register/LogRegister";
+import Header from "../general_components/header/Header";
 
 class AboutUs extends Component
 {
@@ -10,8 +9,7 @@ class AboutUs extends Component
     render() {
         return (
             <>
-                <LogRegister/>
-                <Navigation/>
+                <Header login={this.props.login}/>
                 <section className="about-us">
                     <div className="container">
                         <header  className="about-us-header">
