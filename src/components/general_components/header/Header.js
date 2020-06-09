@@ -7,7 +7,8 @@ class Header extends Component
     render() {
         return (
             <>
-                <LogRegister login={this.props.login}/>
+                <LogRegister login={this.props.login}
+                             setClearLogin={this.props.setClearLogin}/>
                 <Navigation/>
             </>
         )
