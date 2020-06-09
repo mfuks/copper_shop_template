@@ -3,19 +3,11 @@
 
 .login
 {
-  height: calc(100vh - 97px - 50px);
-  width: 100%;
-  min-height: 560px;
-  min-width: 450px;
 
   .login-content
   {
     height: calc(90% - 100px);
-    min-height: 430px;
-    width: 60%;
-    background: $color-main-cold;
-    @include flex-center;
-    margin-bottom: 100px;
+    min-height: 450px;
   }
 
   i
@@ -41,10 +33,10 @@
     @include flex-center;
     width: calc(90% - 150px);
     margin: 20px 0;
-    color: $color-main-warm;
-    font-family: $font-base;
-    font-size: 1.5rem;
-    font-weight: 600;
   }
 
+  .form-error
+  {
+    text-align: center;
+  }
 }
