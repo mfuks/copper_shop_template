@@ -1,9 +1,15 @@
 {
   "users": [
     {
-      "name": "Marta",
-      "email": "marterland55@wp.pl",
-      "surname": "Fuxx",
+      "name": "",
+      "surname": "",
+      "email": "marterland24@wp.pl",
+      "login": "Fuksiaczek",
+      "password": "123456",
+      "address": "",
+      "city": "",
+      "zipCode": "",
+      "phone": "",
       "id": 1
     }
   ]

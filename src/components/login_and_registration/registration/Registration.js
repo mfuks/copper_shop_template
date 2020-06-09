@@ -15,6 +15,7 @@ class Registration extends Component
             surname: "",
             email: "",
             emailVal: false,
+            emailAvailable: false,
 
             login: "",
             loginVal: false,
@@ -79,6 +80,22 @@ class Registration extends Component
         this.setState({
             email: e.target.value
         });
+
+        for (let i = 0; i < this.state.users.length; i++)
+        {
+            this.setState({
+                emailAvailable: true,
+            });
+
+            if(this.state.users[i].email === e.target.value)
+            {
+                this.setState({
+                    emailAvailable: false,
+                });
+                break;
+            }
+        }
+
         if(this.emailValidate(e.target.value))
         {
             this.setState({
@@ -188,10 +205,10 @@ class Registration extends Component
         e.preventDefault();
 
         const {name, surname,
-            email, emailVal, login, loginVal, password, passwordVal, loginAvailable, passwordConfirmVal,
+            email, emailVal, login, loginVal, password, passwordVal, loginAvailable, emailAvailable, passwordConfirmVal,
             address, city, zipCode, phone, agreementChecked} = this.state;
 
-        if(emailVal && loginVal && passwordVal && passwordConfirmVal && loginAvailable && agreementChecked)
+        if(emailVal && loginVal && passwordVal && passwordConfirmVal && loginAvailable && emailAvailable && agreementChecked)
         {
             const url = "http://localhost:3012/users";
 
@@ -213,9 +230,11 @@ class Registration extends Component
                         surname: "",
                         email: "",
                         emailVal: false,
+                        emailAvailable: false,
 
                         login: "",
                         loginVal: false,
+                        loginAvailable: false,
                         password: "",
                         passwordVal: false,
                         passwordConfirm: "",
@@ -247,7 +266,7 @@ class Registration extends Component
     render() {
         const {name, surname,
             email, emailVal, login, loginVal, password, passwordVal, passwordConfirm, passwordConfirmVal,
-            address, city, zipCode, phone, submitHandle, loginAvailable, agreementChecked, submitMessage} = this.state;
+            address, city, zipCode, phone, submitHandle, loginAvailable, emailAvailable, agreementChecked, submitMessage} = this.state;
         return (
             <>
                 <Logo/>
@@ -284,10 +303,15 @@ class Registration extends Component
                                                    value={email}
                                                    onChange={this.handleChangeEmail}/>
                                         </label>
-                                        {(!emailVal && submitHandle) ?
+                                        {(!emailVal && submitHandle) &&
                                             <div className="form-error">
                                                 Podany email jest nieprawidłowy
-                                            </div> :
+                                            </div>}
+                                        {(submitHandle && !emailAvailable && emailVal) &&
+                                            <div className="form-error">
+                                                Podany email już istnieje w bazie
+                                            </div>}
+                                        {((emailAvailable && emailVal) || !submitHandle) &&
                                             <div className="form-error-invisible"/>}
                                     </section>
                                     <h2>Dane do logowania</h2>
@@ -300,7 +324,7 @@ class Registration extends Component
                                                    value={login}
                                                    onChange={this.handleChangeLogin}/>
                                         </label>
-                                        {(submitHandle && !loginVal) &&
+                                        {(!loginVal && submitHandle) &&
                                         <div className="form-error">
                                             Podany login jest nieprawidłowy
                                         </div>}
