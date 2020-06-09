@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import "./_logo.scss"
+import LogoPlain from "./logo_plain/LogoPlain";
 
 class Logo extends Component
 {
     render() {
         return (
             <>
-                <header className="logo">
-                    <div className="container logo-cont">
-                        <section className="logo-content"/>
-                    </div>
-                </header>
+                <section className="logo">
+                    <LogoPlain/>
+                </section>
             </>
         )
     }

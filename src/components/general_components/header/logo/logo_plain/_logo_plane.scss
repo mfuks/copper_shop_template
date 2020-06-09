@@ -1,0 +1,28 @@
+@import "../../../../../main";
+
+.logo-plain
+{
+  height: 97px;
+
+  .logo-plain-container
+  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo-plain-content
+    {
+      height: 77px;
+      width: 168px;
+      margin: 10px;
+
+      .logo-plain-content-img
+      {
+        height: 77px;
+        width: 168px;
+        cursor: pointer;
+        background: url("/assets/logo.png") center/cover;
+      }
+    }
+  }
+}

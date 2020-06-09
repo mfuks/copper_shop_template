@@ -9,10 +9,11 @@ class AboutUs extends Component
     render() {
         return (
             <>
-                <Header login={this.props.login}/>
+                <Header login={this.props.login}
+                        setClearLogin={this.setClearLogin}/>
                 <section className="about-us">
                     <div className="container">
-                        <header  className="about-us-header">
+                        <header className="about-us-header">
                             <p>
                                 Sugar plum bear claw cake pudding cake
                             </p>

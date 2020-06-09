@@ -10,7 +10,8 @@ class Contact extends Component
     render() {
         return (
             <>
-                <Header login={this.props.login}/>
+                <Header login={this.props.login}
+                        setClearLogin={this.setClearLogin}/>
                 <section className="contact">
                     <div className="container">
                         <header className="contact-header">

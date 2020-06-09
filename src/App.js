@@ -39,11 +39,14 @@ class App extends Component
                                                               login={this.state.login}
                                                               setClearLogin={this.setClearLogin}/>}/>
                     <Route exact path='/shop' render={() => <Shop path="/shop"
-                                                                  login={this.state.login}/>}/>
+                                                                  login={this.state.login}
+                                                                  setClearLogin={this.setClearLogin}/>}/>
                     <Route exact path='/contact' render={() => <Contact path="/contact"
-                                                                        login={this.state.login}/>}/>
+                                                                        login={this.state.login}
+                                                                        setClearLogin={this.setClearLogin}/>}/>
                     <Route exact path='/about_us' render={() => <AboutUs path="/about_us"
-                                                                         login={this.state.login}/>}/>
+                                                                         login={this.state.login}
+                                                                         setClearLogin={this.setClearLogin}/>}/>
                     <Route exact path='/login' render={() => <Login path="/login"
                                                                     setLogin={this.setLogin}/>}/>
                     <Route exact path='/registration' render={() => <Registration path="/registration"/>}/>

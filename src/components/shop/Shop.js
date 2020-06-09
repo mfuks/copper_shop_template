@@ -9,7 +9,8 @@ class Shop extends Component
     render() {
         return (
             <>
-                <Header login={this.props.login}/>
+                <Header login={this.props.login}
+                        setClearLogin={this.setClearLogin}/>
                 <Product/>
                 <Info/>
                 <Footer/>

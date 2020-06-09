@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import "./_log_register.scss"
 import {Link} from "react-router-dom";
+import Logo from "../logo/Logo";
+import LogoPlain from "../logo/logo_plain/LogoPlain";
 
 class LogRegister extends Component
 {
@@ -28,12 +30,8 @@ class LogRegister extends Component
         return (
             <>
                 <header className="lr">
-                    <div className="container lr-cont">
-                        <section className="lr-logo">
-                            <Link to="/">
-                                <div className="lr-logo-img"/>
-                            </Link>
-                        </section>
+                    <div className="container lr-container">
+                        <LogoPlain/>
                         <section className="lr-user">
                             {login && <i className="far fa-user fa-2x lr-user-icon"/>}
                             <h4 className="lr-user-login">
