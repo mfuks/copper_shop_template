@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import "./_product.scss"
+import "./_products.scss"
 
 class Products extends Component
 {
@@ -37,22 +37,23 @@ class Products extends Component
     };
 
 
+
+
     render() {
         const {products, currentPage, infoPerPage} = this.state;
         const indexOfLast = currentPage * infoPerPage;
         const indexOfFirst = indexOfLast - infoPerPage;
-
         const currentProducts = products.slice(indexOfFirst, indexOfLast);
 
-        const pageNumbers = [];
         const numberOfPages = Math.ceil(products.length/infoPerPage);
+        const pageNumbers = [];
 
         for (let i = 1; i <= numberOfPages ; i++)
         {
             const pageNumberElement =
                 <li key={"product-content-page" + i}
                     onClick={e => this.handleClick(e, i)}
-                    className={(this.state.currentPage === i) ? "active" : ""}>
+                    className={(currentPage === i) ? "active" : ""}>
                     {i}
                 </li>;
             pageNumbers.push(pageNumberElement);
@@ -77,10 +78,14 @@ class Products extends Component
                                             <section className="product-info">
                                                 <div className="product-info-price">
                                                     <i className="fas fa-2x fa-tag label"/>
-                                                    <h3>{element.price / 100} zł</h3>
+                                                    <h3>
+                                                        {element.price.substr(0, element.price.length-2)},
+                                                        {element.price.substr(element.price.length-2, 2)} zł
+                                                    </h3>
                                                 </div>
                                                 <div className="product-info-add">
-                                                    <i className="fas fa-2x fa-plus-square"/>
+                                                    <i className="fas fa-2x fa-plus-square product-info-add-btn"
+                                                       onClick={()=>this.props.basketAdd(element)}/>
                                                 </div>
                                             </section>
                                         </div>

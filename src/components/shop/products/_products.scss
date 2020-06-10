@@ -99,6 +99,17 @@
       {
         color: $color-main-cold;
       }
+
+      .product-info-add-btn
+      {
+        cursor: pointer;
+
+        &:hover
+        {
+          color: $color-main-warm;
+        }
+      }
+
     }
   }
 

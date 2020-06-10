@@ -9,7 +9,9 @@ class Header extends Component
             <>
                 <LogRegister login={this.props.login}
                              setClearLogin={this.props.setClearLogin}
-                             path={this.props.path}/>
+                             path={this.props.path}
+                             basket={this.props.basket}
+                             basketSum={this.props.basketSum}/>
                 <Navigation/>
             </>
         )

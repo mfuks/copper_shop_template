@@ -28,7 +28,9 @@
 
       .lr-user-basket
       {
+        padding-left: 10px;
         position: relative;
+        width: 100px;
 
         .lr-user-basket-products
         {
@@ -71,6 +73,7 @@
       .lr-user-basket-icon
       {
         cursor: pointer;
+        padding-left: 20px;
 
         &:hover
         {

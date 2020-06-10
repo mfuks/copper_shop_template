@@ -39,7 +39,7 @@ class LogRegister extends Component
 
     render() {
         const {mouseEnterUser, mouseEnterBasket} = this.state;
-        const {login, path} = this.props;
+        const {login, path, basket, basketSum} = this.props;
         return (
             <>
                 <header className="lr">
@@ -65,18 +65,19 @@ class LogRegister extends Component
                                 </div>
                             </h4>
 
-                            {(path === "/shop" && login) &&
+                            {(path === "/shop" && !login) &&
                                 <>
                                     <i  className="lr-user-basket-icon fas fa-2x fa-shopping-basket"
                                        onMouseEnter={this.EnterBasket}
                                        onMouseLeave={this.LeaveBasket}/>
                                     <h4 className="lr-user-basket">
                                         <span>
-                                            350,00 zł {/*tu zmienna*/}
+                                            {basketSum.substr(0, basketSum.length-2)},
+                                            {basketSum.substr(basketSum.length-2, 2)} zł
                                         </span>
                                         <div className="lr-user-basket-products">
                                             <span>
-                                                35 {/*tu zmienna*/}
+                                                {basket ? basket.length : 0}
                                             </span>
                                         </div>
                                         <div className={(mouseEnterBasket && login)? "lr-user-basket-info" : "invisible"}>
