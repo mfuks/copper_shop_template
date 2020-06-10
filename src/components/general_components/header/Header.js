@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import LogRegister from "./log_register/LogRegister";
-import Navigation from "../../general_components/header/navigation/Navigation";
+import Navigation from "./navigation/Navigation";
 
 class Header extends Component
 {
     render() {
         return (
             <>
-                <LogRegister/>
+                <LogRegister login={this.props.login}
+                             setClearLogin={this.props.setClearLogin}/>
                 <Navigation/>
             </>
         )

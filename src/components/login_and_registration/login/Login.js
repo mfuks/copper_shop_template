@@ -95,9 +95,14 @@ class Login extends Component
 
         const {loginExist, passwordVal} = this.state;
 
-        if(loginExist && passwordVal) {
+        if(loginExist && passwordVal)
+        {
+
+            console.log(this.state.login);
+            this.props.setLogin(this.state.login);
+
             this.setState({
-                login: "",
+                //login: "",
                 loginVal: false,
                 password: "",
                 passwordVal: false,

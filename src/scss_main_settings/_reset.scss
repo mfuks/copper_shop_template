@@ -10,6 +10,7 @@ mark, audio, video, button, textarea
   font: inherit;
   vertical-align: baseline;
   box-sizing: border-box;
+  cursor: default;
 }
 
 input
@@ -17,6 +18,7 @@ input
   border: none;
   margin: 0;
   padding: 0;
+  cursor: text;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
