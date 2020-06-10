@@ -9,6 +9,7 @@ import Contact from "./components/contact/Contact";
 import AboutUs from "./components/about_us/AboutUs";
 import Login from "./components/login_and_registration/login/Login";
 import Registration from "./components/login_and_registration/registration/Registration";
+import Basket from "./components/shop/basket/Basket";
 
 class App extends Component
 {
@@ -50,6 +51,7 @@ class App extends Component
                     <Route exact path='/login' render={() => <Login path="/login"
                                                                     setLogin={this.setLogin}/>}/>
                     <Route exact path='/registration' render={() => <Registration path="/registration"/>}/>
+                    <Route exact path='/basket' render={() => <Basket path="/basket"/>}/>
                 </>
             </HashRouter>
         );
