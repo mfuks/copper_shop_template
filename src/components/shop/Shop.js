@@ -10,7 +10,8 @@ class Shop extends Component
         return (
             <>
                 <Header login={this.props.login}
-                        setClearLogin={this.setClearLogin}/>
+                        setClearLogin={this.setClearLogin}
+                        path={this.props.path}/>
                 <Product/>
                 <Info/>
                 <Footer/>
