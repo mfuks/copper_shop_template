@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import "./_log_register.scss"
 import {Link} from "react-router-dom";
-import Logo from "../logo/Logo";
 import LogoPlain from "../logo/logo_plain/LogoPlain";
 
 class LogRegister extends Component
