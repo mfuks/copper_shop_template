@@ -16,6 +16,7 @@ class Registration extends Component
             surname: "",
             email: "",
             emailVal: false,
+            emailAvailable: false,
 
             login: "",
             loginVal: false,
@@ -80,6 +81,22 @@ class Registration extends Component
         this.setState({
             email: e.target.value
         });
+
+        for (let i = 0; i < this.state.users.length; i++)
+        {
+            this.setState({
+                emailAvailable: true,
+            });
+
+            if(this.state.users[i].email === e.target.value)
+            {
+                this.setState({
+                    emailAvailable: false,
+                });
+                break;
+            }
+        }
+
         if(this.emailValidate(e.target.value))
         {
             this.setState({
@@ -189,10 +206,10 @@ class Registration extends Component
         e.preventDefault();
 
         const {name, surname,
-            email, emailVal, login, loginVal, password, passwordVal, loginAvailable, passwordConfirmVal,
+            email, emailVal, login, loginVal, password, passwordVal, loginAvailable, emailAvailable, passwordConfirmVal,
             address, city, zipCode, phone, agreementChecked} = this.state;
 
-        if(emailVal && loginVal && passwordVal && passwordConfirmVal && loginAvailable && agreementChecked)
+        if(emailVal && loginVal && passwordVal && passwordConfirmVal && loginAvailable && emailAvailable && agreementChecked)
         {
             const url = "http://localhost:3012/users";
 
@@ -214,9 +231,11 @@ class Registration extends Component
                         surname: "",
                         email: "",
                         emailVal: false,
+                        emailAvailable: false,
 
                         login: "",
                         loginVal: false,
+                        loginAvailable: false,
                         password: "",
                         passwordVal: false,
                         passwordConfirm: "",
@@ -248,44 +267,69 @@ class Registration extends Component
     render() {
         const {name, surname,
             email, emailVal, login, loginVal, password, passwordVal, passwordConfirm, passwordConfirmVal,
-            address, city, zipCode, phone, submitHandle, loginAvailable, agreementChecked, submitMessage} = this.state;
+            address, city, zipCode, phone, submitHandle, loginAvailable, emailAvailable, agreementChecked, submitMessage} = this.state;
         return (
             <>
                 <Logo/>
-                <section className="registration lar">
-                    <div className="container lar-container">
-                        {!submitMessage ?
-                        <div className="registration-content lar-content">
-                            <form className="registration-content-form"
-                                  onSubmit={this.handleSubmit}>
-                                <legend>
-                                    Rejestracja
-                                </legend>
-                                <h2>Dane personalne</h2>
-                                <section className="registration-content-form-sections">
-                                    <label>Imię:
-                                        <input type="text"
-                                               placeholder="Name"
-                                               name="name"
-                                               value={name}
-                                               onChange={this.handleChangeName}/>
-                                    </label>
-                                    <label>Nazwisko:
-                                        <input type="text"
-                                               placeholder="Surname"
-                                               name="surname"
-                                               value={surname}
-                                               onChange={this.handleChangeSurname}/>
-                                    </label>
-                                    <label className="obligatory">E-mail:
-                                        <span className="big-x2">*</span>
-                                        <input type="text"
-                                               placeholder="E-mail"
-                                               name="email"
-                                               value={email}
-                                               onChange={this.handleChangeEmail}/>
-                                    </label>
-                                    {(!emailVal && submitHandle) ?
+                <section className="registration">
+                    <div className="container lar-cont">
+                        <div className="registration-content">
+                            {!submitMessage ?
+                                <form className="registration-content-form"
+                                      onSubmit={this.handleSubmit}>
+                                    <legend>
+                                        Rejestracja
+                                    </legend>
+                                    <h2>Dane personalne</h2>
+                                    <section className="registration-content-form-sections">
+                                        <label>Imię:
+                                            <input type="text"
+                                                   placeholder="Name"
+                                                   name="name"
+                                                   value={name}
+                                                   onChange={this.handleChangeName}/>
+                                        </label>
+                                        <label>Nazwisko:
+                                            <input type="text"
+                                                   placeholder="Surname"
+                                                   name="surname"
+                                                   value={surname}
+                                                   onChange={this.handleChangeSurname}/>
+                                        </label>
+                                        <label className="obligatory">E-mail:
+                                            <span className="big-x2">*</span>
+                                            <input type="text"
+                                                   placeholder="E-mail"
+                                                   name="email"
+                                                   value={email}
+                                                   onChange={this.handleChangeEmail}/>
+                                        </label>
+                                        {(!emailVal && submitHandle) &&
+                                            <div className="form-error">
+                                                Podany email jest nieprawidłowy
+                                            </div>}
+                                        {(submitHandle && !emailAvailable && emailVal) &&
+                                            <div className="form-error">
+                                                Podany email już istnieje w bazie
+                                            </div>}
+                                        {((emailAvailable && emailVal) || !submitHandle) &&
+                                            <div className="form-error-invisible"/>}
+                                    </section>
+                                    <h2>Dane do logowania</h2>
+                                    <section className="registration-content-form-sections">
+                                        <label className="obligatory">Login:
+                                            <span className="big-x2">*</span>
+                                            <input type="text"
+                                                   placeholder="Login"
+                                                   name="login"
+                                                   value={login}
+                                                   onChange={this.handleChangeLogin}/>
+                                        </label>
+                                        {(!loginVal && submitHandle) &&
+                                        <div className="form-error">
+                                            Podany login jest nieprawidłowy
+                                        </div>}
+                                        {(submitHandle && !loginAvailable && loginVal) &&
                                         <div className="form-error">
                                             Podany email jest nieprawidłowy
                                         </div> :
