@@ -4,7 +4,9 @@ import "./_product.scss"
 class Products extends Component
 {
     state = {
-        products: []
+        products: [],
+        currentPage: 1,
+        infoPerPage: 6
     };
 
     componentDidMount() {
@@ -27,15 +29,42 @@ class Products extends Component
     };
 
 
+    handleClick = (e, i) =>
+    {
+        this.setState({
+            currentPage: i
+        })
+    };
+
+
     render() {
-        const {products} = this.state;
+        const {products, currentPage, infoPerPage} = this.state;
+        const indexOfLast = currentPage * infoPerPage;
+        const indexOfFirst = indexOfLast - infoPerPage;
+
+        const currentProducts = products.slice(indexOfFirst, indexOfLast);
+
+        const pageNumbers = [];
+        const numberOfPages = Math.ceil(products.length/infoPerPage);
+
+        for (let i = 1; i <= numberOfPages ; i++)
+        {
+            const pageNumberElement =
+                <li key={"product-content-page" + i}
+                    onClick={e => this.handleClick(e, i)}
+                    className={(this.state.currentPage === i) ? "active" : ""}>
+                    {i}
+                </li>;
+            pageNumbers.push(pageNumberElement);
+        }
+
         return (
             <>
                 <section className="products">
                     <div className="container">
                         <div className="products-content">
-                            <ul>
-                                {products.map(element =>
+                            <ul className="products-content-products">
+                                {currentProducts.map(element =>
                                     <li key={element.id}>
                                         <div className="product">
                                             <figure className="product-img">
@@ -57,6 +86,19 @@ class Products extends Component
                                         </div>
                                     </li>
                                 )}
+                                {(currentProducts.length % 3 !== 0) &&
+                                (currentProducts.length % 3 === 2) ?
+                                <li className="invisible-product"/>:
+                                <>
+                                    <li className="invisible-product"/>
+                                    <li className="invisible-product"/>
+                                </>}
+                            </ul>
+                            <ul className="products-content-pages">
+                            {numberOfPages !== 1 &&
+                                <>
+                                    {pageNumbers}
+                                </>}
                             </ul>
                         </div>
                     </div>

@@ -13,6 +13,33 @@
       align-items: flex-start;
       flex-wrap: wrap;
     }
+
+    .products-content-pages
+    {
+      @include flex-center;
+      margin-top: 10px;
+
+      li
+      {
+        font-size: 2rem;
+        font-family: $font-base;
+        color: $color-main-cold;
+        padding: 10px;
+        cursor: pointer;
+        margin: 0 5px;
+        border: 2px solid $color-main-cold;
+
+        &.active
+        {
+          color: $color-main-warm;
+        }
+
+        &:hover
+        {
+          background: $color-light-cold;
+        }
+      }
+    }
   }
 
   .product
@@ -25,7 +52,6 @@
       font-size: 1.2rem;
       font-weight: 600;
     }
-
 
     .product-img
     {
@@ -54,6 +80,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       .product-info-price
       {
         display: flex;
@@ -73,8 +100,12 @@
         color: $color-main-cold;
       }
     }
+  }
 
-
+  .invisible-product
+  {
+    width: 300px;
+    margin: 0 10px;
   }
 
 }
