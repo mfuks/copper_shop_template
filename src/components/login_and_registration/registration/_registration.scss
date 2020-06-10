@@ -3,18 +3,18 @@
 
 .registration
 {
-  width: 100%;
-  min-height: 560px;
-  min-width: 720px;
-  margin: 40px 0;
 
   .registration-content
   {
-    width: 60%;
-    min-width: 720px;
-    background: $color-main-cold;
-    @include flex-center;
-    margin-bottom: 100px;
+    min-width: 670px;
+
+    form
+    {
+      input
+      {
+        width: 300px;
+      }
+    }
   }
 
   .registration-content-form-sections
@@ -30,27 +30,13 @@
 
   label
   {
-    margin-left: 50px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     width: 85%;
     margin-bottom: 20px;
-    color: $color-main-warm;
-    font-family: $font-base;
-    font-size: 1.5rem;
-    font-weight: 600;
+    margin-left: 50px;
     text-align: left;
-
-    input
-    {
-      width: 350px
-    }
-  }
-
-  .obligatory
-  {
-    margin-bottom: 0;
   }
 
   p
@@ -94,11 +80,6 @@
         {
           width: 75%;
           margin-left: 0;
-          display: flex;
-          justify-content: center;
-          justify-self: center;
-          align-self: center;
-
         }
 
         p
@@ -110,7 +91,7 @@
           text-align: left;
         }
 
-//niestandardowe pole wyboru checkbox
+//niestandardowe pole wyboru checkbox - custom checkbox
         input
         {
           display: none;
@@ -150,41 +131,6 @@
 
   .form-error
   {
-    width: 100%;
-    text-align: left;
-    padding: 0;
-    padding-left: 41%;
-    height: 20px;
-  }
-
-  .form-error-invisible
-  {
-    height: 20px;
-    padding: 0;
-  }
-
-  .registration-end
-  {
-    height: 60vh;
-    @include flex-center;
-
-    h2
-    {
-      text-transform: uppercase;
-      color: $color-background;
-      padding: 0;
-    }
-
-    .lar-content-form-btns
-    {
-      justify-content: center;
-      bottom: 0;
-
-      a
-      {
-        width: 40%;
-        min-width: 310px;
-      }
-    }
+    padding-left: calc(85% + 50px - 320px);
   }
 }
