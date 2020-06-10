@@ -4,7 +4,6 @@ import "./_registration.scss"
 import Logo from "../../general_components/header/logo/Logo";
 import Footer from "../../general_components/footer/Footer";
 import {Link} from "react-router-dom";
-import SubmitLar from "../submit_lar/SubmitLar";
 
 class Registration extends Component
 {
@@ -305,15 +304,15 @@ class Registration extends Component
                                                    onChange={this.handleChangeEmail}/>
                                         </label>
                                         {(!emailVal && submitHandle) &&
-                                            <div className="form-error">
-                                                Podany email jest nieprawidłowy
-                                            </div>}
+                                        <div className="form-error">
+                                            Podany email jest nieprawidłowy
+                                        </div>}
                                         {(submitHandle && !emailAvailable && emailVal) &&
-                                            <div className="form-error">
-                                                Podany email już istnieje w bazie
-                                            </div>}
+                                        <div className="form-error">
+                                            Podany email już istnieje w bazie
+                                        </div>}
                                         {((emailAvailable && emailVal) || !submitHandle) &&
-                                            <div className="form-error-invisible"/>}
+                                        <div className="form-error-invisible"/>}
                                     </section>
                                     <h2>Dane do logowania</h2>
                                     <section className="registration-content-form-sections">
@@ -331,119 +330,104 @@ class Registration extends Component
                                         </div>}
                                         {(submitHandle && !loginAvailable && loginVal) &&
                                         <div className="form-error">
-                                            Podany email jest nieprawidłowy
-                                        </div> :
+                                            Login jest już zajęty
+                                        </div>}
+                                        {((loginAvailable && loginVal) || !submitHandle) &&
                                         <div className="form-error-invisible"/>}
-                                </section>
-                                <h2>Dane do logowania</h2>
-                                <section className="registration-content-form-sections">
-                                    <label className="obligatory">Login:
-                                        <span className="big-x2">*</span>
-                                        <input type="text"
-                                               placeholder="Login"
-                                               name="login"
-                                               value={login}
-                                               onChange={this.handleChangeLogin}/>
-                                    </label>
-                                    {(submitHandle && !loginVal) &&
-                                    <div className="form-error">
-                                        Podany login jest nieprawidłowy
-                                    </div>}
-                                    {(submitHandle && !loginAvailable && loginVal) &&
-                                    <div className="form-error">
-                                        Login jest już zajęty
-                                    </div>}
-                                    {((loginAvailable && loginVal) || !submitHandle) &&
-                                    <div className="form-error-invisible"/>}
 
-                                    <label className="obligatory">Hasło:
-                                        <span className="big-x2">*</span>
-                                        <input type="password"
-                                               placeholder="Password"
-                                               name="password"
-                                               value={password}
-                                               onChange={this.handleChangePassword}/>
-                                    </label>
-                                    {(!passwordVal && submitHandle) ?
-                                        <div className="form-error">
-                                            Podane hasło jest nieprawidłowe
-                                        </div> :
-                                        <div className="form-error-invisible"/>}
-                                    <label className="obligatory">Powtórz hasło:
-                                        <span className="big-x2">*</span>
-                                        <input type="password"
-                                               placeholder="Repeat password"
-                                               name="passwordConfirm"
-                                               value={passwordConfirm}
-                                               onChange={this.handleChangePasswordConfirm}/>
-                                    </label>
-                                    {(!passwordConfirmVal && submitHandle) ?
-                                        <div className="form-error">
-                                            Hasła muszą być takie same
-                                        </div>:
-                                        <div className="form-error-invisible"/>}
-                                </section>
-                                <h2>Dane kontaktowe</h2>
-                                <section className="registration-content-form-sections">
-                                    <label>Adres zamieszkania:
-                                        <input type="text"
-                                               placeholder="Address"
-                                               name="address"
-                                               value={address}/>
-                                    </label>
-                                    <label>Miasto:
-                                        <input type="text"
-                                               placeholder="City"
-                                               name="city"
-                                               value={city}/>
-                                    </label>
-                                    <label>Kod pocztowy:
-                                        <input type="text"
-                                               placeholder="Zip code"
-                                               name="zipCode"
-                                               value={zipCode}/>
-                                    </label>
-                                    <label>Telefon:
-                                        <input type="text"
-                                               placeholder="Phone"
-                                               name="phone"
-                                               value={phone}/>
-                                    </label>
-                                </section>
-                                <h2>Zgody</h2>
-                                <section className="registration-content-form-sections">
-                                    <div className="agreements">
-                                        <input type="checkbox"
-                                               id="agreement"
-                                               onChange={this.handleChangeAgreement}/>
-                                        <label className="registration-content-form-sections-left"
-                                               htmlFor="agreement">
-                                            <p className="big-x2">*</p>
-                                            <span/>
-                                            <p>
-                                                Zapoznałem się z regulaminem sklepu internetowego i akceptuję jego
-                                                treść.
-                                            </p>
+                                        <label className="obligatory">Hasło:
+                                            <span className="big-x2">*</span>
+                                            <input type="password"
+                                                   placeholder="Password"
+                                                   name="password"
+                                                   value={password}
+                                                   onChange={this.handleChangePassword}/>
                                         </label>
+                                        {(!passwordVal && submitHandle) ?
+                                            <div className="form-error">
+                                                Podane hasło jest nieprawidłowe
+                                            </div> :
+                                            <div className="form-error-invisible"/>}
+                                        <label className="obligatory">Powtórz hasło:
+                                            <span className="big-x2">*</span>
+                                            <input type="password"
+                                                   placeholder="Repeat password"
+                                                   name="passwordConfirm"
+                                                   value={passwordConfirm}
+                                                   onChange={this.handleChangePasswordConfirm}/>
+                                        </label>
+                                        {(!passwordConfirmVal && submitHandle) ?
+                                            <div className="form-error">
+                                                Hasła muszą być takie same
+                                            </div>:
+                                            <div className="form-error-invisible"/>}
+                                    </section>
+                                    <h2>Dane kontaktowe</h2>
+                                    <section className="registration-content-form-sections">
+                                        <label>Adres zamieszkania:
+                                            <input type="text"
+                                                   placeholder="Address"
+                                                   name="address"
+                                                   value={address}/>
+                                        </label>
+                                        <label>Miasto:
+                                            <input type="text"
+                                                   placeholder="City"
+                                                   name="city"
+                                                   value={city}/>
+                                        </label>
+                                        <label>Kod pocztowy:
+                                            <input type="text"
+                                                   placeholder="Zip code"
+                                                   name="zipCode"
+                                                   value={zipCode}/>
+                                        </label>
+                                        <label>Telefon:
+                                            <input type="text"
+                                                   placeholder="Phone"
+                                                   name="phone"
+                                                   value={phone}/>
+                                        </label>
+                                    </section>
+                                    <h2>Zgody</h2>
+                                    <section className="registration-content-form-sections">
+                                        <div className="agreements">
+                                            <input type="checkbox"
+                                                   id="agreement"
+                                                   onChange={this.handleChangeAgreement}/>
+                                            <label className="registration-content-form-sections-left"
+                                                   htmlFor="agreement">
+                                                <p className="big-x2">*</p>
+                                                <span/>
+                                                <p>
+                                                    Zapoznałem się z regulaminem sklepu internetowego i akceptuję jego
+                                                    treść.
+                                                </p>
+                                            </label>
+                                        </div>
+                                        {(!agreementChecked && submitHandle) ?
+                                            <div className="form-error">
+                                                Zgoda jest obowiązkowa
+                                            </div>:
+                                            <div className="form-error-invisible"/>}
+                                        <p>
+                                            Pola oznaczone&nbsp;
+                                            <span className="big-x1">*</span>
+                                            &nbsp;są obowiązkowe
+                                        </p>
+                                    </section>
+                                    <div className="lar-content-form-btns">
+                                        <Link to="/registration">do logowania</Link>
+                                        <input type="submit" value="zarejestruj"/>
                                     </div>
-                                    {(!agreementChecked && submitHandle) ?
-                                        <div className="form-error">
-                                            Zgoda jest obowiązkowa
-                                        </div>:
-                                        <div className="form-error-invisible"/>}
-                                    <p>
-                                        Pola oznaczone&nbsp;
-                                        <span className="big-x1">*</span>
-                                        &nbsp;są obowiązkowe
-                                    </p>
-                                </section>
-                                <div className="lar-content-form-btns">
-                                    <Link to="/registration">do logowania</Link>
-                                    <input type="submit" value="zarejestruj"/>
-                                </div>
-                            </form>
-                        </div>:
-                        <SubmitLar submitMessage={submitMessage}/>}
+                                </form>:
+                                <div className="registration-end">
+                                    <h2>{submitMessage}</h2>
+                                    <div className="lar-content-form-btns">
+                                        <Link to="/">do strony głównej</Link>
+                                    </div>
+                                </div>}
+                        </div>
                     </div>
                 </section>
                 <Footer/>
