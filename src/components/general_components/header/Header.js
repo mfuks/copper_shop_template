@@ -5,15 +5,15 @@ import Navigation from "./navigation/Navigation";
 class Header extends Component
 {
     render() {
-        const {login, setClearLogin, path, basket, basketSum, basketPath} = this.props;
+        const {login, setClearLogin, path, basketSum, basketPath, basketAmount} = this.props;
         return (
             <>
                 <LogRegister login={login}
                              setClearLogin={setClearLogin}
                              path={path}
                              basketPath={basketPath}
-                             basket={basket}
                              basketSum={basketSum}
+                             basketAmount={basketAmount}
                 />
                 <Navigation/>
             </>

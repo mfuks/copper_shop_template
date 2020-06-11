@@ -11,35 +11,36 @@ class LogRegister extends Component
             mouseEnterBasket: false
         };
 
-    EnterUser = () =>
+    enterUser = () =>
     {
         this.setState({
             mouseEnterUser: true
         });
     };
 
-    LeaveUser = () => {
+    leaveUser = () => {
         this.setState({
             mouseEnterUser: false
         });
     };
 
-    EnterBasket = () =>
+    enterBasket = () =>
     {
         this.setState({
             mouseEnterBasket: true
         });
     };
 
-    LeaveBasket = () => {
+    leaveBasket = () => {
         this.setState({
             mouseEnterBasket: false
         });
     };
 
+
     render() {
         const {mouseEnterUser, mouseEnterBasket} = this.state;
-        const {login, path, basket, basketSum, basketPath} = this.props;
+        const {login, path, basketSum, basketPath, basketAmount} = this.props;
         return (
             <>
                 <header className="lr">
@@ -47,8 +48,8 @@ class LogRegister extends Component
                         <LogoPlain/>
                         <section className="lr-user">
                             {login && <i className="lr-user-login-icon far fa-user fa-2x lr-user-icon"
-                                         onMouseEnter={this.EnterUser}
-                                         onMouseLeave={this.LeaveUser}
+                                         onMouseEnter={this.enterUser}
+                                         onMouseLeave={this.leaveUser}
                                          onClick={()=>this.props.setClearLogin()}/>}
                             <h4 className="lr-user-login">
                                 {login ?
@@ -69,8 +70,8 @@ class LogRegister extends Component
                                 <>
                                     <Link className="lr-user-basket-link" to="/basket">
                                         <i  className="lr-user-basket-link-icon fas fa-2x fa-shopping-basket"
-                                            onMouseEnter={this.EnterBasket}
-                                            onMouseLeave={this.LeaveBasket}/>
+                                            onMouseEnter={this.enterBasket}
+                                            onMouseLeave={this.leaveBasket}/>
                                     </Link>
 
                                     <h4 className="lr-user-basket">
@@ -80,7 +81,7 @@ class LogRegister extends Component
                                         </span>
                                         <div className="lr-user-basket-products">
                                             <span>
-                                                {basket ? basket.length : 0}
+                                                {basketAmount}
                                             </span>
                                         </div>
                                         <div className={(mouseEnterBasket && login)? "lr-user-basket-info" : "invisible"}>

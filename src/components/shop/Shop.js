@@ -8,14 +8,14 @@ class Shop extends Component
 {
 
     render() {
-        const {login, setClearLogin, path, basket, basketSum, basketAdd} = this.props;
+        const {login, setClearLogin, path, basketSum, basketAdd, basketAmount} = this.props;
         return (
             <>
                 <Header login={login}
                         setClearLogin={setClearLogin}
                         path={path}
-                        basket={basket}
-                        basketSum={basketSum}/>
+                        basketSum={basketSum}
+                        basketAmount={basketAmount}/>
                 <Products basketAdd={basketAdd}/>
                 <Info/>
                 <Footer/>

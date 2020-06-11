@@ -27,24 +27,29 @@ class BasketStep1 extends Component
                                     <tbody>
                                         {basket.map((element, index)=>
                                             <tr key={"basket-" + index}>
-                                                <td className="product-col-s">{index + 1}.</td>
+                                                <td className="product-col-s basket-product-id">
+                                                    {index + 1}.
+                                                </td>
                                                 <td className="product-col-m">
-                                                    <img src={"./assets/products/" + element.id + ".jpeg"}
-                                                         alt={"product_" + element.id}
+                                                    <img src={"./assets/products/" + element.product.id + ".jpeg"}
+                                                         alt={"product_" + element.product.id}
                                                          width="100%"/>
                                                 </td>
-                                                <td className="product-col-l">bransoletka {element.id}</td>
-                                                <td className="product-col-s">3 {/*tu zmienna*/}</td>
-                                                <td className="product-col-m">
-                                                    {basketSum && basketSum.substr(0, basketSum.length-2)},
-                                                    {basketSum && basketSum.substr(basketSum.length-2, 2)} zł
+                                                <td className="product-col-l basket-product-name">
+                                                    bransoletka {element.product.id}
                                                 </td>
-                                                <td className="product-col-m">
-                                                    {basketSum && basketSum.substr(0, basketSum.length-2)},
-                                                    {basketSum && basketSum.substr(basketSum.length-2, 2)} zł
-                                                    {/*tu zmienna*/}
+                                                <td className="product-col-s basket-product-amount">
+                                                    {element.amount}
                                                 </td>
-                                                <td className="product-col-s">
+                                                <td className="product-col-m basket-product-price">
+                                                    {element.product.price.substr(0, element.product.price.length-2)},
+                                                    {element.product.price.substr(element.product.price.length-2, 2)} zł
+                                                </td>
+                                                <td className="product-col-m basket-product-sum">
+                                                    {element.total.substr(0, element.product.price.length-2)},
+                                                    {element.total.substr(element.product.price.length-2, 2)} zł
+                                                </td>
+                                                <td className="product-col-s basket-product-bin">
                                                     <i className="fas fa-trash-alt"/>
                                                 </td>
                                             </tr>)}
@@ -86,20 +91,21 @@ class BasketStep1 extends Component
                                                 <td className="basket-step-1-summary-content">
                                                     {basketSum && basketSum.substr(0, basketSum.length-2)},
                                                     {basketSum && basketSum.substr(basketSum.length-2, 2)} zł
-                                                    {/*tu zmienna*/}</td>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <th className="basket-step-1-summary-header">Koszty dostawy:</th>
                                                 <td className="basket-step-1-summary-content">
-                                                    20,00 zł
-                                                    {/*tu zmienna*/}</td>
+                                                    20,00 zł {/*tu zmienna*/}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <th className="basket-step-1-summary-header total">Łącznie:</th>
                                                 <td className="basket-step-1-summary-content total">
                                                     {basketSum && basketSum.substr(0, basketSum.length-2)},
                                                     {basketSum && basketSum.substr(basketSum.length-2, 2)} zł
-                                                    {/*tu zmienna*/}</td>
+                                                    {/*tu zmienna*/}
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -109,8 +115,7 @@ class BasketStep1 extends Component
                                 <div className="basket-step-1-empty-content">
                                     <h3>Twój koszyk jest pusty</h3>
                                 </div>
-                            </section>
-                            }
+                            </section>}
                     </div>
                 </section>
             </>
