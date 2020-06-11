@@ -8,9 +8,9 @@ class Navigation extends Component
     render() {
         return (
             <>
-                <nav>
+                <nav className="main-nav">
                     <div className="container">
-                        <ul className="nav-menu">
+                        <ul className="main-nav-menu">
                             <li>
                                 <Link to="/">Home</Link>
                             </li>
