@@ -20,17 +20,60 @@
       display: flex;
       justify-content: flex-end;
       align-items: flex-end;
-      position: relative;
 
       i,h4
       {
         padding: 5px;
       }
 
-      .lr-user-login-link
+      .lr-user-basket
       {
-        color: $color-main-cold;
+        padding-left: 10px;
+        position: relative;
+        width: 100px;
+
+        .lr-user-basket-products
+        {
+          position: absolute;
+          width: 1.4rem;
+          height: 1.4rem;
+          background: $color-main-warm;
+          border-radius: 0.7rem;
+          color: $color-background;
+          @include flex-center;
+          top: -15px;
+          left: -12px;
+
+          span
+          {
+            font-size: 0.75rem;
+            text-align: center;
+            padding-bottom: 0.1rem;
+          }
+        }
+      }
+
+      .lr-user-login
+      {
+        position: relative;
+
+        .lr-user-login-link
+        {
+          color: $color-main-cold;
+          cursor: pointer;
+
+          &:hover
+          {
+            color: $color-main-warm;
+          }
+        }
+      }
+
+      .lr-user-login-icon,
+      .lr-user-basket-icon
+      {
         cursor: pointer;
+        padding-left: 20px;
 
         &:hover
         {
@@ -38,18 +81,17 @@
         }
       }
 
-      .lr-user-login-name
-      {
-        cursor: pointer;
-      }
-
-      .lr-user-login-info
+      .lr-user-login-info,
+      .lr-user-basket-info
       {
         position: absolute;
         bottom: -22px;
+        left: -35px;
         background: $color-light-warm;
         color: $color-background;
+        padding: 4px;
       }
+
     }
   }
 }

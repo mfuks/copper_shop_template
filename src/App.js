@@ -15,7 +15,9 @@ class App extends Component
 {
     state =
         {
-            login: ""
+            login: "",
+            basket: [],
+            basketSum: "000",
         };
 
     setLogin = (user) =>
@@ -32,21 +34,38 @@ class App extends Component
         })
     };
 
+    basketAdd = (productAdded) =>
+    {
+        let newBasket = [...this.state.basket];
+        newBasket.push(productAdded);
+
+        this.setState({
+            basket: newBasket,
+            basketSum: (+this.state.basketSum + +productAdded.price).toString()
+        });
+
+        console.log(typeof(this.state.basketSum))
+    };
+
     render() {
+        const {login, basket, basketSum} = this.state;
         return (
             <HashRouter>
                 <>
                     <Route exact path='/' render={() => <Home path="/"
-                                                              login={this.state.login}
+                                                              login={login}
                                                               setClearLogin={this.setClearLogin}/>}/>
                     <Route exact path='/shop' render={() => <Shop path="/shop"
-                                                                  login={this.state.login}
-                                                                  setClearLogin={this.setClearLogin}/>}/>
+                                                                  login={login}
+                                                                  setClearLogin={this.setClearLogin}
+                                                                  basketAdd={this.basketAdd}
+                                                                  basket={basket}
+                                                                  basketSum={basketSum}/>}/>
                     <Route exact path='/contact' render={() => <Contact path="/contact"
-                                                                        login={this.state.login}
+                                                                        login={login}
                                                                         setClearLogin={this.setClearLogin}/>}/>
                     <Route exact path='/about_us' render={() => <AboutUs path="/about_us"
-                                                                         login={this.state.login}
+                                                                         login={login}
                                                                          setClearLogin={this.setClearLogin}/>}/>
                     <Route exact path='/login' render={() => <Login path="/login"
                                                                     setLogin={this.setLogin}/>}/>

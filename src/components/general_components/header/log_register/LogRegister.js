@@ -7,49 +7,86 @@ class LogRegister extends Component
 {
     state =
         {
-            mouseEnter: false
+            mouseEnterUser: false,
+            mouseEnterBasket: false
         };
 
     EnterUser = () =>
     {
         this.setState({
-            mouseEnter: true
+            mouseEnterUser: true
         });
     };
 
     LeaveUser = () => {
         this.setState({
-            mouseEnter: false
+            mouseEnterUser: false
+        });
+    };
+
+    EnterBasket = () =>
+    {
+        this.setState({
+            mouseEnterBasket: true
+        });
+    };
+
+    LeaveBasket = () => {
+        this.setState({
+            mouseEnterBasket: false
         });
     };
 
     render() {
-        const {mouseEnter} = this.state;
-        const {login} = this.props;
+        const {mouseEnterUser, mouseEnterBasket} = this.state;
+        const {login, path, basket, basketSum} = this.props;
         return (
             <>
                 <header className="lr">
                     <div className="container lr-container">
                         <LogoPlain/>
                         <section className="lr-user">
-                            {login && <i className="far fa-user fa-2x lr-user-icon"/>}
+                            {login && <i className="lr-user-login-icon far fa-user fa-2x lr-user-icon"
+                                         onMouseEnter={this.EnterUser}
+                                         onMouseLeave={this.LeaveUser}
+                                         onClick={()=>this.props.setClearLogin()}/>}
                             <h4 className="lr-user-login">
                                 {login ?
-                                    <h4 className="lr-user-login-name"
-                                        onMouseEnter={this.EnterUser}
-                                        onMouseLeave={this.LeaveUser}
-                                        onClick={()=>this.props.setClearLogin()}>
+                                    <span className="lr-user-login-name">
                                         {this.props.login}
-                                    </h4> :
+                                    </span> :
                                     <>
                                         <Link className="lr-user-login-link" to="/login">Logowanie</Link>
                                         <span>&nbsp;|&nbsp;</span>
                                         <Link className="lr-user-login-link" to="/registration">Rejestracja</Link>
                                     </>}
+                                <div className={(mouseEnterUser && login)? "lr-user-login-info" : "invisible"}>
+                                    Wyloguj
+                                </div>
                             </h4>
-                            <h4 className={(mouseEnter && login)? "lr-user-login-info" : "invisible"}>
-                                Wyloguj
-                            </h4>
+
+                            {(path === "/shop" && !login) &&
+                                <>
+                                    <i  className="lr-user-basket-icon fas fa-2x fa-shopping-basket"
+                                       onMouseEnter={this.EnterBasket}
+                                       onMouseLeave={this.LeaveBasket}/>
+                                    <h4 className="lr-user-basket">
+                                        <span>
+                                            {basketSum.substr(0, basketSum.length-2)},
+                                            {basketSum.substr(basketSum.length-2, 2)} zł
+                                        </span>
+                                        <div className="lr-user-basket-products">
+                                            <span>
+                                                {basket ? basket.length : 0}
+                                            </span>
+                                        </div>
+                                        <div className={(mouseEnterBasket && login)? "lr-user-basket-info" : "invisible"}>
+                                            Koszyk
+                                        </div>
+                                    </h4>
+
+                                </>}
+
                         </section>
                     </div>
                 </header>
