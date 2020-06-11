@@ -18,7 +18,16 @@ class App extends Component
             login: "",
             basket: [],
             basketSum: "000",
+
+            basketStep: 1
         };
+
+    setBasketStep = (currentStep) =>
+    {
+        this.setState({
+            basketStep: currentStep
+        });
+    };
 
     setLogin = (user) =>
     {
@@ -43,12 +52,10 @@ class App extends Component
             basket: newBasket,
             basketSum: (+this.state.basketSum + +productAdded.price).toString()
         });
-
-        console.log(typeof(this.state.basketSum))
     };
 
     render() {
-        const {login, basket, basketSum} = this.state;
+        const {login, basket, basketSum, basketStep} = this.state;
         return (
             <HashRouter>
                 <>
@@ -60,7 +67,8 @@ class App extends Component
                                                                   setClearLogin={this.setClearLogin}
                                                                   basketAdd={this.basketAdd}
                                                                   basket={basket}
-                                                                  basketSum={basketSum}/>}/>
+                                                                  basketSum={basketSum}
+                                                                  setBasketStep={this.setBasketStep}/>}/>
                     <Route exact path='/contact' render={() => <Contact path="/contact"
                                                                         login={login}
                                                                         setClearLogin={this.setClearLogin}/>}/>
@@ -70,7 +78,14 @@ class App extends Component
                     <Route exact path='/login' render={() => <Login path="/login"
                                                                     setLogin={this.setLogin}/>}/>
                     <Route exact path='/registration' render={() => <Registration path="/registration"/>}/>
-                    <Route exact path='/basket' render={() => <Basket path="/basket"/>}/>
+                    <Route exact path='/basket' render={() => <Basket path="/basket"
+                                                                      login={login}
+                                                                      setClearLogin={this.setClearLogin}
+                                                                      basket={basket}
+                                                                      basketSum={basketSum}
+                                                                      basketPath="/basket"
+                                                                      setBasketStep={this.setBasketStep}
+                                                                      basketStep={basketStep}/>}/>
                 </>
             </HashRouter>
         );
