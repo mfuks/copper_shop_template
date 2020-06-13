@@ -6,15 +6,17 @@ import Info from "./info/Info";
 
 class Shop extends Component
 {
+
     render() {
+        const {login, setClearLogin, path, basketSum, basketAdd, basketAmount} = this.props;
         return (
             <>
-                <Header login={this.props.login}
-                        setClearLogin={this.setClearLogin}
-                        path={this.props.path}
-                        basket={this.props.basket}
-                        basketSum={this.props.basketSum}/>
-                <Products basketAdd={this.props.basketAdd}/>
+                <Header login={login}
+                        setClearLogin={setClearLogin}
+                        path={path}
+                        basketSum={basketSum}
+                        basketAmount={basketAmount}/>
+                <Products basketAdd={basketAdd}/>
                 <Info/>
                 <Footer/>
             </>

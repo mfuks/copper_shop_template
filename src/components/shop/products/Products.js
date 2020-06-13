@@ -37,8 +37,6 @@ class Products extends Component
     };
 
 
-
-
     render() {
         const {products, currentPage, infoPerPage} = this.state;
         const indexOfLast = currentPage * infoPerPage;

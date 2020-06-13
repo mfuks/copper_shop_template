@@ -69,8 +69,13 @@
         }
       }
 
+      a
+      {
+        color: $color-main-cold;
+      }
+
       .lr-user-login-icon,
-      .lr-user-basket-icon
+      .lr-user-basket-link-icon
       {
         cursor: pointer;
         padding-left: 20px;

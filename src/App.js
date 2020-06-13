@@ -18,7 +18,17 @@ class App extends Component
             login: "",
             basket: [],
             basketSum: "000",
+
+            basketStep: 1,
+            basketAmount: 0
         };
+
+    setBasketStep = (currentStep) =>
+    {
+        this.setState({
+            basketStep: currentStep
+        });
+    };
 
     setLogin = (user) =>
     {
@@ -36,19 +46,58 @@ class App extends Component
 
     basketAdd = (productAdded) =>
     {
-        let newBasket = [...this.state.basket];
-        newBasket.push(productAdded);
+        let productExistIndex;
+        let newBasket;
+
+        for (let i = 0; i < this.state.basket.length ; i++)
+        {
+            if(this.state.basket[i].product === productAdded)
+            {
+                productExistIndex = i;
+            }
+        }
+
+        if(!productExistIndex && productExistIndex !== 0)
+        {
+            let newAmount = 1;
+            let newProduct = productAdded;
+            newBasket = [...this.state.basket];
+            newBasket.push({
+                product: newProduct,
+                amount: newAmount,
+                total: (+newAmount * +newProduct.price).toString()
+            });
+        }
+        else
+        {
+            newBasket = [...this.state.basket];
+            newBasket[productExistIndex].amount++;
+            newBasket[productExistIndex].total = (+(+newBasket[productExistIndex].amount) * +newBasket[productExistIndex].product.price).toString();
+        }
+
+        this.setState({
+            basket: newBasket
+        });
+
+        let summary = 0;
+        let amount = 0;
+
+        for (let i = 0; i < newBasket.length ; i++)
+        {
+            summary = (+summary + +newBasket[i].total).toString();
+            amount = amount + +newBasket[i].amount
+        }
 
         this.setState({
             basket: newBasket,
-            basketSum: (+this.state.basketSum + +productAdded.price).toString()
+            basketSum: summary,
+            basketAmount: amount
         });
 
-        console.log(typeof(this.state.basketSum))
     };
 
     render() {
-        const {login, basket, basketSum} = this.state;
+        const {login, basket, basketSum, basketStep, basketAmount} = this.state;
         return (
             <HashRouter>
                 <>
@@ -59,8 +108,9 @@ class App extends Component
                                                                   login={login}
                                                                   setClearLogin={this.setClearLogin}
                                                                   basketAdd={this.basketAdd}
-                                                                  basket={basket}
-                                                                  basketSum={basketSum}/>}/>
+                                                                  basketSum={basketSum}
+                                                                  setBasketStep={this.setBasketStep}
+                                                                  basketAmount={basketAmount}/>}/>
                     <Route exact path='/contact' render={() => <Contact path="/contact"
                                                                         login={login}
                                                                         setClearLogin={this.setClearLogin}/>}/>
@@ -70,7 +120,15 @@ class App extends Component
                     <Route exact path='/login' render={() => <Login path="/login"
                                                                     setLogin={this.setLogin}/>}/>
                     <Route exact path='/registration' render={() => <Registration path="/registration"/>}/>
-                    <Route exact path='/basket' render={() => <Basket path="/basket"/>}/>
+                    <Route exact path='/basket' render={() => <Basket path="/basket"
+                                                                      login={login}
+                                                                      setClearLogin={this.setClearLogin}
+                                                                      basket={basket}
+                                                                      basketSum={basketSum}
+                                                                      basketPath="/basket"
+                                                                      setBasketStep={this.setBasketStep}
+                                                                      basketStep={basketStep}
+                                                                      basketAmount={basketAmount}/>}/>
                 </>
             </HashRouter>
         );
