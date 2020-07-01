@@ -4,8 +4,30 @@ import "./_basket_step_1.scss"
 class BasketStep1 extends Component
 {
 
+    state =
+        {
+            delivery: {
+                letter: "800",
+                inPost: "1000",
+                courier: "2000",
+            },
+            currentDelivery: "",
+            totalSum: ""
+        };
+
+    handleDeliveryChange = (e) =>
+    {
+        let total = (+this.props.basketSum + +e.currentTarget.value).toString();
+
+        this.setState({
+            currentDelivery: e.currentTarget.value,
+            totalSum: total
+        });
+    };
+
     render() {
         const {basket, basketSum} = this.props;
+        const {delivery, currentDelivery, totalSum} = this.state;
         return (
             <>
                 <section className="basket-step-1">
@@ -64,23 +86,32 @@ class BasketStep1 extends Component
                                         <label>
                                             <input type="radio"
                                                    name="delivery"
-                                                   value="letter"/>
+                                                   value={delivery.letter}
+                                                   onChange={this.handleDeliveryChange}/>
                                             <span className="custom-radio"/>
-                                            List polecony: 8zł
+                                            List polecony: &nbsp;
+                                            {delivery.letter.substr(0, delivery.letter.length-2)},
+                                            {delivery.letter.substr(delivery.letter.length-2, 2)} zł
                                         </label>
                                         <label>
                                             <input type="radio"
                                                    name="delivery"
-                                                   value="inpost"/>
+                                                   value={delivery.inPost}
+                                                   onChange={this.handleDeliveryChange}/>
                                             <span className="custom-radio"/>
-                                            Paczkomat: 10zł
+                                            Paczkomat: &nbsp;
+                                            {delivery.inPost.substr(0, delivery.inPost.length-2)},
+                                            {delivery.inPost.substr(delivery.inPost.length-2, 2)} zł
                                         </label>
                                         <label>
                                             <input type="radio"
                                                    name="delivery"
-                                                   value="kurier"/>
+                                                   value={delivery.courier}
+                                                   onChange={this.handleDeliveryChange}/>
                                             <span className="custom-radio"/>
-                                            Kurier: 20zł
+                                            Kurier: &nbsp;
+                                            {delivery.courier.substr(0, delivery.courier.length-2)},
+                                            {delivery.courier.substr(delivery.courier.length-2, 2)} zł
                                         </label>
                                     </section>
 
@@ -96,15 +127,23 @@ class BasketStep1 extends Component
                                             <tr>
                                                 <th className="basket-step-1-summary-header">Koszty dostawy:</th>
                                                 <td className="basket-step-1-summary-content">
-                                                    20,00 zł {/*tu zmienna*/}
+                                                    {currentDelivery ?
+                                                        currentDelivery.substr(0, currentDelivery.length-2) + "," +
+                                                        currentDelivery.substr(currentDelivery.length-2, 2)
+                                                        : "    -   "} &nbsp;zł
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th className="basket-step-1-summary-header total">Łącznie:</th>
                                                 <td className="basket-step-1-summary-content total">
-                                                    {basketSum && basketSum.substr(0, basketSum.length-2)},
-                                                    {basketSum && basketSum.substr(basketSum.length-2, 2)} zł
-                                                    {/*tu zmienna*/}
+                                                    {basketSum &&
+                                                        currentDelivery ?
+                                                            (totalSum).substr(0, (totalSum).length-2) + "," +
+                                                            (totalSum).substr((totalSum).length-2, 2)
+                                                            :
+                                                            (basketSum).substr(0, (basketSum).length-2) + "," +
+                                                            (basketSum).substr((basketSum).length-2, 2)
+                                                    }zł
                                                 </td>
                                             </tr>
                                         </tbody>
