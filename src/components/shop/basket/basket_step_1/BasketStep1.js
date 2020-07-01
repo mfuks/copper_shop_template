@@ -3,7 +3,6 @@ import "./_basket_step_1.scss"
 
 class BasketStep1 extends Component
 {
-
     state =
         {
             delivery: {
@@ -23,6 +22,12 @@ class BasketStep1 extends Component
             currentDelivery: e.currentTarget.value,
             totalSum: total
         });
+    };
+
+    priceDisplay = (price) =>
+    {
+        return price.substr(0, price.length-2) + "," +
+            price.substr(price.length-2, 2)  + "zł"
     };
 
     render() {
@@ -64,12 +69,10 @@ class BasketStep1 extends Component
                                                     {element.amount}
                                                 </td>
                                                 <td className="product-col-m basket-product-price">
-                                                    {element.product.price.substr(0, element.product.price.length-2)},
-                                                    {element.product.price.substr(element.product.price.length-2, 2)} zł
+                                                    {this.priceDisplay(element.product.price)}
                                                 </td>
                                                 <td className="product-col-m basket-product-sum">
-                                                    {element.total.substr(0, element.product.price.length-2)},
-                                                    {element.total.substr(element.product.price.length-2, 2)} zł
+                                                    {this.priceDisplay(element.total)}
                                                 </td>
                                                 <td className="product-col-s basket-product-bin">
                                                     <i className="fas fa-trash-alt"/>
@@ -89,9 +92,7 @@ class BasketStep1 extends Component
                                                    value={delivery.letter}
                                                    onChange={this.handleDeliveryChange}/>
                                             <span className="custom-radio"/>
-                                            List polecony: &nbsp;
-                                            {delivery.letter.substr(0, delivery.letter.length-2)},
-                                            {delivery.letter.substr(delivery.letter.length-2, 2)} zł
+                                            List polecony: &nbsp; {this.priceDisplay(delivery.letter)}
                                         </label>
                                         <label>
                                             <input type="radio"
@@ -99,9 +100,7 @@ class BasketStep1 extends Component
                                                    value={delivery.inPost}
                                                    onChange={this.handleDeliveryChange}/>
                                             <span className="custom-radio"/>
-                                            Paczkomat: &nbsp;
-                                            {delivery.inPost.substr(0, delivery.inPost.length-2)},
-                                            {delivery.inPost.substr(delivery.inPost.length-2, 2)} zł
+                                            Paczkomat: &nbsp; {this.priceDisplay(delivery.inPost)}
                                         </label>
                                         <label>
                                             <input type="radio"
@@ -109,9 +108,7 @@ class BasketStep1 extends Component
                                                    value={delivery.courier}
                                                    onChange={this.handleDeliveryChange}/>
                                             <span className="custom-radio"/>
-                                            Kurier: &nbsp;
-                                            {delivery.courier.substr(0, delivery.courier.length-2)},
-                                            {delivery.courier.substr(delivery.courier.length-2, 2)} zł
+                                            Kurier: &nbsp; {this.priceDisplay(delivery.courier)}
                                         </label>
                                     </section>
 
@@ -120,30 +117,21 @@ class BasketStep1 extends Component
                                             <tr>
                                                 <th className="basket-step-1-summary-header">Wartość produktów:</th>
                                                 <td className="basket-step-1-summary-content">
-                                                    {basketSum && basketSum.substr(0, basketSum.length-2)},
-                                                    {basketSum && basketSum.substr(basketSum.length-2, 2)} zł
+                                                    {basketSum && this.priceDisplay(basketSum)}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th className="basket-step-1-summary-header">Koszty dostawy:</th>
                                                 <td className="basket-step-1-summary-content">
                                                     {currentDelivery ?
-                                                        currentDelivery.substr(0, currentDelivery.length-2) + "," +
-                                                        currentDelivery.substr(currentDelivery.length-2, 2)
-                                                        : "    -   "} &nbsp;zł
+                                                        this.priceDisplay(currentDelivery) : "    -   zł"}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th className="basket-step-1-summary-header total">Łącznie:</th>
                                                 <td className="basket-step-1-summary-content total">
-                                                    {basketSum &&
-                                                        currentDelivery ?
-                                                            (totalSum).substr(0, (totalSum).length-2) + "," +
-                                                            (totalSum).substr((totalSum).length-2, 2)
-                                                            :
-                                                            (basketSum).substr(0, (basketSum).length-2) + "," +
-                                                            (basketSum).substr((basketSum).length-2, 2)
-                                                    }zł
+                                                    {basketSum && currentDelivery ?
+                                                        this.priceDisplay(totalSum) : this.priceDisplay(basketSum)}
                                                 </td>
                                             </tr>
                                         </tbody>
