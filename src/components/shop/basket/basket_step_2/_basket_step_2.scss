@@ -3,28 +3,128 @@
 
 .basket-step-2
 {
-  min-height: calc(99vh - 237px);
+  height: calc(99vh - 237px);
+  min-height: 590px;
 
   .basket-container
   {
     @include basket-container;
+    height: calc(99vh - 237px);
+    min-height: 590px;
   }
 
-  .basket-step-btns {
+  form
+  {
+    height: calc(99vh - 237px - 110px);
+    min-height: 480px;
     width: 45%;
-    max-height: 100%;
+    min-width: 460px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
+    flex-direction: column;
+    background: rgba($color-light-cold, 0.5);
+    border: 4px solid $color-dark-cold;
+    margin-top: 30px;
+    padding: 0 30px 20px 20px;
+    text-align: center;
 
-    //p
-    //{
-    //  display: inline-block;
-    //  width: 100%;
-    //  text-align: center;
-    //  margin-bottom: 20px;
-    //}
+    legend
+    {
+      color: $color-dark-cold;
+      font-weight: 600;
+      font-size: 1.8rem;
+      font-family: $font-base;
+      padding: 25px;
+    }
+
+    .basket-step-2-form-section
+    {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: 1.3rem;
+
+      input
+      {
+        font-size: 1rem;
+        font-family: $font-base;
+
+        &::placeholder
+        {
+          font-size: 1rem;
+          font-family: $font-base;
+        }
+      }
+
+      .basket-step-2-form-section-agreements
+      {
+        //niestandardowe pole wyboru checkbox - custom checkbox
+        input
+        {
+          display: none;
+        }
+
+        input + label span
+        {
+          display: inline-block;
+          min-width: 20px;
+          min-height: 20px;
+          border: 1px solid $color-dark;
+          margin-right: 5px;
+          margin-left: 5px;
+          cursor: pointer;
+          background: $color-background;
+
+          &:hover
+          {
+            background: $color-light-warm;
+          }
+        }
+
+        input:checked + label span
+        {
+          background: url("/assets/checked.png") center/cover no-repeat,  $color-background;
+          background-size: 90%;
+        }
+
+        .big-x2
+        {
+          font-size: 3rem;
+          font-weight: 400;
+        }
+
+        p
+        {
+          font-size: 1.3rem;
+        }
+        //
+      }
+
+      .basket-step-2-form-section-info
+      {
+        font-size: 1rem;
+        padding-top: 10px;
+      }
+
+      label
+      {
+        width: 100%;
+        margin: 10px 0 10px 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        input
+        {
+          margin-left: 10px;
+          padding: 5px;
+        }
+      }
+
+    }
+
   }
 
 }

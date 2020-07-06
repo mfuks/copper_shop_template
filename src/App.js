@@ -102,11 +102,7 @@ class App extends Component
             basketSum: summary,
             basketAmount: amount
         });
-
     };
-
-
-
 
     handleDeliveryChange = (delivery) =>
     {

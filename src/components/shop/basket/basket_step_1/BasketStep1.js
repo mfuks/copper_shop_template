@@ -174,7 +174,7 @@ class BasketStep1 extends Component
                                         </tbody>
                                     </table>
                                 </div>
-                                <section className="basket-step-btns">
+                                <section className="basket-step-btn">
                                     {!currentDelivery && <p>Aby przejść dalej wybierz opcje dostawy</p>}
 
                                     <button onClick={this.handleSubmit} disabled={disabled}>
