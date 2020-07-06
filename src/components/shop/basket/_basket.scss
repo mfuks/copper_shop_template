@@ -1,1 +1,43 @@
 @import "../../../main";
+
+
+@mixin basket-container
+{
+  min-height: calc(99vh - 237px);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  .basket-step-btns {
+    width: 45%;
+    max-height: 100%;
+    display: flex;
+
+    button
+    {
+      height: 40px;
+      width: 130px;
+      color: $color-background;
+      background: $color-main-cold;
+      font-family: $font-base;
+      font-weight: 700;
+      text-transform: uppercase;
+      @include flex-center;
+      font-size: 1.2rem;
+      border-radius: 20px;
+      padding: 0;
+      margin: 20px 0 20px 0;
+      cursor: pointer;
+
+      &:hover
+      {
+        color: $color-main-cold;
+        background: $color-main-warm;
+      }
+    }
+  }
+
+
+}
+

@@ -19,7 +19,7 @@
       height: 100%;
       width: 33%;
 
-      a
+      p
       {
         font-size: 1.2rem;
         font-weight: 600;
@@ -28,13 +28,19 @@
         color: $color-background;
         @include flex-center;
 
-        &:hover
-        {
-          color: $color-main-cold;
-          background: $color-light-warm;
-        }
+        //&:hover
+        //{
+        //  color: $color-main-cold;
+        //  background: $color-light-warm;
+        //}
       }
     }
+  }
+
+  .active
+  {
+    background: $color-semi-light-cold;
+    color: $color-background;
   }
 
 }

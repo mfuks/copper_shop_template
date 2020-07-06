@@ -4,25 +4,26 @@ import "./_basket_nav.scss"
 class BasketNav extends Component
 {
     render() {
+        const {basketStep} = this.props;
         return (
             <>
                 <nav className="basket-nav">
                     <div className="container">
                         <ul className="basket-nav-menu">
                             <li>
-                                <a href="/#">
+                                <p className={basketStep === 1 ? "active" : ""}>
                                     Koszyk
-                                </a>
+                                </p>
                             </li>
                             <li>
-                                <a href="/#">
+                                <p className={basketStep === 2 ? "active" : ""}>
                                     Adres dostawy
-                                </a>
+                                </p>
                             </li>
                             <li>
-                                <a href="/#">
+                                <p className={basketStep === 3 ? "active" : ""}>
                                     Podsumowanie
-                                </a>
+                                </p>
                             </li>
                         </ul>
                     </div>

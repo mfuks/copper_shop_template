@@ -1,27 +1,57 @@
 import React, {Component} from 'react';
 import "./_basket_step_1.scss"
+import $ from 'jquery';
 
 class BasketStep1 extends Component
 {
     state =
         {
-            delivery: {
-                letter: "800",
-                inPost: "1000",
-                courier: "2000",
-            },
-            currentDelivery: "",
-            totalSum: ""
+            disabled: true
         };
 
-    handleDeliveryChange = (e) =>
+    componentDidMount()
     {
-        let total = (+this.props.basketSum + +e.currentTarget.value).toString();
+        const {currentDelivery} = this.props;
 
-        this.setState({
-            currentDelivery: e.currentTarget.value,
-            totalSum: total
+        $(function ()
+        {
+            const $element = document.querySelector(".basket-step-1-delivery");
+            console.log($element);
+
+            if($element && currentDelivery)
+            {
+                console.log(currentDelivery);
+                const $list = $element.querySelectorAll("label");
+
+                for (let i = 0; i < $list.length ; i++) {
+                    $list[i].querySelector("input").removeAttribute("checked");
+                }
+
+                for (let i = 0; i < $list.length; i++) {
+
+                    if ($list[i].querySelector("input").getAttribute("value") === currentDelivery)
+                    {
+                        $list[i].querySelector("input").setAttribute("checked", "true");
+                    }
+                }
+            }
         });
+
+        if(currentDelivery)
+        {
+            this.setState({
+                disabled: false
+            });
+        }
+    }
+
+    handleChange = (e) =>
+    {
+        this.setState({
+            disabled: false
+        });
+
+        this.props.handleDeliveryChange(e.currentTarget.value)
     };
 
     priceDisplay = (price) =>
@@ -30,9 +60,15 @@ class BasketStep1 extends Component
             price.substr(price.length-2, 2)  + "zł"
     };
 
+    handleSubmit = () =>
+    {
+        const {setBasketStep, basketStep} = this.props;
+        setBasketStep(basketStep + 1)
+    };
+
     render() {
-        const {basket, basketSum} = this.props;
-        const {delivery, currentDelivery, totalSum} = this.state;
+        const {basket, basketSum, currentDelivery, totalSum, delivery} = this.props;
+        const {disabled} = this.state;
         return (
             <>
                 <section className="basket-step-1">
@@ -90,7 +126,7 @@ class BasketStep1 extends Component
                                             <input type="radio"
                                                    name="delivery"
                                                    value={delivery.letter}
-                                                   onChange={this.handleDeliveryChange}/>
+                                                   onChange={this.handleChange}/>
                                             <span className="custom-radio"/>
                                             List polecony: &nbsp; {this.priceDisplay(delivery.letter)}
                                         </label>
@@ -98,7 +134,7 @@ class BasketStep1 extends Component
                                             <input type="radio"
                                                    name="delivery"
                                                    value={delivery.inPost}
-                                                   onChange={this.handleDeliveryChange}/>
+                                                   onChange={this.handleChange}/>
                                             <span className="custom-radio"/>
                                             Paczkomat: &nbsp; {this.priceDisplay(delivery.inPost)}
                                         </label>
@@ -106,10 +142,11 @@ class BasketStep1 extends Component
                                             <input type="radio"
                                                    name="delivery"
                                                    value={delivery.courier}
-                                                   onChange={this.handleDeliveryChange}/>
+                                                   onChange={this.handleChange}/>
                                             <span className="custom-radio"/>
                                             Kurier: &nbsp; {this.priceDisplay(delivery.courier)}
                                         </label>
+
                                     </section>
 
                                     <table className="basket-step-1-summary">
@@ -137,6 +174,14 @@ class BasketStep1 extends Component
                                         </tbody>
                                     </table>
                                 </div>
+                                <section className="basket-step-btns">
+                                    {!currentDelivery && <p>Aby przejść dalej wybierz opcje dostawy</p>}
+
+                                    <button onClick={this.handleSubmit} disabled={disabled}>
+                                        Dalej
+                                    </button>
+
+                                </section>
                             </>:
                             <section className="basket-step-1-empty">
                                 <div className="basket-step-1-empty-content">
