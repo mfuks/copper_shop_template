@@ -160,6 +160,12 @@ class App extends Component
         });
     };
 
+    priceDisplay = (price) =>
+    {
+        return price.substr(0, price.length-2) + "," +
+            price.substr(price.length-2, 2)  + "zł"
+    };
+
     render() {
         const {login, basket, basketSum, basketStep, basketAmount, currentDelivery, totalSum,
             delivery, deliveryDetailsVal, deliveryDetails} = this.state;
@@ -203,6 +209,7 @@ class App extends Component
                                                                       changeDeliveryDetails={this.changeDeliveryDetails}
                                                                       deliveryDetailsVal={deliveryDetailsVal}
                                                                       deliveryDetails={deliveryDetails}
+                                                                      priceDisplay={this.priceDisplay}
                                                             />}/>
                 </>
             </HashRouter>

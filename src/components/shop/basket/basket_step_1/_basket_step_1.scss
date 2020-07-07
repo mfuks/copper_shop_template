@@ -1,157 +1,40 @@
 @import "../../../../main";
-@import "./../_basket.scss";
+@import "./../basket";
 
 .basket-step-1
 {
-  min-height: calc(99vh - 237px);
 
   .basket-container
   {
     @include basket-container;
   }
 
-  table
-  {
-    color: $color-dark-cold;
-    font-family: $font-base;
-    font-size: 1.2rem;
-    font-weight: 400;
-    line-height: 50px;
-
-    thead
-    {
-
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
-
-    tbody
-    {
-
-      tr
-      {
-        border: 3px solid $color-main-cold;
-
-        th,
-        td
-        {
-          padding: 5px;
-          vertical-align: middle;
-          text-align: center;
-        }
-      }
-    }
-
-  }
-
-  .basket-step-1-products
-  {
-    margin: 50px -2px 0 -2px;
-    width: 100%;
-
-    tbody
-    {
-      img
-      {
-        width: 50px;
-        height: 50px;
-        vertical-align: middle;
-      }
-
-      tr:nth-child(even)
-      {
-        background-color: rgba($color-light-cold, 0.05);
-      }
-      tr:nth-child(odd)
-      {
-        background-color: rgba($color-light-cold, 0.2);
-      }
-
-      i
-      {
-        cursor: pointer;
-
-        &:hover
-        {
-          color: $color-main-warm;
-        }
-      }
-
-    }
-
-    .product-col-s
-    {
-      width: 5%;
-    }
-
-    .product-col-m
-    {
-      width: 10%;
-    }
-
-    .product-col-l
-    {
-      width: 40%;
-      padding-left: 10px;
-      text-align: left;
-    }
-  }
-
-  div
-  {
+  div {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 
-    .basket-step-1-summary
-    {
-      width: 45%;
-      margin: -3px -2px 20px 0;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+    .basket-table-summary {
 
-      tbody
-      {
-        width: 100%;
+      tbody {
 
-        .basket-step-1-summary-header
-        {
-          text-align: left;
-          padding-left: 20px;
-          width: 65vh;
-        }
-        .basket-step-1-summary-content
-        {
+        .basket-table-summary-result {
           width: 35vh;
         }
-
-        .total
-        {
-          font-size: 1.5rem;
-          font-weight: 600;
-        }
       }
 
-      tr:nth-child(even)
-      {
+      tr:nth-child(even) {
         background-color: rgba($color-light-cold, 0.4);
       }
-      tr:nth-child(odd)
-      {
+
+      tr:nth-child(odd) {
         background-color: rgba($color-light-cold, 0.7);
       }
 
-      td
-      {
-        text-align: left;
-        width: 20%;
-      }
     }
 
-    .basket-step-1-delivery
-    {
+    .basket-step-1-delivery {
       color: $color-dark-cold;
       font-family: $font-base;
       font-size: 1.2rem;
@@ -163,28 +46,24 @@
       align-items: flex-start;
       padding: 50px 0 0 50px;
 
-      p
-      {
+      p {
         font-size: 1.3rem;
         font-weight: 600;
         padding-bottom: 5px;
       }
 
-      label
-      {
+      label {
         display: block;
         position: relative;
         user-select: none;
         cursor: pointer;
         padding-left: 30px;
 
-        input
-        {
+        input {
           display: none;
         }
 
-        .custom-radio
-        {
+        .custom-radio {
           position: absolute;
           top: 8px;
           left: 0;
@@ -206,32 +85,27 @@
       }
 
     }
-  }
 
-  .basket-step-1-empty
-  {
-    height: calc(100vh - 237px);
-    min-height: 300px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .basket-step-1-empty-content
-    {
-      background: $color-main-cold;
-      width: 60%;
-      height: 70%;
-      margin: auto;
+    .basket-step-1-empty {
+      height: calc(100vh - 237px);
+      min-height: 300px;
+      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      color: $color-background;
-      text-transform: uppercase;
+
+      .basket-step-1-empty-content {
+        background: $color-main-cold;
+        width: 60%;
+        height: 70%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: $color-background;
+        text-transform: uppercase;
+      }
     }
   }
-
-
-
 }

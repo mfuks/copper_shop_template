@@ -9,7 +9,6 @@
   .basket-container
   {
     @include basket-container;
-    height: calc(99vh - 237px);
     min-height: 590px;
   }
 
