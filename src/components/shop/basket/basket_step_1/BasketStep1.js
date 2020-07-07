@@ -16,11 +16,9 @@ class BasketStep1 extends Component
         $(function ()
         {
             const $element = document.querySelector(".basket-step-1-delivery");
-            console.log($element);
 
             if($element && currentDelivery)
             {
-                console.log(currentDelivery);
                 const $list = $element.querySelectorAll("label");
 
                 for (let i = 0; i < $list.length ; i++) {

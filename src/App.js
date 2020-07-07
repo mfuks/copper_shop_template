@@ -161,7 +161,8 @@ class App extends Component
     };
 
     render() {
-        const {login, basket, basketSum, basketStep, basketAmount, currentDelivery, totalSum, delivery, deliveryDetailsVal} = this.state;
+        const {login, basket, basketSum, basketStep, basketAmount, currentDelivery, totalSum,
+            delivery, deliveryDetailsVal, deliveryDetails} = this.state;
         return (
             <HashRouter>
                 <>
@@ -201,6 +202,7 @@ class App extends Component
                                                                       delivery={delivery}
                                                                       changeDeliveryDetails={this.changeDeliveryDetails}
                                                                       deliveryDetailsVal={deliveryDetailsVal}
+                                                                      deliveryDetails={deliveryDetails}
                                                             />}/>
                 </>
             </HashRouter>

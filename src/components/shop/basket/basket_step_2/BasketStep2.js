@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import "./_basket_step_2.scss"
+import $ from "jquery";
 
 class BasketStep2 extends Component
 {
     state =
         {
             disabled: true,
-
-            users: "",
 
             name: "",
             nameVal: false,
@@ -26,28 +25,32 @@ class BasketStep2 extends Component
             phoneVal: false,
 
             agreementChecked: false,
-
             submitHandle: false,
         };
 
     componentDidMount()
     {
-        const url = "http://localhost:3012/users";
-
-        fetch(url)
-        .then(response => {
-            return response.json()
-        })
-        .then(users =>
+        const {deliveryDetails, deliveryDetailsVal} = this.props;
+        if(deliveryDetailsVal)
         {
             this.setState({
-                users: users
+                disabled: false,
+                name: deliveryDetails.name,
+                surname: deliveryDetails.surname,
+                email: deliveryDetails.email,
+                address: deliveryDetails.address,
+                zipCode: deliveryDetails.zipCode,
+                city: deliveryDetails.city,
+                phone: deliveryDetails.phone,
             });
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-    };
+
+            $(function ()
+            {
+                document.querySelector(".basket-step-2-form-section-agreements").querySelector("input")
+                .setAttribute("checked", "true")
+            });
+        }
+    }
 
     validation = (e, valType, length) =>
     {
@@ -117,9 +120,7 @@ class BasketStep2 extends Component
 
     handleChangeZipCode = e =>
     {
-        let zipCodeV;
         let zipCodeVal = e.target.value.length === 6;
-        zipCodeVal ? zipCodeV=true : zipCodeV=false;
         this.setState({
             zipCode: e.target.value,
             zipCodeVal: zipCodeVal
@@ -193,9 +194,7 @@ class BasketStep2 extends Component
             || this.props.deliveryDetailsVal ?
             this.setState({disabled: false}):
             this.setState({disabled: true});
-
     };
-
 
     handleSubmit = (e) =>
     {
@@ -231,8 +230,7 @@ class BasketStep2 extends Component
 
     render() {
 
-        const {disabled, email, emailVal, name, nameVal, surname, surnameVal, address, addressVal,
-            city, cityVal, zipCode, zipCodeVal, phone, phoneVal, submitHandle, loginAvailable, emailAvailable, agreementChecked, submitMessage} = this.state;
+        const {disabled, email, name, surname, address, city, zipCode, phone, submitHandle} = this.state;
         return (
             <>
                 <section className="basket-step-2">
@@ -324,7 +322,6 @@ class BasketStep2 extends Component
                                 </section>
                             </section>
                             <section className="basket-step-btns">
-                                {/*{!currentDelivery && <p>Aby przejść dalej wybierz opcje dostawy</p>}*/}
                                 <button className="btn" onClick={this.handleGoBack}>
                                     Wstecz
                                 </button>
