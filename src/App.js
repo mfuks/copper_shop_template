@@ -30,7 +30,38 @@ class App extends Component
                 inPost: "1000",
                 courier: "2000",
             },
+
+            deliveryDetails:{
+                name: "",
+                surname: "",
+                email: "",
+                address: "",
+                zipCode: "",
+                city: "",
+                phone: "",
+            },
+
+            deliveryDetailsVal: false
+
         };
+
+    changeDeliveryDetails = (name, surname, email, address, zipCode, city, phone) =>
+    {
+        this.setState({
+            deliveryDetails:
+                {
+                    name: name,
+                    surname: surname,
+                    email: email,
+                    address: address,
+                    zipCode: zipCode,
+                    city: city,
+                    phone: phone,
+                },
+            deliveryDetailsVal: true
+        });
+    };
+
 
     setBasketStep = (currentStep) =>
     {
@@ -130,7 +161,7 @@ class App extends Component
     };
 
     render() {
-        const {login, basket, basketSum, basketStep, basketAmount, currentDelivery, totalSum, delivery} = this.state;
+        const {login, basket, basketSum, basketStep, basketAmount, currentDelivery, totalSum, delivery, deliveryDetailsVal} = this.state;
         return (
             <HashRouter>
                 <>
@@ -168,6 +199,8 @@ class App extends Component
                                                                       totalSum={totalSum}
                                                                       handleDeliveryChange={this.handleDeliveryChange}
                                                                       delivery={delivery}
+                                                                      changeDeliveryDetails={this.changeDeliveryDetails}
+                                                                      deliveryDetailsVal={deliveryDetailsVal}
                                                             />}/>
                 </>
             </HashRouter>

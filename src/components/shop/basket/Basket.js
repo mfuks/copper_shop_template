@@ -10,7 +10,8 @@ class Basket extends Component
 {
     render() {
         const {basketStep, login, setBasketStep, basketPath, basket, basketSum, setClearLogin, basketAmount,
-            handleChangeCurrentDelivery, currentDelivery, handleChangeTotalSum, totalSum, handleDeliveryChange, delivery} = this.props;
+            handleChangeCurrentDelivery, currentDelivery, handleChangeTotalSum, totalSum, handleDeliveryChange,
+            delivery, changeDeliveryDetails, deliveryDetailsVal} = this.props;
         return (
             <>
                 <Header login={login}
@@ -34,7 +35,9 @@ class Basket extends Component
                 <BasketStep2 setBasketStep={setBasketStep}
                              basket={basket}
                              basketSum={basketSum}
-                             basketStep={basketStep}/>}
+                             basketStep={basketStep}
+                             changeDeliveryDetails={changeDeliveryDetails}
+                             deliveryDetailsVal={deliveryDetailsVal}/>}
                 <Footer/>
             </>
         )
