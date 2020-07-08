@@ -222,14 +222,8 @@ class BasketStep2 extends Component
 
     };
 
-    handleGoBack = () =>
-    {
-        const {setBasketStep, basketStep} = this.props;
-        setBasketStep(basketStep - 1)
-    };
-
     render() {
-
+        const {handleGoBack} = this.props;
         const {disabled, email, name, surname, address, city, zipCode, phone, submitHandle} = this.state;
         return (
             <>
@@ -322,7 +316,7 @@ class BasketStep2 extends Component
                                 </section>
                             </section>
                             <section className="basket-step-btns">
-                                <button className="btn" onClick={this.handleGoBack}>
+                                <button className="btn" onClick={handleGoBack}>
                                     Wstecz
                                 </button>
                                 <input className="btn" type="submit" value="Dalej"/>

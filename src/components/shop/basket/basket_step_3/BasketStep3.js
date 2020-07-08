@@ -14,14 +14,8 @@ class BasketStep3 extends Component
 
     };
 
-    handleGoBack = () =>
-    {
-        const {setBasketStep, basketStep} = this.props;
-        setBasketStep(basketStep - 1)
-    };
-
     render() {
-        const {basket, basketSum, currentDelivery, totalSum, priceDisplay, basketStep} = this.props;
+        const {basket, basketSum, currentDelivery, totalSum, priceDisplay, basketStep, handleGoBack} = this.props;
         return (
             <>
                 <section className="basket-step-3">
@@ -36,7 +30,7 @@ class BasketStep3 extends Component
                             totalSum={totalSum}
                             priceDisplay={priceDisplay}/>
                         <section className="basket-step-btns">
-                            <button className="btn" onClick={this.handleGoBack}>
+                            <button className="btn" onClick={handleGoBack}>
                                 Wstecz
                             </button>
                             <button className="btn confirm-btn" onClick={this.handleSubmit} >

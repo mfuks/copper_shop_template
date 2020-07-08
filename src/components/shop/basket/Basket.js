@@ -9,6 +9,13 @@ import BasketStep3 from "./basket_step_3/BasketStep3";
 
 class Basket extends Component
 {
+
+    handleGoBack = () =>
+    {
+        const {setBasketStep, basketStep} = this.props;
+        setBasketStep(basketStep - 1)
+    };
+
     render() {
         const {basketStep, login, setBasketStep, basketPath, basket, basketSum, setClearLogin, basketAmount,
             handleChangeCurrentDelivery, currentDelivery, handleChangeTotalSum, totalSum, handleDeliveryChange,
@@ -40,7 +47,8 @@ class Basket extends Component
                              basketStep={basketStep}
                              changeDeliveryDetails={changeDeliveryDetails}
                              deliveryDetailsVal={deliveryDetailsVal}
-                             deliveryDetails={deliveryDetails}/>}
+                             deliveryDetails={deliveryDetails}
+                             handleGoBack={this.handleGoBack}/>}
                 {basketStep === 3 &&
                 <BasketStep3 setBasketStep={setBasketStep}
                              basket={basket}
@@ -48,7 +56,8 @@ class Basket extends Component
                              basketStep={basketStep}
                              currentDelivery={currentDelivery}
                              totalSum={totalSum}
-                             priceDisplay={priceDisplay}/>}
+                             priceDisplay={priceDisplay}
+                             handleGoBack={this.handleGoBack}/>}
                 <Footer/>
             </>
         )

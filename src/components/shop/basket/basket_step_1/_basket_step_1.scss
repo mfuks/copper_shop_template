@@ -9,29 +9,49 @@
     @include basket-container;
   }
 
+  .basket-table-products-content
+  {
+
+    tbody
+    {
+      tr:nth-child(even)
+      {
+        background-color: rgba($color-light-cold, 0.05);
+      }
+      tr:nth-child(odd)
+      {
+        background-color: rgba($color-light-cold, 0.2);
+      }
+    }
+
+  }
+
   div {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 
-    .basket-table-summary {
+    .basket-table-summary
+    {
+      .basket-table-summary-content {
 
-      tbody {
+        tbody {
 
-        .basket-table-summary-result {
-          width: 35vh;
+          .basket-table-summary-result {
+            width: 35vh;
+          }
         }
-      }
 
-      tr:nth-child(even) {
-        background-color: rgba($color-light-cold, 0.4);
-      }
+        tr:nth-child(even) {
+          background-color: rgba($color-light-cold, 0.4);
+        }
 
-      tr:nth-child(odd) {
-        background-color: rgba($color-light-cold, 0.7);
-      }
+        tr:nth-child(odd) {
+          background-color: rgba($color-light-cold, 0.7);
+        }
 
+      }
     }
 
     .basket-step-1-delivery {
