@@ -20,8 +20,48 @@ class App extends Component
             basketSum: "000",
 
             basketStep: 1,
-            basketAmount: 0
+            basketAmount: 0,
+            totalSum: "",
+
+            currentDelivery: "",
+
+            delivery: {
+                letter: "800",
+                inPost: "1000",
+                courier: "2000",
+            },
+
+            deliveryDetails:{
+                name: "",
+                surname: "",
+                email: "",
+                address: "",
+                zipCode: "",
+                city: "",
+                phone: "",
+            },
+
+            deliveryDetailsVal: false
+
         };
+
+    changeDeliveryDetails = (name, surname, email, address, zipCode, city, phone) =>
+    {
+        this.setState({
+            deliveryDetails:
+                {
+                    name: name,
+                    surname: surname,
+                    email: email,
+                    address: address,
+                    zipCode: zipCode,
+                    city: city,
+                    phone: phone,
+                },
+            deliveryDetailsVal: true
+        });
+    };
+
 
     setBasketStep = (currentStep) =>
     {
@@ -49,7 +89,7 @@ class App extends Component
         let productExistIndex;
         let newBasket;
 
-        for (let i = 0; i < this.state.basket.length ; i++)
+        for (let i = 0; i < this.state.basket.length; i++)
         {
             if(this.state.basket[i].product === productAdded)
             {
@@ -93,11 +133,42 @@ class App extends Component
             basketSum: summary,
             basketAmount: amount
         });
+    };
+
+    handleDeliveryChange = (delivery) =>
+    {
+        const {basketSum} = this.state;
+
+        this.handleChangeCurrentDelivery(delivery);
+        this.handleChangeTotalSum(basketSum, delivery);
 
     };
 
+    handleChangeCurrentDelivery = (currentDelivery) =>
+    {
+        this.setState({
+            currentDelivery: currentDelivery
+        });
+    };
+
+    handleChangeTotalSum = (products, delivery) =>
+    {
+        let total = (+products + +delivery).toString();
+
+        this.setState({
+            totalSum: total
+        });
+    };
+
+    priceDisplay = (price) =>
+    {
+        return price.substr(0, price.length-2) + "," +
+            price.substr(price.length-2, 2)  + "zł"
+    };
+
     render() {
-        const {login, basket, basketSum, basketStep, basketAmount} = this.state;
+        const {login, basket, basketSum, basketStep, basketAmount, currentDelivery, totalSum,
+            delivery, deliveryDetailsVal, deliveryDetails} = this.state;
         return (
             <HashRouter>
                 <>
@@ -128,7 +199,18 @@ class App extends Component
                                                                       basketPath="/basket"
                                                                       setBasketStep={this.setBasketStep}
                                                                       basketStep={basketStep}
-                                                                      basketAmount={basketAmount}/>}/>
+                                                                      basketAmount={basketAmount}
+                                                                      handleChangeCurrentDelivery={this.handleChangeCurrentDelivery}
+                                                                      currentDelivery={currentDelivery}
+                                                                      handleChangeTotalSum={this.handleChangeTotalSum}
+                                                                      totalSum={totalSum}
+                                                                      handleDeliveryChange={this.handleDeliveryChange}
+                                                                      delivery={delivery}
+                                                                      changeDeliveryDetails={this.changeDeliveryDetails}
+                                                                      deliveryDetailsVal={deliveryDetailsVal}
+                                                                      deliveryDetails={deliveryDetails}
+                                                                      priceDisplay={this.priceDisplay}
+                                                            />}/>
                 </>
             </HashRouter>
         );

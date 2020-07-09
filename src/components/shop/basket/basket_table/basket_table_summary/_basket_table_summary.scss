@@ -1,0 +1,40 @@
+@import "../../../../../main";
+@import "../basket_table";
+
+.basket-table-summary {
+  @include basket-table;
+  width: 45%;
+  margin-right: -2px;
+
+  .basket-table-summary-content {
+    width: 100%;
+    margin: -3px 0 20px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    tbody {
+      width: 100%;
+
+      .basket-table-summary-header {
+        text-align: left;
+        padding-left: 20px;
+        width: 65vh;
+      }
+
+      .basket-table-summary-result {
+        padding-left: 30px;
+      }
+
+      .total {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+    }
+
+    td {
+      text-align: left;
+      width: 20%;
+    }
+  }
+}

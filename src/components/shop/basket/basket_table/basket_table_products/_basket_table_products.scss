@@ -1,0 +1,53 @@
+@import "../../../../../main";
+@import "../basket_table";
+
+.basket-table-products
+{
+  width: 100%;
+  @include basket-table;
+
+  .basket-table-products-content
+  {
+    margin-top: 50px;
+    width: 100%;
+
+    tbody
+    {
+
+      img
+      {
+        width: 50px;
+        height: 50px;
+        vertical-align: middle;
+      }
+
+      i
+      {
+        cursor: pointer;
+
+        &:hover
+        {
+          color: $color-main-warm;
+        }
+      }
+    }
+
+    .product-col-s
+    {
+      width: 5%;
+    }
+
+    .product-col-m
+    {
+      width: 10%;
+    }
+
+    .product-col-l
+    {
+      width: 40%;
+      padding-left: 10px;
+      text-align: left;
+    }
+  }
+
+}

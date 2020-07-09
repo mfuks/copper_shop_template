@@ -1,0 +1,96 @@
+@import "../../../../main";
+@import "./../_basket.scss";
+
+.basket-step-3
+{
+  height: calc(99vh - 237px);
+  width: 100%;
+
+  .basket-container
+  {
+    @include basket-container;
+    height: calc(99vh - 237px - 110px);
+    align-items: flex-end;
+  }
+
+  table
+  {
+    color: $color-dark-cold;
+    font-family: $font-base;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 40px;
+
+    thead
+    {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    tbody
+    {
+
+      tr
+      {
+        border: 2px solid $color-main-cold;
+
+        th,
+        td
+        {
+          padding: 5px;
+          vertical-align: middle;
+          text-align: center;
+        }
+      }
+    }
+
+  }
+
+  .basket-table-products-content
+  {
+    width: 100%;
+    min-width: 535px;
+
+    tbody
+    {
+      img
+      {
+        width: 40px;
+        height: 40px;
+      }
+
+      tr
+      {
+        background-color: $color-background;
+      }
+    }
+  }
+
+  .basket-table-summary
+  {
+    margin-right: -1px;
+  }
+
+  .basket-table-summary-content
+  {
+    margin-top: -2px;
+
+    tbody
+    {
+      width: 80%;
+      min-width: 360px;
+
+      .basket-table-summary-result
+      {
+        width: 20vh;
+      }
+
+      .total
+      {
+        font-size: 1.4rem;
+      }
+    }
+
+  }
+
+}

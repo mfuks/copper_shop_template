@@ -1,61 +1,78 @@
 import React, {Component} from 'react';
 import "./_basket_step_1.scss"
+import $ from 'jquery';
+import BasketTableProducts from "../basket_table/basket_table_products/BasketTableProducts";
+import BasketTableSummary from "../basket_table/basket_table_summary/BasketTableSummary";
 
 class BasketStep1 extends Component
 {
+    state =
+        {
+            disabled: true
+        };
+
+    componentDidMount()
+    {
+        const {currentDelivery} = this.props;
+
+        $(function ()
+        {
+            const $element = document.querySelector(".basket-step-1-delivery");
+
+            if($element && currentDelivery)
+            {
+                const $list = $element.querySelectorAll("label");
+
+                for (let i = 0; i < $list.length ; i++) {
+                    $list[i].querySelector("input").removeAttribute("checked");
+                }
+
+                for (let i = 0; i < $list.length; i++) {
+
+                    if ($list[i].querySelector("input").getAttribute("value") === currentDelivery)
+                    {
+                        $list[i].querySelector("input").setAttribute("checked", "true");
+                    }
+                }
+            }
+        });
+
+        if(currentDelivery)
+        {
+            this.setState({
+                disabled: false
+            });
+        }
+    }
+
+    handleChange = (e) =>
+    {
+        this.setState({
+            disabled: false
+        });
+
+        this.props.handleDeliveryChange(e.currentTarget.value)
+    };
+
+    handleSubmit = () =>
+    {
+        const {setBasketStep, basketStep} = this.props;
+        setBasketStep(basketStep + 1)
+    };
 
     render() {
-        const {basket, basketSum} = this.props;
+        const {basket, basketSum, currentDelivery, totalSum, delivery, basketStep, priceDisplay} = this.props;
+        const {disabled} = this.state;
         return (
             <>
                 <section className="basket-step-1">
                     <div className="container basket-container">
                         {basket.length !== 0 ?
                             <>
-                                <table className="basket-step-1-products">
-                                    <thead>
-                                        <tr>
-                                            <th className="product-col-s">Lp.</th>
-                                            <th className="product-col-m">miniaturka</th>
-                                            <th className="product-col-l">nazwa produktu</th>
-                                            <th className="product-col-s">ilość</th>
-                                            <th className="product-col-m">cena</th>
-                                            <th className="product-col-m">suma</th>
-                                            <th className="product-col-s">usuń</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {basket.map((element, index)=>
-                                            <tr key={"basket-" + index}>
-                                                <td className="product-col-s basket-product-id">
-                                                    {index + 1}.
-                                                </td>
-                                                <td className="product-col-m">
-                                                    <img src={"./assets/products/" + element.product.id + ".jpeg"}
-                                                         alt={"product_" + element.product.id}
-                                                         width="100%"/>
-                                                </td>
-                                                <td className="product-col-l basket-product-name">
-                                                    bransoletka {element.product.id}
-                                                </td>
-                                                <td className="product-col-s basket-product-amount">
-                                                    {element.amount}
-                                                </td>
-                                                <td className="product-col-m basket-product-price">
-                                                    {element.product.price.substr(0, element.product.price.length-2)},
-                                                    {element.product.price.substr(element.product.price.length-2, 2)} zł
-                                                </td>
-                                                <td className="product-col-m basket-product-sum">
-                                                    {element.total.substr(0, element.product.price.length-2)},
-                                                    {element.total.substr(element.product.price.length-2, 2)} zł
-                                                </td>
-                                                <td className="product-col-s basket-product-bin">
-                                                    <i className="fas fa-trash-alt"/>
-                                                </td>
-                                            </tr>)}
-                                    </tbody>
-                                </table>
-
+                                <BasketTableProducts
+                                basketStep={basketStep}
+                                basket={basket}
+                                priceDisplay={priceDisplay}/>
                                 <div>
                                     <section className="basket-step-1-delivery">
                                         <p>
@@ -64,52 +81,43 @@ class BasketStep1 extends Component
                                         <label>
                                             <input type="radio"
                                                    name="delivery"
-                                                   value="letter"/>
+                                                   value={delivery.letter}
+                                                   onChange={this.handleChange}/>
                                             <span className="custom-radio"/>
-                                            List polecony: 8zł
+                                            List polecony: &nbsp; {priceDisplay(delivery.letter)}
                                         </label>
                                         <label>
                                             <input type="radio"
                                                    name="delivery"
-                                                   value="inpost"/>
+                                                   value={delivery.inPost}
+                                                   onChange={this.handleChange}/>
                                             <span className="custom-radio"/>
-                                            Paczkomat: 10zł
+                                            Paczkomat: &nbsp; {priceDisplay(delivery.inPost)}
                                         </label>
                                         <label>
                                             <input type="radio"
                                                    name="delivery"
-                                                   value="kurier"/>
+                                                   value={delivery.courier}
+                                                   onChange={this.handleChange}/>
                                             <span className="custom-radio"/>
-                                            Kurier: 20zł
+                                            Kurier: &nbsp; {priceDisplay(delivery.courier)}
                                         </label>
-                                    </section>
 
-                                    <table className="basket-step-1-summary">
-                                        <tbody>
-                                            <tr>
-                                                <th className="basket-step-1-summary-header">Wartość produktów:</th>
-                                                <td className="basket-step-1-summary-content">
-                                                    {basketSum && basketSum.substr(0, basketSum.length-2)},
-                                                    {basketSum && basketSum.substr(basketSum.length-2, 2)} zł
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th className="basket-step-1-summary-header">Koszty dostawy:</th>
-                                                <td className="basket-step-1-summary-content">
-                                                    20,00 zł {/*tu zmienna*/}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th className="basket-step-1-summary-header total">Łącznie:</th>
-                                                <td className="basket-step-1-summary-content total">
-                                                    {basketSum && basketSum.substr(0, basketSum.length-2)},
-                                                    {basketSum && basketSum.substr(basketSum.length-2, 2)} zł
-                                                    {/*tu zmienna*/}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    </section>
+                                    <BasketTableSummary
+                                        basketSum={basketSum}
+                                        currentDelivery={currentDelivery}
+                                        totalSum={totalSum}
+                                        priceDisplay={priceDisplay}/>
                                 </div>
+                                <section className="basket-step-btn">
+                                    {!currentDelivery && <p>Aby przejść dalej wybierz opcje dostawy</p>}
+
+                                    <button className="btn" onClick={this.handleSubmit} disabled={disabled}>
+                                        Dalej
+                                    </button>
+
+                                </section>
                             </>:
                             <section className="basket-step-1-empty">
                                 <div className="basket-step-1-empty-content">
