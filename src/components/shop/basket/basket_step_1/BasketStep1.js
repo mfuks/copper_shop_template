@@ -14,21 +14,15 @@ class BasketStep1 extends Component
     componentDidMount()
     {
         const {currentDelivery} = this.props;
-
-        $(function ()
-        {
+        $(function () {
             const $element = document.querySelector(".basket-step-1-delivery");
 
-            if($element && currentDelivery)
-            {
+            if($element && currentDelivery) {
                 const $list = $element.querySelectorAll("label");
-
                 for (let i = 0; i < $list.length ; i++) {
                     $list[i].querySelector("input").removeAttribute("checked");
                 }
-
                 for (let i = 0; i < $list.length; i++) {
-
                     if ($list[i].querySelector("input").getAttribute("value") === currentDelivery)
                     {
                         $list[i].querySelector("input").setAttribute("checked", "true");
@@ -36,7 +30,6 @@ class BasketStep1 extends Component
                 }
             }
         });
-
         if(currentDelivery)
         {
             this.setState({
@@ -60,8 +53,10 @@ class BasketStep1 extends Component
         setBasketStep(basketStep + 1)
     };
 
+
+
     render() {
-        const {basket, basketSum, currentDelivery, totalSum, delivery, basketStep, priceDisplay} = this.props;
+        const {basket, basketSum, currentDelivery, totalSum, delivery, basketStep, priceDisplay, basketDelete} = this.props;
         const {disabled} = this.state;
         return (
             <>
@@ -72,7 +67,8 @@ class BasketStep1 extends Component
                                 <BasketTableProducts
                                 basketStep={basketStep}
                                 basket={basket}
-                                priceDisplay={priceDisplay}/>
+                                priceDisplay={priceDisplay}
+                                basketDelete={basketDelete}/>
                                 <div>
                                     <section className="basket-step-1-delivery">
                                         <p>
@@ -119,8 +115,8 @@ class BasketStep1 extends Component
 
                                 </section>
                             </>:
-                            <section className="basket-step-1-empty">
-                                <div className="basket-step-1-empty-content">
+                            <section className="basket-info">
+                                <div className="basket-info-content">
                                     <h3>Twój koszyk jest pusty</h3>
                                 </div>
                             </section>}

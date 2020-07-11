@@ -1,0 +1,17 @@
+@import "../../../../main";
+@import "./../_basket.scss";
+
+.basket-thanks
+{
+  height: calc(99vh - 237px);
+  width: 100%;
+
+  .basket-container
+  {
+    @include basket-container;
+    height: calc(99vh - 237px - 110px);
+    align-items: flex-end;
+    @include basket-info;
+
+  }
+}
