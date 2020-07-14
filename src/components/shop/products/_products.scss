@@ -1,4 +1,15 @@
 @import "../../../main";
+
+@mixin product-info-details
+{
+  width: 300px;
+  padding: 0 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
 .products
 {
   margin-top: 20px;
@@ -74,12 +85,8 @@
 
     .product-info
     {
-      width: 300px;
+      @include product-info-details;
       height: 50px;
-      padding: 0 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
 
       .product-info-price
       {
@@ -110,6 +117,25 @@
         }
       }
 
+    }
+
+    .product-details
+    {
+      @include product-info-details;
+      height: 10px;
+
+      .product-details-quantity
+      {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        color: $color-main-cold;
+
+        h3
+        {
+          font-size: 1rem;
+        }
+      }
     }
   }
 
