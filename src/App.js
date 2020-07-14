@@ -45,7 +45,7 @@ class App extends Component
 
         };
 
-    changeDeliveryDetails = (name, surname, email, address, zipCode, city, phone) =>
+    handleChangeDeliveryDetails = (name, surname, email, address, zipCode, city, phone) =>
     {
         this.setState({
             deliveryDetails:
@@ -116,6 +116,47 @@ class App extends Component
         this.basketSummary(newBasket);
     };
 
+    basketOnAmountChange = (target) =>
+    {
+        let productExistIndex;
+        let newBasket;
+        let toEdit;
+
+        if(typeof target === "object")
+        {
+            toEdit = target.parentNode.parentNode.getElementsByClassName("basket-product-name")[0].getElementsByTagName("span")[0].innerText;
+        }
+
+        if(target.value === "0")
+        {
+            this.basketDelete(target.parentNode.parentNode.getElementsByClassName("basket-product-bin")[0].getElementsByTagName("i")[0]);
+            newBasket = this.basketDelete(target.parentNode.parentNode.getElementsByClassName("basket-product-bin")[0].getElementsByTagName("i")[0]);
+        }
+        else
+        {
+            for (let i = 0; i < this.state.basket.length; i++)
+            {
+                if(this.state.basket[i].product.id === toEdit)
+                {
+                    productExistIndex = i;
+                    break;
+                }
+            }
+            newBasket = [...this.state.basket];
+            newBasket[productExistIndex].amount = target.value.toString();
+            newBasket[productExistIndex].total = (+(+newBasket[productExistIndex].amount) * +newBasket[productExistIndex].product.price).toString();
+        }
+
+        this.basketSummary(newBasket);
+        if(this.state.currentDelivery)
+        {
+            this.handleChangeCurrentDelivery(this.state.currentDelivery);
+            this.handleChangeTotalSum(this.basketSummary(newBasket), this.state.currentDelivery);
+        }
+
+    };
+
+
     basketSummary = (newBasket) =>
     {
         let summary = 0;
@@ -132,15 +173,13 @@ class App extends Component
             basketSum: summary,
             basketAmount: amount
         });
+        return summary;
     };
 
     handleDeliveryChange = (delivery) =>
     {
-        const {basketSum} = this.state;
-
         this.handleChangeCurrentDelivery(delivery);
-        this.handleChangeTotalSum(basketSum, delivery);
-
+        this.handleChangeTotalSum(this.state.basketSum, delivery);
     };
 
     handleChangeCurrentDelivery = (currentDelivery) =>
@@ -196,6 +235,8 @@ class App extends Component
             }
         }
         this.basketSummary(newBasket2);
+
+        return newBasket2;
     };
 
     basketSetClear = () =>
@@ -274,15 +315,15 @@ class App extends Component
                                                                       basketDelete={this.basketDelete}
                                                                       basketSetClear={this.basketSetClear}
                                                                       basketSetClearStep={this.basketSetClearStep}
+                                                                      basketOnAmountChange={this.basketOnAmountChange}
                                                                       handleChangeCurrentDelivery={this.handleChangeCurrentDelivery}
                                                                       currentDelivery={currentDelivery}
-                                                                      handleChangeTotalSum={this.handleChangeTotalSum}
                                                                       totalSum={totalSum}
                                                                       delivery={delivery}
                                                                       deliveryDetailsVal={deliveryDetailsVal}
                                                                       deliveryDetails={deliveryDetails}
                                                                       handleDeliveryChange={this.handleDeliveryChange}
-                                                                      changeDeliveryDetails={this.changeDeliveryDetails}
+                                                                      handleChangeDeliveryDetails={this.handleChangeDeliveryDetails}
                                                             />}/>
                 </>
             </HashRouter>

@@ -47,16 +47,9 @@ class BasketStep1 extends Component
         this.props.handleDeliveryChange(e.currentTarget.value)
     };
 
-    handleSubmit = () =>
-    {
-        const {setBasketStep, basketStep} = this.props;
-        setBasketStep(basketStep + 1)
-    };
-
-
-
     render() {
-        const {basket, basketSum, currentDelivery, totalSum, delivery, basketStep, priceDisplay, basketDelete} = this.props;
+        const {basket, basketSum, currentDelivery, totalSum, delivery, basketStep, priceDisplay, basketDelete,
+            basketOnAmountChange, setBasketStep} = this.props;
         const {disabled} = this.state;
         return (
             <>
@@ -68,7 +61,8 @@ class BasketStep1 extends Component
                                 basketStep={basketStep}
                                 basket={basket}
                                 priceDisplay={priceDisplay}
-                                basketDelete={basketDelete}/>
+                                basketDelete={basketDelete}
+                                basketOnAmountChange={basketOnAmountChange}/>
                                 <div>
                                     <section className="basket-step-1-delivery">
                                         <p>
@@ -109,7 +103,7 @@ class BasketStep1 extends Component
                                 <section className="basket-step-btn">
                                     {!currentDelivery && <p>Aby przejść dalej wybierz opcje dostawy</p>}
 
-                                    <button className="btn" onClick={this.handleSubmit} disabled={disabled}>
+                                    <button className="btn" onClick={() => setBasketStep(basketStep + 1)} disabled={disabled}>
                                         Dalej
                                     </button>
 

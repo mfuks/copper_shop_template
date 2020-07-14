@@ -19,9 +19,9 @@ class Basket extends Component
 
     render() {
         const {basketStep, login, setBasketStep, basketPath, basket, basketSum, setClearLogin, basketAmount,
-            handleChangeCurrentDelivery, currentDelivery, handleChangeTotalSum, totalSum, handleDeliveryChange,
-            delivery, changeDeliveryDetails, deliveryDetailsVal, deliveryDetails, priceDisplay, basketDelete,
-            basketSetClear, basketSetClearStep} = this.props;
+            handleChangeCurrentDelivery, currentDelivery, totalSum, handleDeliveryChange,
+            delivery, handleChangeDeliveryDetails, deliveryDetailsVal, deliveryDetails, priceDisplay, basketDelete,
+            basketSetClear, basketSetClearStep, basketOnAmountChange} = this.props;
         return (
             <>
                 <Header login={login}
@@ -36,19 +36,19 @@ class Basket extends Component
                              basketSum={basketSum}
                              handleChangeCurrentDelivery={handleChangeCurrentDelivery}
                              currentDelivery={currentDelivery}
-                             handleChangeTotalSum={handleChangeTotalSum}
                              totalSum={totalSum}
                              basketStep={basketStep}
                              handleDeliveryChange={handleDeliveryChange}
                              delivery={delivery}
                              priceDisplay={priceDisplay}
-                             basketDelete={basketDelete}/>}
+                             basketDelete={basketDelete}
+                             basketOnAmountChange={basketOnAmountChange}/>}
                 {basketStep === 2 &&
                 <BasketStep2 setBasketStep={setBasketStep}
                              basket={basket}
                              basketSum={basketSum}
                              basketStep={basketStep}
-                             changeDeliveryDetails={changeDeliveryDetails}
+                             handleChangeDeliveryDetails={handleChangeDeliveryDetails}
                              deliveryDetailsVal={deliveryDetailsVal}
                              deliveryDetails={deliveryDetails}
                              handleGoBack={this.handleGoBack}/>}

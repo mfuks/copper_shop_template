@@ -26,11 +26,7 @@ class Products extends Component
             .catch(function(error) {
                 console.log(error);
             });
-
-
-
     };
-
 
     handleClick = (e, i) =>
     {
@@ -39,9 +35,9 @@ class Products extends Component
         })
     };
 
-
     render() {
         const {products, currentPage, infoPerPage} = this.state;
+        const {basketAdd} = this.props;
         const indexOfLast = currentPage * infoPerPage;
         const indexOfFirst = indexOfLast - infoPerPage;
         const currentProducts = products.slice(indexOfFirst, indexOfLast);
@@ -86,10 +82,9 @@ class Products extends Component
                                                 </div>
                                                 <div className="product-info-add">
                                                     <i className="fas fa-2x fa-plus-square product-info-add-btn"
-                                                       onClick={()=>this.props.basketAdd(element)}/>
+                                                       onClick={()=>basketAdd(element)}/>
                                                 </div>
                                             </section>
-
                                             <section className="product-details">
                                                 <div className="product-details-quantity">
                                                     <h3>
@@ -97,8 +92,6 @@ class Products extends Component
                                                     </h3>
                                                 </div>
                                             </section>
-
-
                                         </div>
                                     </li>
                                 )}

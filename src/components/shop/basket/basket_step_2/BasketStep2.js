@@ -210,7 +210,7 @@ class BasketStep2 extends Component
             setBasketStep(basketStep + 1);
 
             const {name, surname, email, address, zipCode, city, phone} = this.state;
-            this.props.changeDeliveryDetails(name, surname, email, address, zipCode, city, phone);
+            this.props.handleChangeDeliveryDetails(name, surname, email, address, zipCode, city, phone);
         }
         else
         {
