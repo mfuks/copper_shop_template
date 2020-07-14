@@ -69,7 +69,8 @@ class Products extends Component
                                                 <img src={"./assets/products/" + element.id + ".jpeg"}
                                                      alt={"product_" + element.id}/>
                                                 <figcaption className="product-name">
-                                                    product {element.id}
+                                                    <p className="product-name-id">product {element.id}</p>
+                                                    <p className="product-name-code">{element.code}</p>
                                                 </figcaption>
                                             </figure>
                                             <section className="product-info">

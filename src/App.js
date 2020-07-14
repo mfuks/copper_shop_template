@@ -91,7 +91,7 @@ class App extends Component
 
         for (let i = 0; i < this.state.basket.length; i++)
         {
-            if(this.state.basket[i].product === productAdded)
+            if(this.state.basket[i].product.id === productAdded.id)
             {
                 productExistIndex = i;
             }
@@ -235,7 +235,11 @@ class App extends Component
             }
         }
         this.basketSummary(newBasket2);
-
+        if(this.state.currentDelivery)
+        {
+            this.handleChangeCurrentDelivery(this.state.currentDelivery);
+            this.handleChangeTotalSum(this.basketSummary(newBasket2), this.state.currentDelivery);
+        }
         return newBasket2;
     };
 
