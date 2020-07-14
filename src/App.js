@@ -198,6 +198,44 @@ class App extends Component
         this.basketSummary(newBasket2);
     };
 
+    basketSetClear = () =>
+    {
+        this.setState({
+            basket: [],
+            basketSum: "000",
+
+            basketAmount: 0,
+            totalSum: "",
+
+            currentDelivery: "",
+
+            delivery: {
+                letter: "800",
+                inPost: "1000",
+                courier: "2000",
+            },
+
+            deliveryDetails:{
+                name: "",
+                surname: "",
+                email: "",
+                address: "",
+                zipCode: "",
+                city: "",
+                phone: "",
+            },
+
+            deliveryDetailsVal: false
+            })
+    };
+
+    basketSetClearStep = () =>
+    {
+        this.setState({
+            basketStep: 1
+        })
+    };
+
     render() {
         const {login, basket, basketSum, basketStep, basketAmount, currentDelivery, totalSum,
             delivery, deliveryDetailsVal, deliveryDetails} = this.state;
@@ -226,23 +264,25 @@ class App extends Component
                     <Route exact path='/basket' render={() => <Basket path="/basket"
                                                                       login={login}
                                                                       setClearLogin={this.setClearLogin}
+                                                                      priceDisplay={this.priceDisplay}
+                                                                      setBasketStep={this.setBasketStep}
                                                                       basket={basket}
                                                                       basketSum={basketSum}
                                                                       basketPath="/basket"
-                                                                      setBasketStep={this.setBasketStep}
                                                                       basketStep={basketStep}
                                                                       basketAmount={basketAmount}
+                                                                      basketDelete={this.basketDelete}
+                                                                      basketSetClear={this.basketSetClear}
+                                                                      basketSetClearStep={this.basketSetClearStep}
                                                                       handleChangeCurrentDelivery={this.handleChangeCurrentDelivery}
                                                                       currentDelivery={currentDelivery}
                                                                       handleChangeTotalSum={this.handleChangeTotalSum}
                                                                       totalSum={totalSum}
-                                                                      handleDeliveryChange={this.handleDeliveryChange}
                                                                       delivery={delivery}
-                                                                      changeDeliveryDetails={this.changeDeliveryDetails}
                                                                       deliveryDetailsVal={deliveryDetailsVal}
                                                                       deliveryDetails={deliveryDetails}
-                                                                      priceDisplay={this.priceDisplay}
-                                                                      basketDelete={this.basketDelete}
+                                                                      handleDeliveryChange={this.handleDeliveryChange}
+                                                                      changeDeliveryDetails={this.changeDeliveryDetails}
                                                             />}/>
                 </>
             </HashRouter>
