@@ -6,6 +6,7 @@ import BasketNav from "./basket_nav/BasketNav";
 import BasketStep1 from "./basket_step_1/BasketStep1";
 import BasketStep2 from "./basket_step_2/BasketStep2";
 import BasketStep3 from "./basket_step_3/BasketStep3";
+import BasketThanks from "./basket_thanks/BasketThanks";
 
 class Basket extends Component
 {
@@ -19,7 +20,7 @@ class Basket extends Component
     render() {
         const {basketStep, login, setBasketStep, basketPath, basket, basketSum, setClearLogin, basketAmount,
             handleChangeCurrentDelivery, currentDelivery, handleChangeTotalSum, totalSum, handleDeliveryChange,
-            delivery, changeDeliveryDetails, deliveryDetailsVal, deliveryDetails, priceDisplay} = this.props;
+            delivery, changeDeliveryDetails, deliveryDetailsVal, deliveryDetails, priceDisplay, basketDelete} = this.props;
         return (
             <>
                 <Header login={login}
@@ -39,7 +40,8 @@ class Basket extends Component
                              basketStep={basketStep}
                              handleDeliveryChange={handleDeliveryChange}
                              delivery={delivery}
-                             priceDisplay={priceDisplay}/>}
+                             priceDisplay={priceDisplay}
+                             basketDelete={basketDelete}/>}
                 {basketStep === 2 &&
                 <BasketStep2 setBasketStep={setBasketStep}
                              basket={basket}
@@ -58,6 +60,8 @@ class Basket extends Component
                              totalSum={totalSum}
                              priceDisplay={priceDisplay}
                              handleGoBack={this.handleGoBack}/>}
+                {basketStep === 4 &&
+                <BasketThanks/>}
                 <Footer/>
             </>
         )
