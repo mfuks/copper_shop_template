@@ -24,6 +24,7 @@ class App extends Component
             totalSum: "",
 
             currentDelivery: "",
+            currentDeliveryType: "",
 
             delivery: {
                 letter: "800",
@@ -176,16 +177,17 @@ class App extends Component
         return summary;
     };
 
-    handleDeliveryChange = (delivery) =>
+    handleDeliveryChange = (delivery, deliveryType) =>
     {
-        this.handleChangeCurrentDelivery(delivery);
+        this.handleChangeCurrentDelivery(delivery, deliveryType);
         this.handleChangeTotalSum(this.state.basketSum, delivery);
     };
 
-    handleChangeCurrentDelivery = (currentDelivery) =>
+    handleChangeCurrentDelivery = (currentDelivery, currentDeliveryType) =>
     {
         this.setState({
-            currentDelivery: currentDelivery
+            currentDelivery: currentDelivery,
+            currentDeliveryType: currentDeliveryType
         });
     };
 
@@ -253,6 +255,7 @@ class App extends Component
             totalSum: "",
 
             currentDelivery: "",
+            currentDeliveryType: "",
 
             delivery: {
                 letter: "800",
@@ -283,7 +286,7 @@ class App extends Component
 
     render() {
         const {login, basket, basketSum, basketStep, basketAmount, currentDelivery, totalSum,
-            delivery, deliveryDetailsVal, deliveryDetails} = this.state;
+            delivery, deliveryDetailsVal, deliveryDetails, currentDeliveryType} = this.state;
         return (
             <HashRouter>
                 <>
@@ -322,6 +325,7 @@ class App extends Component
                                                                       basketOnAmountChange={this.basketOnAmountChange}
                                                                       handleChangeCurrentDelivery={this.handleChangeCurrentDelivery}
                                                                       currentDelivery={currentDelivery}
+                                                                      currentDeliveryType={currentDeliveryType}
                                                                       totalSum={totalSum}
                                                                       delivery={delivery}
                                                                       deliveryDetailsVal={deliveryDetailsVal}

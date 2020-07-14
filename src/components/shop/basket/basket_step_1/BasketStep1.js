@@ -43,8 +43,7 @@ class BasketStep1 extends Component
         this.setState({
             disabled: false
         });
-
-        this.props.handleDeliveryChange(e.currentTarget.value)
+        this.props.handleDeliveryChange(e.currentTarget.value, e.currentTarget.getAttribute("id"))
     };
 
     render() {
@@ -63,13 +62,14 @@ class BasketStep1 extends Component
                                 priceDisplay={priceDisplay}
                                 basketDelete={basketDelete}
                                 basketOnAmountChange={basketOnAmountChange}/>
-                                <div>
+                                <div className="basket-step-content">
                                     <section className="basket-step-1-delivery">
                                         <p>
                                             Opcje dostawy:
                                         </p>
                                         <label>
-                                            <input type="radio"
+                                            <input id="list polecony"
+                                                   type="radio"
                                                    name="delivery"
                                                    value={delivery.letter}
                                                    onChange={this.handleChange}/>
@@ -78,6 +78,7 @@ class BasketStep1 extends Component
                                         </label>
                                         <label>
                                             <input type="radio"
+                                                   id="paczkomat"
                                                    name="delivery"
                                                    value={delivery.inPost}
                                                    onChange={this.handleChange}/>
@@ -85,7 +86,8 @@ class BasketStep1 extends Component
                                             Paczkomat: &nbsp; {priceDisplay(delivery.inPost)}
                                         </label>
                                         <label>
-                                            <input type="radio"
+                                            <input id="kurier"
+                                                   type="radio"
                                                    name="delivery"
                                                    value={delivery.courier}
                                                    onChange={this.handleChange}/>

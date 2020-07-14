@@ -90,7 +90,8 @@ class BasketStep3 extends Component
     };
 
     render() {
-        const {basket, basketSum, currentDelivery, totalSum, priceDisplay, basketStep, handleGoBack} = this.props;
+        const {basket, basketSum, currentDelivery, totalSum, priceDisplay, basketStep, handleGoBack, deliveryDetails,
+            currentDeliveryType} = this.props;
         return (
             <>
                 <section className="basket-step-3">
@@ -99,11 +100,38 @@ class BasketStep3 extends Component
                             basketStep={basketStep}
                             basket={basket}
                             priceDisplay={priceDisplay}/>
-                        <BasketTableSummary
-                            basketSum={basketSum}
-                            currentDelivery={currentDelivery}
-                            totalSum={totalSum}
-                            priceDisplay={priceDisplay}/>
+                        <div className="basket-step-content">
+                            <section className="basket-step-3-details">
+                                <section className="basket-step-3-details-content">
+                                    <h4>
+                                        Adres dostawy:
+                                    </h4>
+                                    <p>{deliveryDetails.name}&nbsp;{deliveryDetails.surname}</p>
+                                    <p>{deliveryDetails.address}</p>
+                                    <p>{deliveryDetails.zipCode}&nbsp;{deliveryDetails.city}</p>
+                                    <section className="basket-step-3-details-content-delivery">
+                                        <h4>
+                                            Sposób dostawy:&nbsp;
+                                        </h4>
+                                        <span>{currentDeliveryType}</span>
+                                    </section>
+                                </section>
+                                <section className="basket-step-3-details-content">
+                                    <h4>
+                                        Dane kontaktowe:
+                                    </h4>
+                                    <p>email:&nbsp;{deliveryDetails.email}</p>
+                                    <p>telefon:&nbsp;{deliveryDetails.phone}</p>
+                                </section>
+
+                            </section>
+                            <BasketTableSummary
+                                basketSum={basketSum}
+                                currentDelivery={currentDelivery}
+                                totalSum={totalSum}
+                                priceDisplay={priceDisplay}/>
+                        </div>
+
                         <section className="basket-step-btns">
                             <button className="btn" onClick={handleGoBack}>
                                 Wstecz

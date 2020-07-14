@@ -21,7 +21,7 @@ class Basket extends Component
         const {basketStep, login, setBasketStep, basketPath, basket, basketSum, setClearLogin, basketAmount,
             handleChangeCurrentDelivery, currentDelivery, totalSum, handleDeliveryChange,
             delivery, handleChangeDeliveryDetails, deliveryDetailsVal, deliveryDetails, priceDisplay, basketDelete,
-            basketSetClear, basketSetClearStep, basketOnAmountChange} = this.props;
+            basketSetClear, basketSetClearStep, basketOnAmountChange, currentDeliveryType} = this.props;
         return (
             <>
                 <Header login={login}
@@ -58,10 +58,12 @@ class Basket extends Component
                              basketSum={basketSum}
                              basketStep={basketStep}
                              currentDelivery={currentDelivery}
+                             currentDeliveryType={currentDeliveryType}
                              totalSum={totalSum}
                              priceDisplay={priceDisplay}
                              handleGoBack={this.handleGoBack}
-                             basketSetClear={basketSetClear}/>}
+                             basketSetClear={basketSetClear}
+                             deliveryDetails={deliveryDetails}/>}
                 {basketStep === 4 &&
                 <BasketThanks basketSetClearStep={basketSetClearStep}/>}
                 <Footer/>
