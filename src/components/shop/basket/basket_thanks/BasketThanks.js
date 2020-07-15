@@ -3,6 +3,10 @@ import "./_basket_thanks.scss"
 
 class BasketThanks extends Component
 {
+    componentWillUnmount() {
+        this.props.basketSetClearStep();
+    }
+
     render() {
         return (
             <>

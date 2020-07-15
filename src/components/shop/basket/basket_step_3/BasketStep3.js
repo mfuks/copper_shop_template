@@ -5,17 +5,93 @@ import BasketTableSummary from "../basket_table/basket_table_summary/BasketTable
 
 class BasketStep3 extends Component
 {
+    state = {
+        products: [],
+    };
+
+    componentDidMount() {
+
+        const url = "http://localhost:3000/products";
+
+        fetch(url)
+        .then(response => {
+            return response.json()
+        })
+        .then(products =>
+        {
+            this.setState({
+                products: products
+            });
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+    };
+
     handleSubmit = (e) =>
     {
         e.preventDefault();
 
-        const {setBasketStep, basketStep} = this.props;
-        setBasketStep(basketStep + 1);
+        const {products} = this.state;
+        const {setBasketStep, basketStep, basket} = this.props;
+
+        let newProductsList = [...products]
+        let putError = false;
+        let changeId = [];
+
+        let i = 0;
+        for (; i < basket.length;) {
+
+            for (let j = 0; j < products.length; j++) {
+
+                if(products[j].id === basket[i].product.id)
+                {
+                    changeId.push(products[j].id)
+                    newProductsList[j].quantity = (+products[j].quantity - +basket[i].amount).toString();
+                }
+            }
+            i++;
+        }
+
+        if(i >= basket.length)
+        {
+            const url = "http://localhost:3000/products/";
+
+            for (let j = 0; j < newProductsList.length; j++)
+            {
+                for (let k = 0; k < changeId.length; k++)
+                {
+                    if(newProductsList[j].id === changeId[k])
+                    {
+                        fetch(url + newProductsList[j].id,
+                            {
+                                headers: {"Content-Type": "application/json"},
+                                method: 'PUT',
+                                dataType: "json",
+                                body: JSON.stringify(newProductsList[j]),
+                            })
+                        .then(resp =>{
+                            if (!resp.ok) {
+                                putError = true;
+                                throw new Error("something is wrong...");
+                            }
+                        })
+                        .catch(err => console.error(err));
+                    }
+                }
+            }
+            if(!putError)
+            {
+                setBasketStep(basketStep + 1);
+                this.props.basketSetClear();
+            }
+        }
 
     };
 
     render() {
-        const {basket, basketSum, currentDelivery, totalSum, priceDisplay, basketStep, handleGoBack} = this.props;
+        const {basket, basketSum, currentDelivery, totalSum, priceDisplay, basketStep, handleGoBack, deliveryDetails,
+            currentDeliveryType} = this.props;
         return (
             <>
                 <section className="basket-step-3">
@@ -24,11 +100,38 @@ class BasketStep3 extends Component
                             basketStep={basketStep}
                             basket={basket}
                             priceDisplay={priceDisplay}/>
-                        <BasketTableSummary
-                            basketSum={basketSum}
-                            currentDelivery={currentDelivery}
-                            totalSum={totalSum}
-                            priceDisplay={priceDisplay}/>
+                        <div className="basket-step-content">
+                            <section className="basket-step-3-details">
+                                <section className="basket-step-3-details-content">
+                                    <h4>
+                                        Adres dostawy:
+                                    </h4>
+                                    <p>{deliveryDetails.name}&nbsp;{deliveryDetails.surname}</p>
+                                    <p>{deliveryDetails.address}</p>
+                                    <p>{deliveryDetails.zipCode}&nbsp;{deliveryDetails.city}</p>
+                                    <section className="basket-step-3-details-content-delivery">
+                                        <h4>
+                                            Sposób dostawy:&nbsp;
+                                        </h4>
+                                        <span>{currentDeliveryType}</span>
+                                    </section>
+                                </section>
+                                <section className="basket-step-3-details-content">
+                                    <h4>
+                                        Dane kontaktowe:
+                                    </h4>
+                                    <p>email:&nbsp;{deliveryDetails.email}</p>
+                                    <p>telefon:&nbsp;{deliveryDetails.phone}</p>
+                                </section>
+
+                            </section>
+                            <BasketTableSummary
+                                basketSum={basketSum}
+                                currentDelivery={currentDelivery}
+                                totalSum={totalSum}
+                                priceDisplay={priceDisplay}/>
+                        </div>
+
                         <section className="basket-step-btns">
                             <button className="btn" onClick={handleGoBack}>
                                 Wstecz
