@@ -66,7 +66,7 @@ class LogRegister extends Component
                                 </div>
                             </h4>
 
-                            {(((path === "/shop") || (basketPath === "/basket")) && !login) &&
+                            {((path === "/shop") || (basketPath === "/basket")) &&
                                 <>
                                     <Link className="lr-user-basket-link" to="/basket">
                                         <i  className="lr-user-basket-link-icon fas fa-2x fa-shopping-basket"
@@ -84,7 +84,7 @@ class LogRegister extends Component
                                                 {basketAmount}
                                             </span>
                                         </div>
-                                        <div className={(mouseEnterBasket && login)? "lr-user-basket-info" : "invisible"}>
+                                        <div className={(mouseEnterBasket)? "lr-user-basket-info" : "invisible"}>
                                             Koszyk
                                         </div>
                                     </h4>

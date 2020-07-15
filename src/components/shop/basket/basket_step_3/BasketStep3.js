@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "./_basket_step_3.scss"
 import BasketTableProducts from "../basket_table/basket_table_products/BasketTableProducts";
 import BasketTableSummary from "../basket_table/basket_table_summary/BasketTableSummary";
+import {Link} from "react-router-dom";
 
 class BasketStep3 extends Component
 {
@@ -32,8 +33,10 @@ class BasketStep3 extends Component
     {
         e.preventDefault();
 
+//products update
+
         const {products} = this.state;
-        const {setBasketStep, basketStep, basket} = this.props;
+        const {setBasketStep, basketStep, basket, login, deliveryDetails, currentDeliveryType} = this.props;
 
         let newProductsList = [...products]
         let putError = false;
@@ -84,14 +87,47 @@ class BasketStep3 extends Component
             {
                 setBasketStep(basketStep + 1);
                 this.props.basketSetClear();
+
+        //order save
+
+                const url = "http://localhost:3014/orders";
+
+                let today = new Date();
+                let date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+                let address = deliveryDetails;
+                let delivery = currentDeliveryType
+
+                fetch(url,
+                    {
+                        headers: {"Content-Type": "application/json"},
+                        method: 'POST',
+                        dataType: "json",
+                        body: JSON.stringify({login, date, basket, address, delivery}),
+                    })
+                .then(resp =>{
+                    if (!resp.ok) {
+                        throw new Error("something is wrong...");
+                    }
+                    else
+                    {
+                        console.log(resp);
+                    }
+                })
+                .catch(err => console.error(err));
+
             }
         }
+
+
+
+
+
 
     };
 
     render() {
         const {basket, basketSum, currentDelivery, totalSum, priceDisplay, basketStep, handleGoBack, deliveryDetails,
-            currentDeliveryType} = this.props;
+            currentDeliveryType,login} = this.props;
         return (
             <>
                 <section className="basket-step-3">
@@ -136,9 +172,13 @@ class BasketStep3 extends Component
                             <button className="btn" onClick={handleGoBack}>
                                 Wstecz
                             </button>
-                            <button className="btn confirm-btn" onClick={this.handleSubmit} >
-                                Potwierdzam
-                            </button>
+
+                            {login ?
+                                <button className="btn confirm-btn" onClick={this.handleSubmit} >
+                                    Potwierdzam
+                                </button>:
+                                <Link className="btn confirm-btn" to="/login">Potwierdzam</Link>
+                            }
                         </section>
                     </div>
                 </section>

@@ -42,7 +42,8 @@ class Basket extends Component
                              delivery={delivery}
                              priceDisplay={priceDisplay}
                              basketDelete={basketDelete}
-                             basketOnAmountChange={basketOnAmountChange}/>}
+                             basketOnAmountChange={basketOnAmountChange}
+                             login={login}/>}
                 {basketStep === 2 &&
                 <BasketStep2 setBasketStep={setBasketStep}
                              basket={basket}
@@ -51,7 +52,8 @@ class Basket extends Component
                              handleChangeDeliveryDetails={handleChangeDeliveryDetails}
                              deliveryDetailsVal={deliveryDetailsVal}
                              deliveryDetails={deliveryDetails}
-                             handleGoBack={this.handleGoBack}/>}
+                             handleGoBack={this.handleGoBack}
+                             login={login}/>}
                 {basketStep === 3 &&
                 <BasketStep3 setBasketStep={setBasketStep}
                              basket={basket}
@@ -63,7 +65,8 @@ class Basket extends Component
                              priceDisplay={priceDisplay}
                              handleGoBack={this.handleGoBack}
                              basketSetClear={basketSetClear}
-                             deliveryDetails={deliveryDetails}/>}
+                             deliveryDetails={deliveryDetails}
+                             login={login}/>}
                 {basketStep === 4 &&
                 <BasketThanks basketSetClearStep={basketSetClearStep}/>}
                 <Footer/>

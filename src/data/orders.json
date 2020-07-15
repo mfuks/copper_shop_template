@@ -1,0 +1,51 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "login": "Fux",
+      "date": "",
+      "basket": [],
+      "address": [],
+      "delivery": ""
+    },
+    {
+      "login": "",
+      "date": "15-7-2020",
+      "basket": [
+        {
+          "product": {
+            "id": 1,
+            "code": "b-004",
+            "price": "12050",
+            "quantity": "12",
+            "description": "Gummies cupcake cake ice cream candy canes jelly beans pudding gingerbread. Muffin gummies icing lollipop. Fruitcake gummi bears caramels marshmallow cake tiramisu lemon drops sugar plum. Wafer chocolate cake chocolate bar donut. Gingerbread carrot cake topping sesame snaps apple pie bear claw gingerbread liquorice. Lollipop chocolate bar gummies gingerbread ice cream. Chupa chups caramels lollipop gingerbread pastry cookie gummi bears muffin lollipop. Sweet roll macaroon chocolate bar pastry."
+          },
+          "amount": 2,
+          "total": "24100"
+        },
+        {
+          "product": {
+            "id": 3,
+            "code": "b-010",
+            "price": "12050",
+            "quantity": "15",
+            "description": "Gummies cupcake cake ice cream candy canes jelly beans pudding gingerbread. Muffin gummies icing lollipop. Fruitcake gummi bears caramels marshmallow cake tiramisu lemon drops sugar plum. Wafer chocolate cake chocolate bar donut. Gingerbread carrot cake topping sesame snaps apple pie bear claw gingerbread liquorice. Lollipop chocolate bar gummies gingerbread ice cream. Chupa chups caramels lollipop gingerbread pastry cookie gummi bears muffin lollipop. Sweet roll macaroon chocolate bar pastry."
+          },
+          "amount": 1,
+          "total": "12050"
+        }
+      ],
+      "address": {
+        "name": "Marta",
+        "surname": "Mak",
+        "email": "marterland22@wp.pl",
+        "address": "Wolności 5",
+        "zipCode": "40-450",
+        "city": "Katowice",
+        "phone": "756857902"
+      },
+      "delivery": "paczkomat",
+      "id": 2
+    }
+  ]
+}

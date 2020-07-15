@@ -3,6 +3,7 @@ import "./_basket_step_1.scss"
 import $ from 'jquery';
 import BasketTableProducts from "../basket_table/basket_table_products/BasketTableProducts";
 import BasketTableSummary from "../basket_table/basket_table_summary/BasketTableSummary";
+import {Link} from "react-router-dom";
 
 class BasketStep1 extends Component
 {
@@ -48,7 +49,7 @@ class BasketStep1 extends Component
 
     render() {
         const {basket, basketSum, currentDelivery, totalSum, delivery, basketStep, priceDisplay, basketDelete,
-            basketOnAmountChange, setBasketStep} = this.props;
+            basketOnAmountChange, setBasketStep, login} = this.props;
         const {disabled} = this.state;
         return (
             <>
@@ -105,10 +106,12 @@ class BasketStep1 extends Component
                                 <section className="basket-step-btn">
                                     {!currentDelivery && <p>Aby przejść dalej wybierz opcje dostawy</p>}
 
+                                    {login ?
                                     <button className="btn" onClick={() => setBasketStep(basketStep + 1)} disabled={disabled}>
                                         Dalej
-                                    </button>
-
+                                    </button>:
+                                        <Link className="btn" to="/login">Dalej</Link>
+                                    }
                                 </section>
                             </>:
                             <section className="basket-info">
