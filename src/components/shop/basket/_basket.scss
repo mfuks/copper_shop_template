@@ -1,6 +1,5 @@
 @import "../../../main";
 
-
 @mixin basket-container
 {
   min-height: calc(99vh - 237px);
@@ -65,5 +64,31 @@
 
 
 
+}
+
+
+@mixin basket-info
+{
+  .basket-info {
+    height: calc(100vh - 237px);
+    min-height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .basket-info-content {
+      background: $color-main-cold;
+      width: 60%;
+      height: 70%;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: $color-background;
+      text-transform: uppercase;
+    }
+  }
 }
 

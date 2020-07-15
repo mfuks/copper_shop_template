@@ -86,6 +86,16 @@ class Products extends Component
                                                        onClick={()=>this.props.basketAdd(element)}/>
                                                 </div>
                                             </section>
+
+                                            <section className="product-details">
+                                                <div className="product-details-quantity">
+                                                    <h3>
+                                                        Dostępność:&nbsp;{element.quantity}
+                                                    </h3>
+                                                </div>
+                                            </section>
+
+
                                         </div>
                                     </li>
                                 )}

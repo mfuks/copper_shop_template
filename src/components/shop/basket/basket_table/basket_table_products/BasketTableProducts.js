@@ -4,6 +4,12 @@ import "../_basket_table.scss"
 
 class BasketTableProducts extends Component
 {
+    handleBin = (e) =>
+    {
+        let target = e.currentTarget;
+        this.props.basketDelete(target);
+    };
+
     render() {
         const {basket, basketStep, priceDisplay} = this.props;
         return (
@@ -34,7 +40,7 @@ class BasketTableProducts extends Component
                                              width="100%"/>
                                     </td>
                                     <td className="product-col-l basket-product-name">
-                                        bransoletka {element.product.id}
+                                        bransoletka <span>{element.product.id}</span>
                                     </td>
                                     <td className="product-col-s basket-product-amount">
                                         {element.amount}
@@ -47,7 +53,7 @@ class BasketTableProducts extends Component
                                     </td>
                                     {basketStep === 1 &&
                                     <td className="product-col-s basket-product-bin">
-                                        <i className="fas fa-trash-alt"/>
+                                        <i className="fas fa-trash-alt" onClick={this.handleBin}/>
                                     </td>}
                                 </tr>)}
                         </tbody>

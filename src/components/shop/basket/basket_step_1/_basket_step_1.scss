@@ -106,26 +106,6 @@
 
     }
 
-    .basket-step-1-empty {
-      height: calc(100vh - 237px);
-      min-height: 300px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .basket-step-1-empty-content {
-        background: $color-main-cold;
-        width: 60%;
-        height: 70%;
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: $color-background;
-        text-transform: uppercase;
-      }
-    }
+    @include basket-info;
   }
 }

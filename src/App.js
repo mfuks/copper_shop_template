@@ -96,7 +96,6 @@ class App extends Component
                 productExistIndex = i;
             }
         }
-
         if(!productExistIndex && productExistIndex !== 0)
         {
             let newAmount = 1;
@@ -114,11 +113,11 @@ class App extends Component
             newBasket[productExistIndex].amount++;
             newBasket[productExistIndex].total = (+(+newBasket[productExistIndex].amount) * +newBasket[productExistIndex].product.price).toString();
         }
+        this.basketSummary(newBasket);
+    };
 
-        this.setState({
-            basket: newBasket
-        });
-
+    basketSummary = (newBasket) =>
+    {
         let summary = 0;
         let amount = 0;
 
@@ -166,6 +165,39 @@ class App extends Component
             price.substr(price.length-2, 2)  + "zł"
     };
 
+    basketDelete = (target) =>
+    {
+        let productExistIndex;
+        let newBasket;
+        let toDelete;
+
+        if(typeof target === "object")
+        {
+            toDelete = target.parentNode.parentNode.getElementsByClassName("basket-product-name")[0].getElementsByTagName("span")[0].innerText;
+        }
+        for (let i = 0; i < this.state.basket.length; i++)
+        {
+            if(this.state.basket[i].product.id === toDelete)
+            {
+                productExistIndex = i;
+                break;
+            }
+        }
+        newBasket = [...this.state.basket];
+        delete newBasket[productExistIndex];
+
+        let newBasket2 = [];
+
+        for (let i = 0; i < newBasket.length; i++)
+        {
+            if(newBasket[i] !== newBasket[productExistIndex])
+            {
+                newBasket2.push(newBasket[i]);
+            }
+        }
+        this.basketSummary(newBasket2);
+    };
+
     render() {
         const {login, basket, basketSum, basketStep, basketAmount, currentDelivery, totalSum,
             delivery, deliveryDetailsVal, deliveryDetails} = this.state;
@@ -210,6 +242,7 @@ class App extends Component
                                                                       deliveryDetailsVal={deliveryDetailsVal}
                                                                       deliveryDetails={deliveryDetails}
                                                                       priceDisplay={this.priceDisplay}
+                                                                      basketDelete={this.basketDelete}
                                                             />}/>
                 </>
             </HashRouter>
