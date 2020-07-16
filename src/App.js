@@ -137,7 +137,7 @@ class App extends Component
         {
             for (let i = 0; i < this.state.basket.length; i++)
             {
-                if(this.state.basket[i].product.id === toEdit)
+                if(+this.state.basket[i].product.id === +toEdit)
                 {
                     productExistIndex = i;
                     break;
@@ -299,7 +299,8 @@ class App extends Component
                                                                   basketAdd={this.basketAdd}
                                                                   basketSum={basketSum}
                                                                   setBasketStep={this.setBasketStep}
-                                                                  basketAmount={basketAmount}/>}/>
+                                                                  basketAmount={basketAmount}
+                                                                  basket={basket}/>}/>
                     <Route exact path='/contact' render={() => <Contact path="/contact"
                                                                         login={login}
                                                                         setClearLogin={this.setClearLogin}/>}/>
