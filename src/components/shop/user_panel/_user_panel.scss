@@ -1,0 +1,69 @@
+@import "../../../main";
+
+
+.user-panel
+{
+  height: calc(100vh - 192px);
+
+  .user-panel-container
+  {
+
+    h3
+    {
+      font-weight: 600;
+      cursor: pointer;
+      color: $color-main-cold;
+    }
+
+    .user-panel-header
+    {
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      font-family: $font-base;
+      @include flex-center;
+    }
+
+    .user-panel-content
+    {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+
+      .user-panel-content-nav
+      {
+        width: 20%;
+        height: calc(100% - 70px);
+        margin: 0 20px 20px 20px;
+        border-right: 2px solid $color-light-cold;
+        font-family: $font-base;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+
+        button
+        {
+          background: none;
+          height: 1.5rem;
+          margin: 5px;
+        }
+        h3:hover
+        {
+          color: $color-main-warm;
+        }
+      }
+
+      .user-panel-content-details
+      {
+        width: 80%;
+        height: 100%;
+
+
+      }
+    }
+
+  }
+
+}

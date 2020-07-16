@@ -10,6 +10,7 @@ import AboutUs from "./components/about_us/AboutUs";
 import Login from "./components/login_and_registration/login/Login";
 import Registration from "./components/login_and_registration/registration/Registration";
 import Basket from "./components/shop/basket/Basket";
+import UserPanel from "./components/shop/user_panel/UserPanel";
 
 class App extends Component
 {
@@ -42,32 +43,16 @@ class App extends Component
                 phone: "",
             },
 
-            deliveryDetailsVal: false
+            deliveryDetailsVal: false,
 
+            currentUserPanelStep: "test"
         };
 
-    handleChangeDeliveryDetails = (name, surname, email, address, zipCode, city, phone) =>
+
+    setUserPanelStep = (currentStep) =>
     {
         this.setState({
-            deliveryDetails:
-                {
-                    name: name,
-                    surname: surname,
-                    email: email,
-                    address: address,
-                    zipCode: zipCode,
-                    city: city,
-                    phone: phone,
-                },
-            deliveryDetailsVal: true
-        });
-    };
-
-
-    setBasketStep = (currentStep) =>
-    {
-        this.setState({
-            basketStep: currentStep
+            currentUserPanelStep: currentStep
         });
     };
 
@@ -83,6 +68,12 @@ class App extends Component
         this.setState({
             login: "",
         })
+    };
+
+    priceDisplay = (price) =>
+    {
+        return price.substr(0, price.length-2) + "," +
+            price.substr(price.length-2, 2)  + "zł"
     };
 
     basketAdd = (productAdded) =>
@@ -115,6 +106,45 @@ class App extends Component
             newBasket[productExistIndex].total = (+(+newBasket[productExistIndex].amount) * +newBasket[productExistIndex].product.price).toString();
         }
         this.basketSummary(newBasket);
+    };
+
+    basketDelete = (target) =>
+    {
+        let productExistIndex;
+        let newBasket;
+        let toDelete;
+
+        if(typeof target === "object")
+        {
+            toDelete = target.parentNode.parentNode.getElementsByClassName("basket-product-name")[0].getElementsByTagName("span")[0].innerText;
+        }
+        for (let i = 0; i < this.state.basket.length; i++)
+        {
+            if(this.state.basket[i].product.id === toDelete)
+            {
+                productExistIndex = i;
+                break;
+            }
+        }
+        newBasket = [...this.state.basket];
+        delete newBasket[productExistIndex];
+
+        let newBasket2 = [];
+
+        for (let i = 0; i < newBasket.length; i++)
+        {
+            if(newBasket[i] !== newBasket[productExistIndex])
+            {
+                newBasket2.push(newBasket[i]);
+            }
+        }
+        this.basketSummary(newBasket2);
+        if(this.state.currentDelivery)
+        {
+            this.handleChangeCurrentDelivery(this.state.currentDelivery);
+            this.handleChangeTotalSum(this.basketSummary(newBasket2), this.state.currentDelivery);
+        }
+        return newBasket2;
     };
 
     basketOnAmountChange = (target) =>
@@ -157,7 +187,6 @@ class App extends Component
 
     };
 
-
     basketSummary = (newBasket) =>
     {
         let summary = 0;
@@ -177,20 +206,6 @@ class App extends Component
         return summary;
     };
 
-    handleDeliveryChange = (delivery, deliveryType) =>
-    {
-        this.handleChangeCurrentDelivery(delivery, deliveryType);
-        this.handleChangeTotalSum(this.state.basketSum, delivery);
-    };
-
-    handleChangeCurrentDelivery = (currentDelivery, currentDeliveryType) =>
-    {
-        this.setState({
-            currentDelivery: currentDelivery,
-            currentDeliveryType: currentDeliveryType
-        });
-    };
-
     handleChangeTotalSum = (products, delivery) =>
     {
         let total = (+products + +delivery).toString();
@@ -198,51 +213,6 @@ class App extends Component
         this.setState({
             totalSum: total
         });
-    };
-
-    priceDisplay = (price) =>
-    {
-        return price.substr(0, price.length-2) + "," +
-            price.substr(price.length-2, 2)  + "zł"
-    };
-
-    basketDelete = (target) =>
-    {
-        let productExistIndex;
-        let newBasket;
-        let toDelete;
-
-        if(typeof target === "object")
-        {
-            toDelete = target.parentNode.parentNode.getElementsByClassName("basket-product-name")[0].getElementsByTagName("span")[0].innerText;
-        }
-        for (let i = 0; i < this.state.basket.length; i++)
-        {
-            if(this.state.basket[i].product.id === toDelete)
-            {
-                productExistIndex = i;
-                break;
-            }
-        }
-        newBasket = [...this.state.basket];
-        delete newBasket[productExistIndex];
-
-        let newBasket2 = [];
-
-        for (let i = 0; i < newBasket.length; i++)
-        {
-            if(newBasket[i] !== newBasket[productExistIndex])
-            {
-                newBasket2.push(newBasket[i]);
-            }
-        }
-        this.basketSummary(newBasket2);
-        if(this.state.currentDelivery)
-        {
-            this.handleChangeCurrentDelivery(this.state.currentDelivery);
-            this.handleChangeTotalSum(this.basketSummary(newBasket2), this.state.currentDelivery);
-        }
-        return newBasket2;
     };
 
     basketSetClear = () =>
@@ -277,6 +247,13 @@ class App extends Component
             })
     };
 
+    setBasketStep = (currentStep) =>
+    {
+        this.setState({
+            basketStep: currentStep
+        });
+    };
+
     basketSetClearStep = () =>
     {
         this.setState({
@@ -284,15 +261,47 @@ class App extends Component
         })
     };
 
+    handleChangeDeliveryDetails = (name, surname, email, address, zipCode, city, phone) =>
+    {
+        this.setState({
+            deliveryDetails:
+                {
+                    name: name,
+                    surname: surname,
+                    email: email,
+                    address: address,
+                    zipCode: zipCode,
+                    city: city,
+                    phone: phone,
+                },
+            deliveryDetailsVal: true
+        });
+    };
+
+    handleDeliveryChange = (delivery, deliveryType) =>
+    {
+        this.handleChangeCurrentDelivery(delivery, deliveryType);
+        this.handleChangeTotalSum(this.state.basketSum, delivery);
+    };
+
+    handleChangeCurrentDelivery = (currentDelivery, currentDeliveryType) =>
+    {
+        this.setState({
+            currentDelivery: currentDelivery,
+            currentDeliveryType: currentDeliveryType
+        });
+    };
+
     render() {
         const {login, basket, basketSum, basketStep, basketAmount, currentDelivery, totalSum,
-            delivery, deliveryDetailsVal, deliveryDetails, currentDeliveryType} = this.state;
+            delivery, deliveryDetailsVal, deliveryDetails, currentDeliveryType, currentUserPanelStep} = this.state;
         return (
             <HashRouter>
                 <>
                     <Route exact path='/' render={() => <Home path="/"
                                                               login={login}
-                                                              setClearLogin={this.setClearLogin}/>}/>
+                                                              setClearLogin={this.setClearLogin}
+                                                              setUserPanelStep={this.setUserPanelStep}/>}/>
                     <Route exact path='/shop' render={() => <Shop path="/shop"
                                                                   login={login}
                                                                   setClearLogin={this.setClearLogin}
@@ -300,19 +309,28 @@ class App extends Component
                                                                   basketSum={basketSum}
                                                                   setBasketStep={this.setBasketStep}
                                                                   basketAmount={basketAmount}
-                                                                  basket={basket}/>}/>
+                                                                  basket={basket}
+                                                                  setUserPanelStep={this.setUserPanelStep}/>}/>
+                    <Route exact path='/user-panel' render={() => <UserPanel path="/user-panel"
+                                                                             login={login}
+                                                                             setClearLogin={this.setClearLogin}
+                                                                             basketSum={basketSum}
+                                                                             basketAmount={basketAmount}
+                                                                             currentUserPanelStep={currentUserPanelStep}
+                                                                             setUserPanelStep={this.setUserPanelStep}/>}/>
                     <Route exact path='/contact' render={() => <Contact path="/contact"
                                                                         login={login}
-                                                                        setClearLogin={this.setClearLogin}/>}/>
+                                                                        setClearLogin={this.setClearLogin}
+                                                                        setUserPanelStep={this.setUserPanelStep}/>}/>
                     <Route exact path='/about_us' render={() => <AboutUs path="/about_us"
                                                                          login={login}
-                                                                         setClearLogin={this.setClearLogin}/>}/>
+                                                                         setClearLogin={this.setClearLogin}
+                                                                         setUserPanelStep={this.setUserPanelStep}/>}/>
                     <Route exact path='/login' render={() => <Login path="/login"
                                                                     setLogin={this.setLogin}/>}/>
                     <Route exact path='/registration' render={() => <Registration path="/registration"/>}/>
                     <Route exact path='/basket' render={() => <Basket path="/basket"
                                                                       login={login}
-                                                                      setClearLogin={this.setClearLogin}
                                                                       priceDisplay={this.priceDisplay}
                                                                       setBasketStep={this.setBasketStep}
                                                                       basket={basket}
@@ -333,6 +351,7 @@ class App extends Component
                                                                       deliveryDetails={deliveryDetails}
                                                                       handleDeliveryChange={this.handleDeliveryChange}
                                                                       handleChangeDeliveryDetails={this.handleChangeDeliveryDetails}
+                                                                      setUserPanelStep={this.setUserPanelStep}
                                                             />}/>
                 </>
             </HashRouter>
