@@ -1,0 +1,114 @@
+@import "../../../main";
+@import "../basket/_basket.scss";
+
+.user-panel
+{
+  height: calc(100vh - 192px);
+
+  .user-panel-container
+  {
+
+    h3
+    {
+      font-weight: 600;
+      cursor: pointer;
+      color: $color-main-cold;
+    }
+
+    .user-panel-header
+    {
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      font-family: $font-base;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      .user-panel-header-content
+      {
+        width: 80%;
+        cursor: default;
+      }
+    }
+
+    .user-panel-content
+    {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+
+      .user-panel-content-nav
+      {
+        width: 20%;
+        height: calc(100% - 70px);
+        margin: 0 20px 20px 20px;
+        border-right: 2px solid $color-light-cold;
+        font-family: $font-base;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+
+        ul
+        {
+          width: 80%;
+          li
+          {
+            width: 100%;
+          }
+        }
+
+        button
+        {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: none;
+          height: 1.5rem;
+          margin: 5px;
+          margin-bottom: 20px;
+
+          i
+          {
+            color: $color-main-cold;
+          }
+        }
+        h3:hover
+        {
+          color: $color-main-warm;
+        }
+      }
+
+      .user-panel-content-details
+      {
+        width: 80%;
+        height: 100%;
+        padding: 20px;
+
+
+      }
+
+      .active
+      {
+        color: $color-main-warm;
+      }
+    }
+
+  }
+
+}
+
+.user-panel-logout
+{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include shop-btn;
+
+}

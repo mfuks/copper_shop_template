@@ -1,0 +1,77 @@
+@import "../../../../main";
+@import "../../basket/basket_table/_basket_table.scss";
+@import "../../basket/_basket";
+@import "../user_panel_orders/_user_panel_orders.scss";
+
+@mixin upov-content-section
+{
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  color: $color-dark-cold;
+
+  h4
+  {
+    font-size: 1.1rem;
+    padding: 10px 5px 0 0;
+
+    span
+    {
+      font-weight: 400;
+    }
+  }
+}
+
+.upov
+{
+  width: 100%;
+  @include basket-table;
+  @include shop-btn;
+  @include upo-table;
+
+  .upov-info
+  {
+    color: $color-dark-cold;
+    font-family: $font-base;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.8rem;
+  }
+}
+
+.upov-content
+{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .upov-content-section
+  {
+    @include upov-content-section;
+  }
+
+  .basket-step-3-details
+  {
+
+    padding: 0;
+
+    .basket-step-3-details-content
+    {
+      @include upov-content-section;
+    }
+  }
+}
+
+.basket-table-summary {
+  margin-right: -2px;
+  margin-top: 1px;
+  font-size: 1.1rem;
+
+  th.basket-table-summary-header.total,
+  td.basket-table-summary-result.total{
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
+

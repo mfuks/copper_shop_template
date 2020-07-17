@@ -1,15 +1,15 @@
 {
   "users": [
     {
-      "name": "",
-      "surname": "",
-      "email": "marterland24@wp.pl",
+      "name": "Ola",
+      "surname": "Kowalska",
+      "email": "olako@wp.pl",
       "login": "Fuksiaczek",
       "password": "123456",
-      "address": "",
-      "city": "",
-      "zipCode": "",
-      "phone": "",
+      "address": "Zwycięstwa 34/13",
+      "city": "Katowice",
+      "zipCode": "50-430",
+      "phone": "783902783",
       "id": 1,
       "orders": []
     },

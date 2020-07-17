@@ -32,22 +32,24 @@
       }
     }
 
-    .product-col-s
-    {
-      width: 5%;
-    }
 
-    .product-col-m
-    {
-      width: 10%;
-    }
-
-    .product-col-l
-    {
-      width: 40%;
-      padding-left: 10px;
-      text-align: left;
-    }
   }
 
+}
+
+.product-col-s
+{
+  width: 5%;
+}
+
+.product-col-m
+{
+  width: 10%;
+}
+
+.product-col-l
+{
+  width: 40%;
+  padding-left: 10px;
+  text-align: left;
 }
