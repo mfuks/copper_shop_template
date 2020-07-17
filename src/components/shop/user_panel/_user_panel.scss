@@ -1,5 +1,5 @@
 @import "../../../main";
-
+@import "../basket/_basket.scss";
 
 .user-panel
 {
@@ -21,7 +21,15 @@
       height: 50px;
       text-align: center;
       font-family: $font-base;
-      @include flex-center;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      .user-panel-header-content
+      {
+        width: 80%;
+        cursor: default;
+      }
     }
 
     .user-panel-content
@@ -43,11 +51,30 @@
         align-items: center;
         flex-direction: column;
 
+        ul
+        {
+          width: 80%;
+          li
+          {
+            width: 100%;
+          }
+        }
+
         button
         {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
           background: none;
           height: 1.5rem;
           margin: 5px;
+          margin-bottom: 20px;
+
+          i
+          {
+            color: $color-main-cold;
+          }
         }
         h3:hover
         {
@@ -59,11 +86,29 @@
       {
         width: 80%;
         height: 100%;
+        padding: 20px;
 
 
+      }
+
+      .active
+      {
+        color: $color-main-warm;
       }
     }
 
   }
+
+}
+
+.user-panel-logout
+{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include shop-btn;
 
 }

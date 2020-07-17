@@ -54,6 +54,7 @@ class Products extends Component
                 if(+products[j].id === +targetId)
                 {
                     index = j
+                    break;
                 }
             }
         }
@@ -75,7 +76,7 @@ class Products extends Component
             }
         }
 
-        if(available && index)
+        if(available && (index || index === 0))
         {
             this.props.basketAdd(products[index]);
         }

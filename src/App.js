@@ -83,7 +83,7 @@ class App extends Component
 
         for (let i = 0; i < this.state.basket.length; i++)
         {
-            if(this.state.basket[i].product.id === productAdded.id)
+            if(+this.state.basket[i].product.id === +productAdded.id)
             {
                 productExistIndex = i;
             }
@@ -99,7 +99,7 @@ class App extends Component
                 total: (+newAmount * +newProduct.price).toString()
             });
         }
-        else
+        else if (productExistIndex >= 0)
         {
             newBasket = [...this.state.basket];
             newBasket[productExistIndex].amount++;
@@ -120,7 +120,7 @@ class App extends Component
         }
         for (let i = 0; i < this.state.basket.length; i++)
         {
-            if(this.state.basket[i].product.id === toDelete)
+            if(+this.state.basket[i].product.id === +toDelete)
             {
                 productExistIndex = i;
                 break;
@@ -317,7 +317,8 @@ class App extends Component
                                                                              basketSum={basketSum}
                                                                              basketAmount={basketAmount}
                                                                              currentUserPanelStep={currentUserPanelStep}
-                                                                             setUserPanelStep={this.setUserPanelStep}/>}/>
+                                                                             setUserPanelStep={this.setUserPanelStep}
+                                                                             priceDisplay={this.priceDisplay}/>}/>
                     <Route exact path='/contact' render={() => <Contact path="/contact"
                                                                         login={login}
                                                                         setClearLogin={this.setClearLogin}

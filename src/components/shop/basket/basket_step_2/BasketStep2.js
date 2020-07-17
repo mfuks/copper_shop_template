@@ -86,12 +86,56 @@ class BasketStep2 extends Component
                     city: users[loginIndex].city,
                     phone: users[loginIndex].phone,
                 });
+
+                if(users[loginIndex].name)
+                {
+                    this.setState({
+                        nameVal: true,
+                    });
+                }
+                if(users[loginIndex].surname)
+                {
+                    this.setState({
+                        surnameVal: true,
+                    });
+                }
+                if(users[loginIndex].email)
+                {
+                    this.setState({
+                        emailVal: true,
+                    });
+                }
+                if(users[loginIndex].address)
+                {
+                    this.setState({
+                        addressVal: true,
+                    });
+                }
+                if(users[loginIndex].zipCode)
+                {
+                    this.setState({
+                        zipCodeVal: true,
+                    });
+                }
+                if(users[loginIndex].city)
+                {
+                    this.setState({
+                        cityVal: true,
+                    });
+                }
+                if(users[loginIndex].phone)
+                {
+                    this.setState({
+                        phoneVal: true,
+                    });
+                }
             }
 
         })
         .catch(function(error) {
             console.log(error);
         });
+
     }
 
     validation = (e, valType, length) =>
@@ -113,6 +157,8 @@ class BasketStep2 extends Component
         || this.props.deliveryDetailsVal ?
             this.setState({disabled: false}):
             this.setState({disabled: true});
+
+        console.log("name");
     };
 
     handleChangeSurname = e =>
@@ -128,6 +174,7 @@ class BasketStep2 extends Component
         || this.props.deliveryDetailsVal ?
             this.setState({disabled: false}):
             this.setState({disabled: true});
+        console.log("surname");
     };
 
     handleChangeAddress = e =>

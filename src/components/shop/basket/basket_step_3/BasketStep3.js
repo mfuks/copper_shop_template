@@ -36,7 +36,7 @@ class BasketStep3 extends Component
 //products update
 
         const {products} = this.state;
-        const {setBasketStep, basketStep, basket, login, deliveryDetails, currentDeliveryType} = this.props;
+        const {setBasketStep, basketStep, basket, login, deliveryDetails, currentDeliveryType, currentDelivery, totalSum} = this.props;
 
         let newProductsList = [...products]
         let putError = false;
@@ -96,13 +96,14 @@ class BasketStep3 extends Component
                 let date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
                 let address = deliveryDetails;
                 let delivery = currentDeliveryType
+                let deliveryCost = currentDelivery
 
                 fetch(url,
                     {
                         headers: {"Content-Type": "application/json"},
                         method: 'POST',
                         dataType: "json",
-                        body: JSON.stringify({login, date, basket, address, delivery}),
+                        body: JSON.stringify({login, date, basket, address, delivery, deliveryCost, totalSum}),
                     })
                 .then(resp =>{
                     if (!resp.ok) {

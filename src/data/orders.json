@@ -9,26 +9,53 @@
       "delivery": ""
     },
     {
-      "login": "",
-      "date": "15-7-2020",
+      "id": 2,
+      "login": "Fux",
+      "date": "",
+      "basket": [],
+      "address": [],
+      "delivery": ""
+    },
+    {
+      "id": 3,
+      "login": "Fux",
+      "date": "",
+      "basket": [],
+      "address": [],
+      "delivery": ""
+    },
+    {
+      "login": "Fuksiaczek",
+      "date": "17-7-2020",
       "basket": [
         {
           "product": {
-            "id": 1,
-            "code": "b-004",
-            "price": "12050",
-            "quantity": "12",
-            "description": "Gummies cupcake cake ice cream candy canes jelly beans pudding gingerbread. Muffin gummies icing lollipop. Fruitcake gummi bears caramels marshmallow cake tiramisu lemon drops sugar plum. Wafer chocolate cake chocolate bar donut. Gingerbread carrot cake topping sesame snaps apple pie bear claw gingerbread liquorice. Lollipop chocolate bar gummies gingerbread ice cream. Chupa chups caramels lollipop gingerbread pastry cookie gummi bears muffin lollipop. Sweet roll macaroon chocolate bar pastry."
+            "id": 5,
+            "code": "b-006",
+            "price": "3000",
+            "quantity": "11",
+            "description": "Chocolate cake sesame snaps gingerbread chupa chups brownie. Bear claw liquorice liquorice wafer. Candy canes cake cake gingerbread wafer brownie. Candy dessert candy marshmallow. Cotton candy lemon drops danish gummi bears marzipan. Sweet jujubes chupa chups chocolate chocolate pastry carrot cake. Cake candy canes icing. Tiramisu gummi bears marzipan cheesecake ice cream toffee. Tootsie roll bear claw biscuit topping halvah muffin candy tart."
           },
-          "amount": 2,
-          "total": "24100"
+          "amount": 3,
+          "total": "9000"
         },
         {
           "product": {
             "id": 3,
             "code": "b-010",
             "price": "12050",
-            "quantity": "15",
+            "quantity": "9",
+            "description": "Gummies cupcake cake ice cream candy canes jelly beans pudding gingerbread. Muffin gummies icing lollipop. Fruitcake gummi bears caramels marshmallow cake tiramisu lemon drops sugar plum. Wafer chocolate cake chocolate bar donut. Gingerbread carrot cake topping sesame snaps apple pie bear claw gingerbread liquorice. Lollipop chocolate bar gummies gingerbread ice cream. Chupa chups caramels lollipop gingerbread pastry cookie gummi bears muffin lollipop. Sweet roll macaroon chocolate bar pastry."
+          },
+          "amount": 1,
+          "total": "12050"
+        },
+        {
+          "product": {
+            "id": 2,
+            "code": "b-015",
+            "price": "12050",
+            "quantity": "6",
             "description": "Gummies cupcake cake ice cream candy canes jelly beans pudding gingerbread. Muffin gummies icing lollipop. Fruitcake gummi bears caramels marshmallow cake tiramisu lemon drops sugar plum. Wafer chocolate cake chocolate bar donut. Gingerbread carrot cake topping sesame snaps apple pie bear claw gingerbread liquorice. Lollipop chocolate bar gummies gingerbread ice cream. Chupa chups caramels lollipop gingerbread pastry cookie gummi bears muffin lollipop. Sweet roll macaroon chocolate bar pastry."
           },
           "amount": 1,
@@ -36,16 +63,18 @@
         }
       ],
       "address": {
-        "name": "Marta",
-        "surname": "Mak",
-        "email": "marterland22@wp.pl",
-        "address": "Wolności 5",
-        "zipCode": "40-450",
+        "name": "Ola",
+        "surname": "Kowalska",
+        "email": "olako@wp.pl",
+        "address": "Zwycięstwa 34/13",
+        "zipCode": "50-430",
         "city": "Katowice",
-        "phone": "756857902"
+        "phone": "783902783"
       },
       "delivery": "paczkomat",
-      "id": 2
+      "deliveryCost": "1000",
+      "totalSum": "34100",
+      "id": 4
     }
   ]
 }

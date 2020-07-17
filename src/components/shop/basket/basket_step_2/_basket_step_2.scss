@@ -10,6 +10,7 @@
   {
     @include basket-container;
     min-height: 590px;
+    @include shop-btn;
   }
 
   form
