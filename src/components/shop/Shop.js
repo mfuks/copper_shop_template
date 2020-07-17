@@ -8,7 +8,7 @@ class Shop extends Component
 {
 
     render() {
-        const {login, setClearLogin, path, basketSum, basketAdd, basketAmount} = this.props;
+        const {login, setClearLogin, path, basketSum, basketAdd, basketAmount, basket} = this.props;
         return (
             <>
                 <Header login={login}
@@ -16,7 +16,8 @@ class Shop extends Component
                         path={path}
                         basketSum={basketSum}
                         basketAmount={basketAmount}/>
-                <Products basketAdd={basketAdd}/>
+                <Products basketAdd={basketAdd}
+                          basket={basket}/>
                 <Info/>
                 <Footer/>
             </>

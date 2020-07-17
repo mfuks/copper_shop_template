@@ -92,60 +92,6 @@ class BasketStep2 extends Component
         .catch(function(error) {
             console.log(error);
         });
-
-        // const {deliveryDetails, deliveryDetailsVal, login} = this.props;
-        // const {users} = this.state;
-        //
-        //     if(deliveryDetailsVal)
-        //     {
-        //         this.setState({
-        //             disabled: false,
-        //             name: deliveryDetails.name,
-        //             surname: deliveryDetails.surname,
-        //             email: deliveryDetails.email,
-        //             address: deliveryDetails.address,
-        //             zipCode: deliveryDetails.zipCode,
-        //             city: deliveryDetails.city,
-        //             phone: deliveryDetails.phone,
-        //         });
-        //
-        //         $(function ()
-        //         {
-        //             document.querySelector(".basket-step-2-form-section-agreements").querySelector("input")
-        //             .setAttribute("checked", "true")
-        //         });
-        //     }
-        //     else if(!deliveryDetailsVal && login)
-        //     {
-        //         let loginIndex;
-        //
-        //         for (let i = 0; i < users.length; i++) {
-        //
-        //             if(users[i].login === login)
-        //             {
-        //                 loginIndex = i;
-        //                 break;
-        //             }
-        //         }
-        //         this.setState({
-        //             disabled: false,
-        //             name: users[loginIndex].name,
-        //             surname: users[loginIndex].surname,
-        //             email: users[loginIndex].email,
-        //             address: users[loginIndex].address,
-        //             zipCode: users[loginIndex].zipCode,
-        //             city: users[loginIndex].city,
-        //             phone: users[loginIndex].phone,
-        //         });
-        //
-        //         $(function ()
-        //         {
-        //             document.querySelector(".basket-step-2-form-section-agreements").querySelector("input")
-        //             .setAttribute("checked", "true")
-        //         });
-        //     }
-        //
-
     }
 
     validation = (e, valType, length) =>
