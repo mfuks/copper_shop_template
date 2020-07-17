@@ -10,7 +10,8 @@
       "city": "",
       "zipCode": "",
       "phone": "",
-      "id": 1
+      "id": 1,
+      "orders": []
     },
     {
       "name": "Ala",
@@ -22,7 +23,8 @@
       "city": "",
       "zipCode": "",
       "phone": "",
-      "id": 2
+      "id": 2,
+      "orders": []
     },
     {
       "name": "Ola",
@@ -34,7 +36,8 @@
       "city": "",
       "zipCode": "",
       "phone": "",
-      "id": 3
+      "id": 3,
+      "orders": []
     },
     {
       "name": "Marta",
@@ -46,7 +49,8 @@
       "city": "",
       "zipCode": "",
       "phone": "",
-      "id": 4
+      "id": 4,
+      "orders": []
     },
     {
       "name": "",
@@ -58,7 +62,8 @@
       "city": "",
       "zipCode": "",
       "phone": "",
-      "id": 5
+      "id": 5,
+      "orders": []
     }
   ]
 }

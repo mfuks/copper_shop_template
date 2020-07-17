@@ -87,8 +87,6 @@ class Login extends Component
         }
     };
 
-
-
     handleSubmit = e =>
     {
         e.preventDefault();
@@ -97,12 +95,9 @@ class Login extends Component
 
         if(loginExist && passwordVal)
         {
-
-            console.log(this.state.login);
             this.props.setLogin(this.state.login);
 
             this.setState({
-                //login: "",
                 loginVal: false,
                 password: "",
                 passwordVal: false,

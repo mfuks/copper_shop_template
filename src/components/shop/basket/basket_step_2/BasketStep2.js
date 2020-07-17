@@ -6,6 +6,8 @@ class BasketStep2 extends Component
 {
     state =
         {
+            users: "",
+
             disabled: true,
 
             name: "",
@@ -30,26 +32,120 @@ class BasketStep2 extends Component
 
     componentDidMount()
     {
-        const {deliveryDetails, deliveryDetailsVal} = this.props;
-        if(deliveryDetailsVal)
+        const url = "http://localhost:3012/users";
+
+        fetch(url)
+        .then(response => {
+            return response.json()
+        })
+        .then(users =>
         {
             this.setState({
-                disabled: false,
-                name: deliveryDetails.name,
-                surname: deliveryDetails.surname,
-                email: deliveryDetails.email,
-                address: deliveryDetails.address,
-                zipCode: deliveryDetails.zipCode,
-                city: deliveryDetails.city,
-                phone: deliveryDetails.phone,
+                users: users
             });
 
-            $(function ()
+            const {deliveryDetails, deliveryDetailsVal, login} = this.props;
+
+            if(deliveryDetailsVal)
             {
-                document.querySelector(".basket-step-2-form-section-agreements").querySelector("input")
-                .setAttribute("checked", "true")
-            });
-        }
+                this.setState({
+                    disabled: false,
+                    name: deliveryDetails.name,
+                    surname: deliveryDetails.surname,
+                    email: deliveryDetails.email,
+                    address: deliveryDetails.address,
+                    zipCode: deliveryDetails.zipCode,
+                    city: deliveryDetails.city,
+                    phone: deliveryDetails.phone,
+                });
+
+                $(function ()
+                {
+                    document.querySelector(".basket-step-2-form-section-agreements").querySelector("input")
+                    .setAttribute("checked", "true")
+                });
+            }
+            else if(!deliveryDetailsVal && login)
+            {
+                let loginIndex;
+
+                for (let i = 0; i < users.length; i++) {
+
+                    if(users[i].login === login)
+                    {
+                        loginIndex = i;
+                        break;
+                    }
+                }
+                this.setState({
+                    name: users[loginIndex].name,
+                    surname: users[loginIndex].surname,
+                    email: users[loginIndex].email,
+                    address: users[loginIndex].address,
+                    zipCode: users[loginIndex].zipCode,
+                    city: users[loginIndex].city,
+                    phone: users[loginIndex].phone,
+                });
+            }
+
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+        // const {deliveryDetails, deliveryDetailsVal, login} = this.props;
+        // const {users} = this.state;
+        //
+        //     if(deliveryDetailsVal)
+        //     {
+        //         this.setState({
+        //             disabled: false,
+        //             name: deliveryDetails.name,
+        //             surname: deliveryDetails.surname,
+        //             email: deliveryDetails.email,
+        //             address: deliveryDetails.address,
+        //             zipCode: deliveryDetails.zipCode,
+        //             city: deliveryDetails.city,
+        //             phone: deliveryDetails.phone,
+        //         });
+        //
+        //         $(function ()
+        //         {
+        //             document.querySelector(".basket-step-2-form-section-agreements").querySelector("input")
+        //             .setAttribute("checked", "true")
+        //         });
+        //     }
+        //     else if(!deliveryDetailsVal && login)
+        //     {
+        //         let loginIndex;
+        //
+        //         for (let i = 0; i < users.length; i++) {
+        //
+        //             if(users[i].login === login)
+        //             {
+        //                 loginIndex = i;
+        //                 break;
+        //             }
+        //         }
+        //         this.setState({
+        //             disabled: false,
+        //             name: users[loginIndex].name,
+        //             surname: users[loginIndex].surname,
+        //             email: users[loginIndex].email,
+        //             address: users[loginIndex].address,
+        //             zipCode: users[loginIndex].zipCode,
+        //             city: users[loginIndex].city,
+        //             phone: users[loginIndex].phone,
+        //         });
+        //
+        //         $(function ()
+        //         {
+        //             document.querySelector(".basket-step-2-form-section-agreements").querySelector("input")
+        //             .setAttribute("checked", "true")
+        //         });
+        //     }
+        //
+
     }
 
     validation = (e, valType, length) =>
@@ -278,6 +374,7 @@ class BasketStep2 extends Component
                                         <input type="text"
                                                placeholder="Zip code"
                                                name="zipCode"
+                                               pattern="([0-9]{2})-([0-9]{3})"
                                                value={zipCode}
                                                onChange={this.handleChangeZipCode}/>
                                     </label>
