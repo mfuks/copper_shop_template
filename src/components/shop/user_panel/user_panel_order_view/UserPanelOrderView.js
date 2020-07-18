@@ -41,6 +41,11 @@ class UserPanelOrderView extends Component
         }
     };
 
+    componentWillUnmount()
+    {
+        this.props.handleChangeCurrentOrderView("")
+    }
+
     handleGoBack = () =>
     {
         this.props.handleChangeCurrentOrderView("")
@@ -101,8 +106,7 @@ class UserPanelOrderView extends Component
                                     <h4>
                                         Adres dostawy:
                                     </h4>
-                                    <p>{orderDetails.address.name}&nbsp;</p>
-                                    <p>{orderDetails.address.surname}</p>
+                                    <p>{orderDetails.address.name}&nbsp;{orderDetails.address.surname}</p>
                                     <p>{orderDetails.address.address}</p>
                                     <p>{orderDetails.address.zipCode}&nbsp;{orderDetails.address.city}</p>
                                 </section>

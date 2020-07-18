@@ -96,7 +96,7 @@ handleChangeCurrentOrderView = (currentOrderView) =>
                                         </Link>
                                     </nav>
                                     <section className="user-panel-content-details">
-                                        {(currentUserPanelStep === "data" && !currentOrderView) &&
+                                        {(currentUserPanelStep === "data") &&
                                         <UserPanelData setUserPanelStep={setUserPanelStep}
                                                        login={login}/>
                                         }
@@ -107,7 +107,7 @@ handleChangeCurrentOrderView = (currentOrderView) =>
                                                          handleChangeCurrentOrderView={this.handleChangeCurrentOrderView}
                                                          orders={orders}/>
                                         }
-                                        {currentOrderView && <UserPanelOrderView priceDisplay={priceDisplay}
+                                        {(currentOrderView && !(currentUserPanelStep === "data")) && <UserPanelOrderView priceDisplay={priceDisplay}
                                                                                  currentOrderView={currentOrderView}
                                                                                  login={login}
                                                                                  handleChangeCurrentOrderView={this.handleChangeCurrentOrderView}
