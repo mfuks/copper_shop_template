@@ -6,7 +6,7 @@ import LogoPlain from "../logo/logo_plain/LogoPlain";
 class LogRegister extends Component
 {
     render() {
-        const {login, path, basketSum, basketPath, basketAmount, setUserPanelStep} = this.props;
+        const {login, path, basketSum, basketPath, basketAmount} = this.props;
         return (
             <>
                 <header className="lr">
@@ -14,7 +14,7 @@ class LogRegister extends Component
                         <LogoPlain/>
                         <section className="lr-user">
                             {login &&
-                            <Link className="lr-user-login-link" to="/user-panel" onClick={()=>setUserPanelStep("data")}>
+                            <Link className="lr-user-login-link" to="/user-panel">
                                 <i  className="lr-user-login-icon far fa-user fa-2x lr-user-icon"/>
                             </Link>
                             }
