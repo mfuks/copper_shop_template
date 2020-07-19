@@ -1,7 +1,7 @@
 @import "../../../main";
 
 
-.lar-home-btn
+.lar-welcome-btns
 {
   height: 430px;
   width: 60%;
@@ -9,8 +9,7 @@
   @include flex-center;
   margin-bottom: 80px;
 
-
-  .lar-home-btn-content
+  .lar-welcome-btns-content
   {
     height: 60vh;
     @include flex-center;
@@ -24,18 +23,16 @@
 
     .lar-content-form-btns
     {
-      justify-content: center;
-      bottom: -50px;
-      margin-bottom: 50px;
+      width: 60%;
+      bottom: 30px;
 
-      a
-      {
-        width: 40%;
-        min-width: 310px;
+      a{
+        height: 50px;
+        width: 300px;
       }
     }
   }
-
-
 }
+
+
 
