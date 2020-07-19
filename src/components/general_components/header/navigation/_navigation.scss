@@ -29,6 +29,12 @@
           background: $color-main-warm;
         }
       }
+
+      a.active
+      {
+        background: $color-light-cold;
+        color: $color-main-cold;
+      }
     }
   }
 }

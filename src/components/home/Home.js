@@ -7,12 +7,13 @@ import CTA from "./cta/CTA";
 class Home extends Component
 {
     render() {
-        const {login, setClearLogin, setUserPanelStep} = this.props
+        const {login, setClearLogin, setUserPanelStep, path} = this.props
         return (
             <>
                 <Header login={login}
                         setClearLogin={setClearLogin}
-                        setUserPanelStep={setUserPanelStep}/>
+                        setUserPanelStep={setUserPanelStep}
+                        path={path}/>
                 <Content/>
                 <CTA/>
                 <Footer/>

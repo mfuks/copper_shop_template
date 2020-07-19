@@ -8,12 +8,13 @@ class Contact extends Component
 {
 
     render() {
-        const {login, setClearLogin, setUserPanelStep} = this.props
+        const {login, setClearLogin, setUserPanelStep, path} = this.props
         return (
             <>
                 <Header login={login}
                         setClearLogin={setClearLogin}
-                        setUserPanelStep={setUserPanelStep}/>
+                        setUserPanelStep={setUserPanelStep}
+                        path={path}/>
                 <section className="contact">
                     <div className="container">
                         <header className="contact-header">
