@@ -6,6 +6,7 @@ import UserPanelOrders from "./user_panel_orders/UserPanelOrders";
 import UserPanelData from "./user_panel_data/UserPanelData";
 import UserPanelOrderView from "./user_panel_order_view/UserPanelOrderView";
 import Footer from "../../general_components/footer/Footer";
+import Logo from "../../general_components/header/logo/Logo";
 
 class UserPanel extends Component
 {
@@ -119,13 +120,15 @@ handleChangeCurrentOrderView = (currentOrderView) =>
                         </section>
                         <Footer/>
                     </>:
-
-                    <section className="user-panel-logout">
-                        <Link className="btn" to="/">
-                            Home
-                        </Link>
-                    </section>
-
+                    <>
+                        <Logo/>
+                        <section className="user-panel-logout">
+                            <Link className="btn" to="/">
+                                Home
+                            </Link>
+                        </section>
+                        <Footer/>
+                    </>
                 }
             </>
 

@@ -72,7 +72,7 @@ class BasketTableProducts extends Component
                                              width="100%"/>
                                     </td>
                                     <td className="product-col-l basket-product-name">
-                                        bransoletka <span>{element.product.id}</span>
+                                        produkt <span>{element.product.id}</span>
                                     </td>
                                     {basketStep === 3 &&
                                     <td className="product-col-m basket-product-code">
