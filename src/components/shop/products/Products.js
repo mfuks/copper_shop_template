@@ -35,54 +35,9 @@ class Products extends Component
          })
     };
 
-    handleAddElement = (e) =>
-    {
-        //blocking the number of elements in the basket
-        const targetQuantity = e.currentTarget.parentNode.parentNode.parentNode
-        .getElementsByClassName("product-details-quantity")[0].getElementsByTagName("span")[0].innerText
-        const targetId = e.currentTarget.parentNode.parentNode.parentNode
-        .getElementsByClassName("product-name-id")[0].getElementsByTagName("span")[0].innerText
-        const {basket} = this.props;
-        const {products} = this.state;
-
-        let available = true
-        let index;
-
-        function productsLoop() {
-            for (let j = 0; j < products.length; j++)
-            {
-                if(+products[j].id === +targetId)
-                {
-                    index = j
-                    break;
-                }
-            }
-        }
-
-        if(basket.length === 0)
-        {
-            productsLoop();
-        }
-        else
-        {
-            for (let i = 0; i < basket.length; i++)
-            {
-                if(+basket[i].product.id === +targetId && +basket[i].amount === +targetQuantity )
-                {
-                    available = false
-                    alert("Dodałeś już maksymalną ilość tego produktu do swojego koszyka");
-                }
-                productsLoop();
-            }
-        }
-
-        if(available && (index || index === 0))
-        {
-            this.props.basketAdd(products[index]);
-        }
-    }
 
     render() {
+        const {handleCurrentProductSet, handleAddBasketElement} = this.props;
         const {products, currentPage, infoPerPage} = this.state;
         const indexOfLast = currentPage * infoPerPage;
         const indexOfFirst = indexOfLast - infoPerPage;
@@ -111,11 +66,12 @@ class Products extends Component
                                 {currentProducts.map(element =>
                                     <li key={element.id}>
                                         <div className="product">
-                                            <figure className="product-img">
+                                            <figure className="product-img"
+                                            onClick={()=>handleCurrentProductSet(element.id)}>
                                                 <img src={"./assets/products/" + element.id + ".jpeg"}
                                                      alt={"product_" + element.id}/>
                                                 <figcaption className="product-name">
-                                                    <p className="product-name-id">product&nbsp;<span>{element.id}</span></p>
+                                                    <p className="product-name-id">produkt&nbsp;<span>{element.id}</span></p>
                                                     <p className="product-name-code">{element.code}</p>
                                                 </figcaption>
                                             </figure>
@@ -129,7 +85,7 @@ class Products extends Component
                                                 </div>
                                                 <div className="product-info-add">
                                                     <i className="fas fa-2x fa-plus-square product-info-add-btn"
-                                                       onClick={this.handleAddElement}/>
+                                                       onClick={(e)=>handleAddBasketElement(e, element)}/>
                                                 </div>
                                             </section>
                                             <section className="product-details">

@@ -16,6 +16,7 @@ class App extends Component
 {
     state =
         {
+            products: [],
             login: "",
             basket: [],
             basketSum: "000",
@@ -48,6 +49,24 @@ class App extends Component
             currentUserPanelStep: "test"
         };
 
+    componentDidMount() {
+
+        const url = "http://localhost:3000/products";
+
+        fetch(url)
+        .then(response => {
+            return response.json()
+        })
+        .then(products =>
+        {
+            this.setState({
+                products: products
+            });
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+    };
 
     setUserPanelStep = (currentStep) =>
     {
@@ -107,6 +126,48 @@ class App extends Component
         }
         this.basketSummary(newBasket);
     };
+
+
+    handleAddBasketElement = (e, target) =>
+    {
+        const {products, basket} = this.state;
+
+        let available = true
+        let index;
+
+        function productsLoop() {
+            for (let j = 0; j < products.length; j++)
+            {
+                if(+products[j].id === +target.id)
+                {
+                    index = j
+                    break;
+                }
+            }
+        }
+
+        if(basket.length === 0)
+        {
+            productsLoop();
+        }
+        else
+        {
+            for (let i = 0; i < basket.length; i++)
+            {
+                if(+basket[i].product.id === +target.id && +basket[i].amount === +target.quantity )
+                {
+                    available = false
+                    alert("Dodałeś już maksymalną ilość tego produktu do swojego koszyka");
+                }
+                productsLoop();
+            }
+        }
+
+        if(available && (index || index === 0))
+        {
+            this.basketAdd(products[index]);
+        }
+    }
 
     basketDelete = (target) =>
     {
@@ -305,7 +366,7 @@ class App extends Component
                     <Route exact path='/shop' render={() => <Shop path="/shop"
                                                                   login={login}
                                                                   setClearLogin={this.setClearLogin}
-                                                                  basketAdd={this.basketAdd}
+                                                                  handleAddBasketElement={this.handleAddBasketElement}
                                                                   basketSum={basketSum}
                                                                   setBasketStep={this.setBasketStep}
                                                                   basketAmount={basketAmount}
