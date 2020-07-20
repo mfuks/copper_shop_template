@@ -138,47 +138,6 @@
       "deliveryCost": "800",
       "totalSum": "93200",
       "id": 5
-    },
-    {
-      "login": "Fuksiaczek",
-      "date": "19-7-2020",
-      "basket": [
-        {
-          "product": {
-            "id": 2,
-            "code": "b-015",
-            "price": "12050",
-            "quantity": "4",
-            "description": "Gummies cupcake cake ice cream candy canes jelly beans pudding gingerbread. Muffin gummies icing lollipop. Fruitcake gummi bears caramels marshmallow cake tiramisu lemon drops sugar plum. Wafer chocolate cake chocolate bar donut. Gingerbread carrot cake topping sesame snaps apple pie bear claw gingerbread liquorice. Lollipop chocolate bar gummies gingerbread ice cream. Chupa chups caramels lollipop gingerbread pastry cookie gummi bears muffin lollipop. Sweet roll macaroon chocolate bar pastry."
-          },
-          "amount": "2",
-          "total": "24100"
-        },
-        {
-          "product": {
-            "id": 3,
-            "code": "b-010",
-            "price": "12050",
-            "quantity": "5",
-            "description": "Gummies cupcake cake ice cream candy canes jelly beans pudding gingerbread. Muffin gummies icing lollipop. Fruitcake gummi bears caramels marshmallow cake tiramisu lemon drops sugar plum. Wafer chocolate cake chocolate bar donut. Gingerbread carrot cake topping sesame snaps apple pie bear claw gingerbread liquorice. Lollipop chocolate bar gummies gingerbread ice cream. Chupa chups caramels lollipop gingerbread pastry cookie gummi bears muffin lollipop. Sweet roll macaroon chocolate bar pastry."
-          },
-          "amount": 1,
-          "total": "12050"
-        }
-      ],
-      "address": {
-        "name": "Ola",
-        "surname": "Kowalska",
-        "email": "olako@wp.pl",
-        "address": "Zwycięstwa 34/13",
-        "zipCode": "50-430",
-        "city": "Katowice",
-        "phone": "783902783"
-      },
-      "delivery": "list polecony",
-      "deliveryCost": "800",
-      "totalSum": "36950",
-      "id": 6
     }
   ]
 }
