@@ -5,73 +5,35 @@ import LogoPlain from "../logo/logo_plain/LogoPlain";
 
 class LogRegister extends Component
 {
-    state =
-        {
-            mouseEnterUser: false,
-            mouseEnterBasket: false
-        };
-
-    enterUser = () =>
-    {
-        this.setState({
-            mouseEnterUser: true
-        });
-    };
-
-    leaveUser = () => {
-        this.setState({
-            mouseEnterUser: false
-        });
-    };
-
-    enterBasket = () =>
-    {
-        this.setState({
-            mouseEnterBasket: true
-        });
-    };
-
-    leaveBasket = () => {
-        this.setState({
-            mouseEnterBasket: false
-        });
-    };
-
-
     render() {
-        const {mouseEnterUser, mouseEnterBasket} = this.state;
-        const {login, path, basketSum, basketPath, basketAmount} = this.props;
+        const {login, path, basketSum, basketPath, basketAmount, setUserPanelStep} = this.props;
         return (
             <>
                 <header className="lr">
                     <div className="container lr-container">
                         <LogoPlain/>
                         <section className="lr-user">
-                            {login && <i className="lr-user-login-icon far fa-user fa-2x lr-user-icon"
-                                         onMouseEnter={this.enterUser}
-                                         onMouseLeave={this.leaveUser}
-                                         onClick={()=>this.props.setClearLogin()}/>}
+                            {login &&
+                            <Link className="lr-user-login-link" to="/user-panel" onClick={()=>setUserPanelStep("data")}>
+                                <i  className="lr-user-login-icon far fa-user fa-2x lr-user-icon"/>
+                            </Link>
+                            }
                             <h4 className="lr-user-login">
                                 {login ?
                                     <span className="lr-user-login-name">
-                                        {this.props.login}
+                                        {login}
                                     </span> :
                                     <>
                                         <Link className="lr-user-login-link" to="/login">Logowanie</Link>
                                         <span>&nbsp;|&nbsp;</span>
                                         <Link className="lr-user-login-link" to="/registration">Rejestracja</Link>
                                     </>}
-                                <div className={(mouseEnterUser && login)? "lr-user-login-info" : "invisible"}>
-                                    Wyloguj
-                                </div>
                             </h4>
 
                             {((path === "/shop") || (basketPath === "/basket")) &&
                                 <>
                                     <Link className="lr-user-basket-link" to="/basket">
-                                        <i  className="lr-user-basket-link-icon fas fa-2x fa-shopping-basket"
-                                            onMouseEnter={this.enterBasket}
-                                            onMouseLeave={this.leaveBasket}/>
+                                        <i  className="lr-user-basket-link-icon fas fa-2x fa-shopping-basket"/>
                                     </Link>
 
                                     <h4 className="lr-user-basket">
@@ -84,13 +46,8 @@ class LogRegister extends Component
                                                 {basketAmount}
                                             </span>
                                         </div>
-                                        <div className={(mouseEnterBasket)? "lr-user-basket-info" : "invisible"}>
-                                            Koszyk
-                                        </div>
                                     </h4>
-
                                 </>}
-
                         </section>
                     </div>
                 </header>

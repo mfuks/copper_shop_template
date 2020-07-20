@@ -7,10 +7,13 @@ class AboutUs extends Component
 {
 
     render() {
+        const {login, setClearLogin, setUserPanelStep, path} = this.props
         return (
             <>
-                <Header login={this.props.login}
-                        setClearLogin={this.setClearLogin}/>
+                <Header login={login}
+                        setClearLogin={setClearLogin}
+                        setUserPanelStep={setUserPanelStep}
+                        path={path}/>
                 <section className="about-us">
                     <div className="container">
                         <header className="about-us-header">

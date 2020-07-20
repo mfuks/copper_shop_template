@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "../_lar.scss"
 import "./_submit_lar.scss"
 import {Link} from "react-router-dom";
 
@@ -8,12 +9,13 @@ class SubmitLar extends Component
     render() {
         return (
             <>
-                <section className="lar-home-btn">
-                    <div className="lar-home-btn-content">
+                <section className="lar-welcome-btns">
+                    <div className="lar-container lar-welcome-btns-content">
                         <h2>{this.props.submitMessage}</h2>
-                        <div className="lar-content-form-btns">
+                        <section className="lar-content-form-btns welcome-btn">
                             <Link to="/">do strony głównej</Link>
-                        </div>
+                            <Link to="/shop">do sklepu</Link>
+                        </section>
                     </div>
                 </section>
             </>

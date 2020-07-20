@@ -3,10 +3,12 @@
 
 .basket-step-1
 {
+  min-width: 680px;
 
   .basket-container
   {
     @include basket-container;
+    @include shop-btn;
   }
 
   .basket-table-products-content

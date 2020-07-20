@@ -1,17 +1,16 @@
 {
   "users": [
     {
-      "name": "",
-      "surname": "",
-      "email": "marterland24@wp.pl",
+      "name": "Ola",
+      "surname": "Kowalska",
+      "email": "olako@wp.pl",
       "login": "Fuksiaczek",
       "password": "123456",
-      "address": "",
-      "city": "",
-      "zipCode": "",
-      "phone": "",
-      "id": 1,
-      "orders": []
+      "address": "Zwycięstwa 34/13",
+      "city": "Katowice",
+      "zipCode": "50-430",
+      "phone": "783902783",
+      "id": 1
     },
     {
       "name": "Ala",
@@ -23,8 +22,7 @@
       "city": "",
       "zipCode": "",
       "phone": "",
-      "id": 2,
-      "orders": []
+      "id": 2
     },
     {
       "name": "Ola",
@@ -36,8 +34,7 @@
       "city": "",
       "zipCode": "",
       "phone": "",
-      "id": 3,
-      "orders": []
+      "id": 3
     },
     {
       "name": "Marta",
@@ -49,8 +46,7 @@
       "city": "",
       "zipCode": "",
       "phone": "",
-      "id": 4,
-      "orders": []
+      "id": 4
     },
     {
       "name": "",
@@ -62,8 +58,31 @@
       "city": "",
       "zipCode": "",
       "phone": "",
-      "id": 5,
-      "orders": []
+      "id": 5
+    },
+    {
+      "name": "Kazik",
+      "surname": "Stefanik",
+      "email": "marterland@wp.pl",
+      "login": "Turek",
+      "password": "qwerty",
+      "address": "Wolności 5",
+      "city": "Katowice",
+      "zipCode": "40-450",
+      "phone": "756857902",
+      "id": 6
+    },
+    {
+      "name": "Marta",
+      "surname": "Fuks",
+      "email": "marterland23@wp.pl",
+      "login": "Fuksiaczek22",
+      "password": "123456",
+      "address": "Wolności 5",
+      "city": "Katowice",
+      "zipCode": "",
+      "phone": "",
+      "id": 7
     }
   ]
 }

@@ -5,11 +5,13 @@
 {
   height: calc(99vh - 237px);
   min-height: 590px;
+  min-width: 680px;
 
   .basket-container
   {
     @include basket-container;
     min-height: 590px;
+    @include shop-btn;
   }
 
   form

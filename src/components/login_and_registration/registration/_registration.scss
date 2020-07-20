@@ -6,7 +6,15 @@
 
   .registration-content
   {
-    min-width: 670px;
+    min-width: 745px;
+    background: $color-main-cold;
+    margin-bottom: 130px;
+    margin-top: 30px;
+
+    h2
+    {
+      color: $color-main-warm;
+    }
 
     form
     {
@@ -17,23 +25,12 @@
     }
   }
 
-  .registration-content-form-sections
-  {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    position: relative;
-  }
-
   label
   {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 85%;
+    width: 75%;
     margin-bottom: 20px;
     margin-left: 50px;
     text-align: left;
@@ -59,6 +56,10 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      position: relative;
 
       .big-x2
       {
@@ -124,13 +125,8 @@
     }
   }
 
-  h2
-  {
-    color: $color-main-warm;
-  }
-
   .form-error
   {
-    padding-left: calc(85% + 50px - 320px);
+    padding-left: calc(75% + 50px - 320px);
   }
 }

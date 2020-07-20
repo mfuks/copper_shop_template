@@ -125,7 +125,8 @@ class Login extends Component
                     <div className="container lar-container">
                         {!submitMessage ?
                         <div className="login-content lar-content">
-                            <form onSubmit={this.handleSubmit}>
+                            <form className="login-content-form"
+                                  onSubmit={this.handleSubmit}>
                                 <legend>
                                     Logowanie
                                 </legend>

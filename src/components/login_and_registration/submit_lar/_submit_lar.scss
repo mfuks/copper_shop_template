@@ -1,41 +1,41 @@
 @import "../../../main";
 
 
-.lar-home-btn
+.lar-welcome-btns
 {
   height: 430px;
   width: 60%;
   background: $color-main-cold;
   @include flex-center;
+  margin-top: -50px;
   margin-bottom: 80px;
+}
 
+.lar-welcome-btns-content
+{
+  width: 100%;
+  height: 60vh;
+  @include flex-center;
 
-  .lar-home-btn-content
+  h2
   {
-    height: 60vh;
-    @include flex-center;
-
-    h2
-    {
-      text-transform: uppercase;
-      color: $color-background;
-      padding: 0;
-    }
-
-    .lar-content-form-btns
-    {
-      justify-content: center;
-      bottom: -50px;
-      margin-bottom: 50px;
-
-      a
-      {
-        width: 40%;
-        min-width: 310px;
-      }
-    }
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: $color-background;
+    padding: 0;
   }
 
+  .lar-content-form-btns
+  {
+    width: 60%;
+    bottom: 90px;
 
+    a{
+      height: 50px;
+      width: 300px;
+    }
+  }
 }
+
 
