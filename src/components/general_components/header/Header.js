@@ -16,7 +16,7 @@ class Header extends Component
                              basketAmount={basketAmount}
                              setUserPanelStep={setUserPanelStep}
                 />
-                <Navigation/>
+                <Navigation path={path}/>
             </>
         )
     }
