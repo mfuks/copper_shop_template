@@ -11,8 +11,8 @@ class Carousel extends Component
 
     carouselSlides;
 
-    componentDidMount() {
-
+    componentDidMount()
+    {
         this.carouselSlides = () =>
         {
             const {countSlide} = this.state;
@@ -153,8 +153,8 @@ class Carousel extends Component
                                         <div className="carousel-slide-content">
                                             <p>
                                                 Icing pastry powder toffee cupcake gingerbread danish soufflé cake.
-                                                Macaroon lemon drops carrot cake pudding. Pastry cake chocolate bar wafer
-                                                dessert liquorice marshmallow. Lemon drops sugar plum cupcake.
+                                                Macaroon lemon drops carrot cake pudding. Pastry cake chocolate bar
+                                                wafer dessert liquorice marshmallow. Lemon drops sugar plum cupcake.
                                             </p>
                                         </div>
                                     </div>
@@ -179,3 +179,8 @@ class Carousel extends Component
 }
 
 export default Carousel;
+
+
+
+
+

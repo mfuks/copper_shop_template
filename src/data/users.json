@@ -59,6 +59,30 @@
       "zipCode": "",
       "phone": "",
       "id": 5
+    },
+    {
+      "name": "Kazik",
+      "surname": "Stefanik",
+      "email": "marterland@wp.pl",
+      "login": "Turek",
+      "password": "qwerty",
+      "address": "Wolności 5",
+      "city": "Katowice",
+      "zipCode": "40-450",
+      "phone": "756857902",
+      "id": 6
+    },
+    {
+      "name": "Marta",
+      "surname": "Fuks",
+      "email": "marterland23@wp.pl",
+      "login": "Fuksiaczek22",
+      "password": "123456",
+      "address": "Wolności 5",
+      "city": "Katowice",
+      "zipCode": "",
+      "phone": "",
+      "id": 7
     }
   ]
 }
