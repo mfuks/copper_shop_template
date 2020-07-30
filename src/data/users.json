@@ -1,0 +1,88 @@
+{
+  "users": [
+    {
+      "name": "Ola",
+      "surname": "Kowalska",
+      "email": "olako@wp.pl",
+      "login": "Fuksiaczek",
+      "password": "123456",
+      "address": "Zwycięstwa 34/13",
+      "city": "Katowice",
+      "zipCode": "50-430",
+      "phone": "783902783",
+      "id": 1
+    },
+    {
+      "name": "Ala",
+      "surname": "Makota",
+      "email": "alama@wp.pl",
+      "login": "Alamakota2",
+      "password": "oooooo",
+      "address": "",
+      "city": "",
+      "zipCode": "",
+      "phone": "",
+      "id": 2
+    },
+    {
+      "name": "Ola",
+      "surname": "Makota",
+      "email": "ggg@wp.pl",
+      "login": "Kotek",
+      "password": "oooooo",
+      "address": "",
+      "city": "",
+      "zipCode": "",
+      "phone": "",
+      "id": 3
+    },
+    {
+      "name": "Marta",
+      "surname": "",
+      "email": "www@gg.pl",
+      "login": "Fuksiaczek2",
+      "password": "123456",
+      "address": "",
+      "city": "",
+      "zipCode": "",
+      "phone": "",
+      "id": 4
+    },
+    {
+      "name": "",
+      "surname": "",
+      "email": "ggg@wp.pl",
+      "login": "Marta",
+      "password": "123456",
+      "address": "",
+      "city": "",
+      "zipCode": "",
+      "phone": "",
+      "id": 5
+    },
+    {
+      "name": "Kazik",
+      "surname": "Stefanik",
+      "email": "marterland@wp.pl",
+      "login": "Turek",
+      "password": "qwerty",
+      "address": "Wolności 5",
+      "city": "Katowice",
+      "zipCode": "40-450",
+      "phone": "756857902",
+      "id": 6
+    },
+    {
+      "name": "Marta",
+      "surname": "Fuks",
+      "email": "marterland23@wp.pl",
+      "login": "Fuksiaczek22",
+      "password": "123456",
+      "address": "Wolności 5",
+      "city": "Katowice",
+      "zipCode": "",
+      "phone": "",
+      "id": 7
+    }
+  ]
+}
