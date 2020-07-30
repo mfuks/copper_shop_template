@@ -11,7 +11,7 @@ class Products extends Component
 
     componentDidMount() {
 
-        const url = "/getproducts";
+        const url = "/products";
 
         fetch(url)
         .then(response => {
@@ -20,29 +20,12 @@ class Products extends Component
         .then(products =>
         {
             this.setState({
-                products: [...products.products]
+                products: [...products]
             });
         })
         .catch(function(error) {
             console.log(error);
         });
-
-         // const url2 = "http://localhost:3000/products";
-         //
-         //    fetch(url2)
-         //    .then(response => {
-         //        return response.json()
-         //    })
-         //    .then(products =>
-         //    {
-         //        // this.setState({
-         //        //     products: products
-         //        // });
-         //        console.log(products);
-         //    })
-         //    .catch(function(error) {
-         //        console.log(error);
-         //    });
     };
 
     handleClick = (e, i) =>

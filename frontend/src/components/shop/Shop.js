@@ -15,7 +15,7 @@ class Shop extends Component
 
     componentDidMount() {
 
-        const url = "http://localhost:3000/products";
+        const url = "/products";
 
         fetch(url)
         .then(response => {
@@ -24,7 +24,7 @@ class Shop extends Component
         .then(products =>
         {
             this.setState({
-                products: products
+                products: [...products]
             });
         })
         .catch(function(error) {
@@ -38,7 +38,7 @@ class Shop extends Component
         const {products} = this.state
         for (let i = 0; i < products.length; i++) {
 
-            if(+products[i].id === +currentProduct)
+            if(+products[i].product_id === +currentProduct)
             {
                 currentProductClick = products[i]
                 break;

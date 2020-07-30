@@ -55,7 +55,7 @@ class App extends Component
 
     componentDidMount() {
 
-        const url = "/getproducts";
+        const url = "/products";
 
         fetch(url)
         .then(response => {
@@ -64,7 +64,7 @@ class App extends Component
         .then(products =>
         {
             this.setState({
-                products: [...products.products]
+                products: [...products]
             });
         })
         .catch(function(error) {

@@ -26,7 +26,7 @@ class Login extends Component
 
     componentDidMount()
     {
-        const url = "http://localhost:3012/users";
+        const url = "/users";
 
         fetch(url)
         .then(response => {
@@ -35,7 +35,7 @@ class Login extends Component
         .then(users =>
         {
             this.setState({
-                users: users
+                users: [...users]
             });
         })
         .catch(function(error) {
@@ -49,7 +49,7 @@ class Login extends Component
             password: e.target.value.replace(" ", "")
         });
 
-        if(e.target.value === this.state.passwordToConfirm)
+        if(this.state.passwordToConfirm.toString().localeCompare(e.target.value.toString()) === 0)
         {
             this.setState({
                 passwordVal: true,
@@ -75,12 +75,12 @@ class Login extends Component
                 loginExist: false,
             });
 
-            if(this.state.users[i].login === e.target.value)
+            if(this.state.users[i].login.toString().localeCompare(e.target.value.toString()) === 0)
             {
                 this.setState({
                     loginExist: true,
                     loginUser: e.target.value,
-                    passwordToConfirm: this.state.users[i].password
+                    passwordToConfirm: this.state.users[i].user_password
                 });
                 break;
             }

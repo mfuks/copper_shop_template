@@ -4,6 +4,7 @@ import "./_registration.scss"
 import Logo from "../../general_components/header/logo/Logo";
 import Footer from "../../general_components/footer/Footer";
 import {Link} from "react-router-dom";
+import SubmitLar from "../submit_lar/SubmitLar";
 
 class Registration extends Component
 {
@@ -26,9 +27,13 @@ class Registration extends Component
             passwordConfirmVal: false,
 
             address: "",
+            addressVal: true,
             zipCode: "",
+            zipCodeVal: true,
             city: "",
+            cityVal: true,
             phone: "",
+            phoneVal: true,
 
             agreementChecked: false,
 
@@ -38,7 +43,7 @@ class Registration extends Component
 
     componentDidMount()
     {
-        const url = "http://localhost:3012/users";
+        const url = "/users";
 
         fetch(url)
         .then(response => {
@@ -47,7 +52,7 @@ class Registration extends Component
         .then(users =>
         {
             this.setState({
-                users: users
+                users: [...users]
             });
         })
         .catch(function(error) {
@@ -71,7 +76,7 @@ class Registration extends Component
 
     emailValidate = (email) =>
     {
-        const emailValidationCharSet = /^[a-z\d]+[\w\d.-]*@(?:[a-z\d]+[a-z\d-]+\.){1,5}[a-z]{2,6}$/i;
+        const emailValidationCharSet = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return emailValidationCharSet.test(email);
     };
 
@@ -183,6 +188,52 @@ class Registration extends Component
         }
     };
 
+    validation = (e, valType, length) =>
+    {
+        (e.target.value.length >= length || e.target.value.length === 0) ? valType=true : valType=false;
+        return valType;
+    };
+
+    handleChangeAddress = e =>
+    {
+        let addressV;
+        let addressVal = this.validation(e, addressV, 4);
+        this.setState({
+            address: e.target.value,
+            addressVal: addressVal
+        });
+    };
+
+    handleChangeCity = e =>
+    {
+        let cityV;
+        let cityVal = this.validation(e, cityV, 2);
+        this.setState({
+            city: e.target.value,
+            cityVal: cityVal
+        });
+    };
+
+    handleChangeZipCode = e =>
+    {
+        let zipCodeVal = (e.target.value.length === 6 || e.target.value.length === 0);
+        this.setState({
+            zipCode: e.target.value,
+            zipCodeVal: zipCodeVal
+        });
+    };
+
+    handleChangePhone = e =>
+    {
+        let phoneV;
+        let phoneVal = this.validation(e, phoneV, 9);
+        this.setState({
+            phone: e.target.value,
+            phoneVal: phoneVal
+        });
+    };
+
+
     handleChangeAgreement = (e) =>
     {
         if(document.getElementById("agreement").checked === true)
@@ -206,19 +257,16 @@ class Registration extends Component
 
         const {name, surname,
             email, emailVal, login, loginVal, password, passwordVal, loginAvailable, emailAvailable, passwordConfirmVal,
-            address, city, zipCode, phone, agreementChecked} = this.state;
+            address, addressVal, city, cityVal, zipCode, zipCodeVal, phone, phoneVal, agreementChecked} = this.state;
 
-        if(emailVal && loginVal && passwordVal && passwordConfirmVal && loginAvailable && emailAvailable && agreementChecked)
+        if(emailVal && loginVal && passwordVal && passwordConfirmVal && loginAvailable && emailAvailable &&
+            agreementChecked && addressVal && cityVal && zipCodeVal && phoneVal)
         {
-            const url = "http://localhost:3012/users";
+            const url = `http://localhost:5000/users/add?firstname=${name}&lastname=${surname}&email=${email}&`+
+                `login=${login}&user_password=${password}&address=${address}&city=${city}&zipCode=${zipCode}&`+
+                `phone=${phone}`;
 
-            fetch(url,
-                {
-                    headers: {"Content-Type": "application/json"},
-                    method: 'POST',
-                    dataType: "json",
-                    body: JSON.stringify({name, surname, email, login, password, address, city, zipCode, phone}),
-                })
+            fetch(url)
             .then(resp =>{
                 if (!resp.ok) {
                     throw new Error("something is wrong...");
@@ -247,9 +295,8 @@ class Registration extends Component
 
                         agreementChecked: false,
 
-                        submitMessage: "Dziękujemy za rejestracje",
+                        submitMessage: "Dziękujemy za rejestrację",
                     });
-                    console.log(resp);
                 }
             })
             .catch(err => console.error(err));
@@ -271,9 +318,9 @@ class Registration extends Component
             <>
                 <Logo/>
                 <section className="registration">
-                    <div className="container lar-cont">
-                        <div className="registration-content">
-                            {!submitMessage ?
+                    <div className="container lar-container">
+                        {!submitMessage ?
+                            <div className="registration-content">
                                 <form className="registration-content-form"
                                       onSubmit={this.handleSubmit}>
                                     <legend>
@@ -368,25 +415,29 @@ class Registration extends Component
                                             <input type="text"
                                                    placeholder="Address"
                                                    name="address"
-                                                   value={address}/>
+                                                   value={address}
+                                                   onChange={this.handleChangeAddress}/>
                                         </label>
                                         <label>Miasto:
                                             <input type="text"
                                                    placeholder="City"
                                                    name="city"
-                                                   value={city}/>
+                                                   value={city}
+                                                   onChange={this.handleChangeCity}/>
                                         </label>
                                         <label>Kod pocztowy:
                                             <input type="text"
                                                    placeholder="Zip code"
                                                    name="zipCode"
-                                                   value={zipCode}/>
+                                                   value={zipCode}
+                                                   onChange={this.handleChangeZipCode}/>
                                         </label>
                                         <label>Telefon:
                                             <input type="text"
                                                    placeholder="Phone"
                                                    name="phone"
-                                                   value={phone}/>
+                                                   value={phone}
+                                                   onChange={this.handleChangePhone}/>
                                         </label>
                                     </section>
                                     <h2>Zgody</h2>
@@ -417,17 +468,12 @@ class Registration extends Component
                                         </p>
                                     </section>
                                     <div className="lar-content-form-btns">
-                                        <Link to="/registration">do logowania</Link>
+                                        <Link to="/login">do logowania</Link>
                                         <input type="submit" value="zarejestruj"/>
                                     </div>
-                                </form>:
-                                <div className="registration-end">
-                                    <h2>{submitMessage}</h2>
-                                    <div className="lar-content-form-btns">
-                                        <Link to="/">do strony głównej</Link>
-                                    </div>
-                                </div>}
-                        </div>
+                                </form>
+                            </div>:
+                            <SubmitLar submitMessage={submitMessage}/>}
                     </div>
                 </section>
                 <Footer/>
