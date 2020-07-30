@@ -11,7 +11,7 @@ class BasketTableProducts extends Component
         };
 
     componentDidMount() {
-        const url = "http://localhost:3000/products";
+        const url = "/products";
 
         fetch(url)
         .then(response => {
@@ -20,7 +20,7 @@ class BasketTableProducts extends Component
         .then(products =>
         {
             this.setState({
-                products: products
+                products: [...products]
             });
         })
         .catch(function(error) {
@@ -32,7 +32,7 @@ class BasketTableProducts extends Component
     {
         const {products} = this.state
         for (let j = 0; j < products.length; j++) {
-            if(currentProductId === products[j].id)
+            if(currentProductId === products[j].product_id)
             {
                 return products[j].quantity.toString();
             }
@@ -67,22 +67,22 @@ class BasketTableProducts extends Component
                                         {index + 1}.
                                     </td>
                                     <td className="product-col-m">
-                                        <img src={"./assets/products/" + element.product.id + ".jpeg"}
-                                             alt={"product_" + element.product.id}
+                                        <img src={"./assets/products/" + element.product.product_id + ".jpeg"}
+                                             alt={"product_" + element.product.product_id}
                                              width="100%"/>
                                     </td>
                                     <td className="product-col-l basket-product-name">
-                                        produkt <span>{element.product.id}</span>
+                                        produkt <span>{element.product.product_id}</span>
                                     </td>
                                     {basketStep === 3 &&
                                     <td className="product-col-m basket-product-code">
-                                        {element.product.code}
+                                        {element.product.product_code}
                                     </td>
                                     }
                                     <td className="product-col-s basket-product-amount">
                                         {basketStep === 1 &&
                                         <input type="number" value={element.amount}
-                                               max={this.maxValue(element.product.id)} min="0"
+                                               max={this.maxValue(element.product.product_id)} min="0"
                                                onChange={(e) => basketOnAmountChange(e.currentTarget)}/>}
                                         {basketStep === 3 && element.amount}
                                     </td>

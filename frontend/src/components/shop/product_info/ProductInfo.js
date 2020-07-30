@@ -19,8 +19,8 @@ class ProductInfo extends Component
                         <div className="product-info-content">
                             <section className="product-info-content-left">
                                 <figure className="product-info-img">
-                                    <img src={"./assets/products/" + currentProduct.id + ".jpeg"}
-                                         alt={"product_" + currentProduct.id}/>
+                                    <img src={"./assets/products/" + currentProduct.product_id + ".jpeg"}
+                                         alt={"product_" + currentProduct.product_id}/>
                                     <figcaption className="product-info-quantity">
                                         <p>Dostępność:&nbsp;{currentProduct.quantity}</p>
                                     </figcaption>
@@ -28,8 +28,8 @@ class ProductInfo extends Component
                             </section>
                             <section className="product-info-content-right">
                                 <header>
-                                    <p className="product-name-id">product&nbsp;<span>{currentProduct.id}</span></p>
-                                    <p className="product-name-code">{currentProduct.code}</p>
+                                    <p className="product-name-id">product&nbsp;<span>{currentProduct.product_id}</span></p>
+                                    <p className="product-name-code">{currentProduct.product_code}</p>
                                 </header>
                                 <p>{currentProduct.description}</p>
                                 <div className="product-info-add">

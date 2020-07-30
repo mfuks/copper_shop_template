@@ -8,21 +8,65 @@ class BasketStep3 extends Component
 {
     state = {
         products: [],
+        users: [],
+        last0rderId: "",
     };
 
     componentDidMount() {
 
-        const url = "http://localhost:3000/products";
+        const urlProducts = "/products";
 
-        fetch(url)
+        fetch(urlProducts)
         .then(response => {
             return response.json()
         })
         .then(products =>
         {
             this.setState({
-                products: products
+                products: [...products]
             });
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+        const urlUsers = "/users";
+
+        fetch(urlUsers)
+        .then(response => {
+            return response.json()
+        })
+        .then(users =>
+        {
+            this.setState({
+                users: [...users]
+            });
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+        const urlOrders = "/orders/max_id";
+
+        fetch(urlOrders)
+        .then(response => {
+            return response.json()
+        })
+        .then(order =>
+        {
+            if(order)
+            {
+                this.setState({
+                    lastOrderId: order
+                });
+            }
+            else
+            {
+                this.setState({
+                    lastOrderId: "0"
+                });
+            }
+
         })
         .catch(function(error) {
             console.log(error);
@@ -35,7 +79,7 @@ class BasketStep3 extends Component
 
 //products update
 
-        const {products} = this.state;
+        const {products, users, last0rderId} = this.state;
         const {setBasketStep, basketStep, basket, login, deliveryDetails, currentDeliveryType, currentDelivery, totalSum} = this.props;
 
         let newProductsList = [...products]
@@ -47,9 +91,9 @@ class BasketStep3 extends Component
 
             for (let j = 0; j < products.length; j++) {
 
-                if(products[j].id === basket[i].product.id)
+                if(products[j].product_id === basket[i].product.product_id)
                 {
-                    changeId.push(products[j].id)
+                    changeId.push(products[j].product_id)
                     newProductsList[j].quantity = (+products[j].quantity - +basket[i].amount).toString();
                 }
             }
@@ -58,21 +102,17 @@ class BasketStep3 extends Component
 
         if(i >= basket.length)
         {
-            const url = "http://localhost:3000/products/";
+            let url
 
             for (let j = 0; j < newProductsList.length; j++)
             {
                 for (let k = 0; k < changeId.length; k++)
                 {
-                    if(newProductsList[j].id === changeId[k])
+
+                    if(newProductsList[j].product_id === changeId[k])
                     {
-                        fetch(url + newProductsList[j].id,
-                            {
-                                headers: {"Content-Type": "application/json"},
-                                method: 'PUT',
-                                dataType: "json",
-                                body: JSON.stringify(newProductsList[j]),
-                            })
+                        url = `http://localhost:5000/products/update?product_id=${newProductsList[j].product_id}&quantity=${newProductsList[j].quantity}`
+                        fetch(url)
                         .then(resp =>{
                             if (!resp.ok) {
                                 putError = true;
@@ -85,26 +125,25 @@ class BasketStep3 extends Component
             }
             if(!putError)
             {
-                setBasketStep(basketStep + 1);
-                this.props.basketSetClear();
+
 
         //order save
+                let user_id;
 
-                const url = "http://localhost:3014/orders";
-
-                let today = new Date();
-                let date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-                let address = deliveryDetails;
-                let delivery = currentDeliveryType
-                let deliveryCost = currentDelivery
-
-                fetch(url,
+                for (let j = 0; j < users.length; j++) {
+                    if(users[i].login.toString().localeCompare(login))
                     {
-                        headers: {"Content-Type": "application/json"},
-                        method: 'POST',
-                        dataType: "json",
-                        body: JSON.stringify({login, date, basket, address, delivery, deliveryCost, totalSum}),
-                    })
+                        user_id = users[i].user_id;
+                        break;
+                    }
+                }
+
+                let address = deliveryDetails;
+
+                const url1 = `http://localhost:5000/orders/add?Users_user_id=${user_id}&`+
+                    `delivery_type=${currentDeliveryType}&delivery_cost=${currentDelivery}`;
+
+                fetch(url1)
                 .then(resp =>{
                     if (!resp.ok) {
                         throw new Error("something is wrong...");
@@ -115,6 +154,41 @@ class BasketStep3 extends Component
                     }
                 })
                 .catch(err => console.error(err));
+
+
+                for (let j = 0; j < basket.length; j++) {
+                    const url2 = `http://localhost:5000/user_products/add?product_id=${basket[j].product.product_id}&`+
+                        `product_quantity=${basket[j].amount}&Orders_order_id=${last0rderId+1}`;
+                    fetch(url2)
+                    .then(resp =>{
+                        if (!resp.ok) {
+                            throw new Error("something is wrong...");
+                        }
+                        else
+                        {
+                            console.log(resp);
+                        }
+                    })
+                    .catch(err => console.error(err));
+                }
+
+                const url3 = `http://localhost:5000/addresses/add?firstname=${address.name}&lastname=${address.surname}&email=${address.email}&`+
+                    `address=${address.address}&city=${address.city}&zipCode=${address.zipCode}&phone=${address.phone}&Users_user_id=${user_id}&Orders_order_id=${last0rderId+1}`;
+                fetch(url3)
+                .then(resp =>{
+                    if (!resp.ok) {
+                        throw new Error("something is wrong...");
+                    }
+                    else
+                    {
+                        console.log(resp);
+                    }
+                })
+                .catch(err => console.error(err));
+
+
+                setBasketStep(basketStep + 1);
+                this.props.basketSetClear();
 
             }
         }

@@ -32,7 +32,7 @@ class BasketStep2 extends Component
 
     componentDidMount()
     {
-        const url = "http://localhost:3012/users";
+        const url = "/users";
 
         fetch(url)
         .then(response => {
@@ -41,7 +41,7 @@ class BasketStep2 extends Component
         .then(users =>
         {
             this.setState({
-                users: users
+                users: [...users]
             });
 
             const {deliveryDetails, deliveryDetailsVal, login} = this.props;
@@ -78,8 +78,8 @@ class BasketStep2 extends Component
                     }
                 }
                 this.setState({
-                    name: users[loginIndex].name,
-                    surname: users[loginIndex].surname,
+                    name: users[loginIndex].firstname,
+                    surname: users[loginIndex].lastname,
                     email: users[loginIndex].email,
                     address: users[loginIndex].address,
                     zipCode: users[loginIndex].zipCode,
@@ -87,13 +87,13 @@ class BasketStep2 extends Component
                     phone: users[loginIndex].phone,
                 });
 
-                if(users[loginIndex].name)
+                if(users[loginIndex].firstname)
                 {
                     this.setState({
                         nameVal: true,
                     });
                 }
-                if(users[loginIndex].surname)
+                if(users[loginIndex].lastname)
                 {
                     this.setState({
                         surnameVal: true,

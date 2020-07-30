@@ -96,8 +96,8 @@ class App extends Component
 
     priceDisplay = (price) =>
     {
-        return price.substr(0, price.length-2) + "," +
-            price.substr(price.length-2, 2)  + "zł"
+        return price.toString().substr(0, price.toString().length-2) + "," +
+            price.toString().substr(price.toString().length-2, 2)  + "zł"
     };
 
     basketAdd = (productAdded) =>
@@ -107,7 +107,7 @@ class App extends Component
 
         for (let i = 0; i < this.state.basket.length; i++)
         {
-            if(+this.state.basket[i].product.id === +productAdded.id)
+            if(+this.state.basket[i].product.product_id === +productAdded.product_id)
             {
                 productExistIndex = i;
             }
@@ -143,7 +143,7 @@ class App extends Component
         function productsLoop() {
             for (let j = 0; j < products.length; j++)
             {
-                if(+products[j].id === +target.id)
+                if(+products[j].product_id === +target.product_id)
                 {
                     index = j
                     break;
@@ -159,7 +159,7 @@ class App extends Component
         {
             for (let i = 0; i < basket.length; i++)
             {
-                if(+basket[i].product.id === +target.id && +basket[i].amount === +target.quantity )
+                if(+basket[i].product.product_id === +target.product_id && +basket[i].amount === +target.quantity )
                 {
                     available = false
                     alert("Dodałeś już maksymalną ilość tego produktu do swojego koszyka");
@@ -186,7 +186,7 @@ class App extends Component
         }
         for (let i = 0; i < this.state.basket.length; i++)
         {
-            if(+this.state.basket[i].product.id === +toDelete)
+            if(+this.state.basket[i].product.product_id === +toDelete)
             {
                 productExistIndex = i;
                 break;
@@ -233,7 +233,7 @@ class App extends Component
         {
             for (let i = 0; i < this.state.basket.length; i++)
             {
-                if(+this.state.basket[i].product.id === +toEdit)
+                if(+this.state.basket[i].product.product_id === +toEdit)
                 {
                     productExistIndex = i;
                     break;
