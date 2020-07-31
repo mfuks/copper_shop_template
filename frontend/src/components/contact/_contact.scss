@@ -29,6 +29,7 @@
       font-size: 3.5rem;
       font-weight: 400;
       color: $color-main-warm;
+      cursor: default;
     }
   }
 
@@ -70,6 +71,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
+      cursor: default;
 
       i
       {
