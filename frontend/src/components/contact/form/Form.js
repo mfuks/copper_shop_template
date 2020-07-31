@@ -96,15 +96,9 @@ class Form extends Component
 
         if(nameValVar && emailValVar && messageValVar)
         {
-            const url = "http://localhost:3010/messages";
+            const url = `http://localhost:5000/messages/add?firstname=${name}&email=${email}&message=${message}`;
 
-            fetch(url,
-                {
-                    headers: {"Content-Type": "application/json"},
-                    method: 'POST',
-                    dataType: "json",
-                    body: JSON.stringify({name, email, message}),
-                })
+            fetch(url)
             .then(resp =>{
                 if (!resp.ok) {
                     throw new Error("something is wrong...");
@@ -130,7 +124,6 @@ class Form extends Component
             });
         }
     };
-
 
     render() {
         const {name, email, message, nameVal, emailVal, messageVal, submitHandle, submitMessage} = this.state;
