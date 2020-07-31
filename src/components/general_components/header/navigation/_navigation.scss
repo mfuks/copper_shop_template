@@ -1,0 +1,40 @@
+@import "../../../../main";
+
+.main-nav
+{
+  height: 45px;
+  background: $color-main-cold;
+  .main-nav-menu
+  {
+    height: 100%;
+    @include flex-center;
+
+    li
+    {
+      height: 100%;
+
+      a
+      {
+        font-size: 1.2rem;
+        font-weight: 600;
+        height: 100%;
+        cursor: pointer;
+        padding: 0 20px;
+        color: $color-main-warm;
+        @include flex-center;
+
+        &:hover
+        {
+          color: $color-main-cold;
+          background: $color-main-warm;
+        }
+      }
+
+      a.active
+      {
+        background: $color-light-cold;
+        color: $color-main-cold;
+      }
+    }
+  }
+}
