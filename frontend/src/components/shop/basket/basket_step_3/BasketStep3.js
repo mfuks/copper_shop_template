@@ -9,7 +9,7 @@ class BasketStep3 extends Component
     state = {
         products: [],
         users: [],
-        last0rderId: "",
+        lastOrderId: "",
     };
 
     componentDidMount() {
@@ -41,6 +41,8 @@ class BasketStep3 extends Component
             this.setState({
                 users: [...users]
             });
+
+
         })
         .catch(function(error) {
             console.log(error);
@@ -54,10 +56,10 @@ class BasketStep3 extends Component
         })
         .then(order =>
         {
-            if(order)
+            if(order[0].max_id)
             {
                 this.setState({
-                    lastOrderId: order
+                    lastOrderId: order[0].max_id
                 });
             }
             else
@@ -66,7 +68,6 @@ class BasketStep3 extends Component
                     lastOrderId: "0"
                 });
             }
-
         })
         .catch(function(error) {
             console.log(error);
@@ -79,11 +80,13 @@ class BasketStep3 extends Component
 
 //products update
 
-        const {products, users, last0rderId} = this.state;
+        const {products, users, lastOrderId} = this.state;
         const {setBasketStep, basketStep, basket, login, deliveryDetails, currentDeliveryType, currentDelivery, totalSum} = this.props;
 
+        console.log(lastOrderId)
+        console.log(this.state.lastOrderId)
+
         let newProductsList = [...products]
-        let putError = false;
         let changeId = [];
 
         let i = 0;
@@ -102,95 +105,74 @@ class BasketStep3 extends Component
 
         if(i >= basket.length)
         {
-            let url
-
-            for (let j = 0; j < newProductsList.length; j++)
+            let j = 0;
+            for (; j < newProductsList.length; j++)
             {
                 for (let k = 0; k < changeId.length; k++)
                 {
-
                     if(newProductsList[j].product_id === changeId[k])
                     {
-                        url = `http://localhost:5000/products/update?product_id=${newProductsList[j].product_id}&quantity=${newProductsList[j].quantity}`
-                        fetch(url)
+                        let urlProductsUpdate = `http://localhost:5000/products/update?product_id=${newProductsList[j].product_id}&quantity=${newProductsList[j].quantity}`
+                        fetch(urlProductsUpdate)
                         .then(resp =>{
                             if (!resp.ok) {
-                                putError = true;
                                 throw new Error("something is wrong...");
                             }
                         })
                         .catch(err => console.error(err));
-                    }
-                }
-            }
-            if(!putError)
-            {
-
-
-        //order save
-                let user_id;
-
-                for (let j = 0; j < users.length; j++) {
-                    if(users[i].login.toString().localeCompare(login))
-                    {
-                        user_id = users[i].user_id;
                         break;
                     }
                 }
+            }
 
-                let address = deliveryDetails;
+        if(j >= newProductsList.length)
+            {
+                //order save
 
-                const url1 = `http://localhost:5000/orders/add?Users_user_id=${user_id}&`+
-                    `delivery_type=${currentDeliveryType}&delivery_cost=${currentDelivery}`;
+                let user_id;
+                for (let m = 0; m < users.length; m++) {
 
-                fetch(url1)
-                .then(resp =>{
-                    if (!resp.ok) {
-                        throw new Error("something is wrong...");
-                    }
-                    else
+                    if(users[m].login.toString().localeCompare(login) === 0)
                     {
-                        console.log(resp);
+                        user_id = users[m].user_id;
+                        let address = deliveryDetails;
+
+                        let urlOrderAdd = `http://localhost:5000/orders/add?Users_user_id=${user_id}&`+
+                            `delivery_type=${currentDeliveryType}&delivery_cost=${currentDelivery}&total_sum=${totalSum}`;
+
+                        fetch(urlOrderAdd)
+                        .then(resp =>{
+                            if (!resp.ok) throw new Error("something is wrong...");
+                        })
+                        .catch(err => console.error(err));
+
+                        for (let n = 0; n < basket.length; n++) {
+                            let urlUserProductsAdd = `http://localhost:5000/user_products/add?product_id=${basket[n].product.product_id}&`+
+                                `product_quantity=${basket[n].amount}&Orders_order_id=${+lastOrderId+1}`
+                            fetch( urlUserProductsAdd )
+                            .then(resp =>{
+                                if (!resp.ok) throw new Error("something is wrong...");
+                            })
+                            .catch(err => console.error(err));
+                        }
+
+                        let urlAddressAdd = `http://localhost:5000/addresses/add?firstname=${address.name}&lastname=${address.surname}&email=${address.email}&`+
+                            `address=${address.address}&city=${address.city}&zipCode=${address.zipCode}&phone=${address.phone}&Users_user_id=${user_id}&Orders_order_id=${+lastOrderId+1}`;
+                        fetch(urlAddressAdd)
+                        .then(resp =>{
+                            if (!resp.ok) throw new Error("something is wrong...");
+                        })
+                        .catch(err => console.error(err));
+
                     }
-                })
-                .catch(err => console.error(err));
-
-
-                for (let j = 0; j < basket.length; j++) {
-                    const url2 = `http://localhost:5000/user_products/add?product_id=${basket[j].product.product_id}&`+
-                        `product_quantity=${basket[j].amount}&Orders_order_id=${last0rderId+1}`;
-                    fetch(url2)
-                    .then(resp =>{
-                        if (!resp.ok) {
-                            throw new Error("something is wrong...");
-                        }
-                        else
-                        {
-                            console.log(resp);
-                        }
-                    })
-                    .catch(err => console.error(err));
                 }
-
-                const url3 = `http://localhost:5000/addresses/add?firstname=${address.name}&lastname=${address.surname}&email=${address.email}&`+
-                    `address=${address.address}&city=${address.city}&zipCode=${address.zipCode}&phone=${address.phone}&Users_user_id=${user_id}&Orders_order_id=${last0rderId+1}`;
-                fetch(url3)
-                .then(resp =>{
-                    if (!resp.ok) {
-                        throw new Error("something is wrong...");
-                    }
-                    else
-                    {
-                        console.log(resp);
-                    }
-                })
-                .catch(err => console.error(err));
 
 
                 setBasketStep(basketStep + 1);
                 this.props.basketSetClear();
-
             }
+
+
         }
 
 

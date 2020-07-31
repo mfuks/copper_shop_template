@@ -8,32 +8,47 @@ class UserPanelData extends Component
     };
 
     componentDidMount() {
+        const urlUsers = "/users";
+        let userId
 
-        const url = "http://localhost:3012/users";
-
-        fetch(url)
+        fetch(urlUsers)
         .then(response => {
             return response.json()
         })
         .then(users =>
         {
-            let user
-
             for (let i = 0; i < users.length; i++) {
-                if(users[i].login === this.props.login)
+                if(this.props.login.toString().localeCompare(users[i].login.toString()) === 0)
                 {
-                    user = users[i]
+                    userId = users[i].user_id;
+                    const urlUserId = `http://localhost:5000/users/id?user_id=${userId}`;
+
+                    fetch(urlUserId)
+                    .then(response => {
+                        return response.json()
+                    })
+                    .then(user =>
+                    {
+                        this.setState({
+                            user: user[0]
+                        });
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+
+                    break;
                 }
             }
-
-            this.setState({
-                user: user
-            });
-
         })
         .catch(function(error) {
             console.log(error);
         });
+
+
+
+
+
     };
 
 
@@ -45,7 +60,7 @@ class UserPanelData extends Component
                     <h4>
                         Adres:
                     </h4>
-                    <p>{user.name}&nbsp;{user.surname}</p>
+                    <p>{user.firstname}&nbsp;{user.lastname}</p>
                     <p>{user.address}</p>
                     <p>{user.zipCode}&nbsp;{user.city}</p>
                     <h4>

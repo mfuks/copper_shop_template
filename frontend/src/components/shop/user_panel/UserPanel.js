@@ -13,35 +13,61 @@ class UserPanel extends Component
     state =
         {
             currentOrderView: "",
-            orders: []
+            orders: [],
+            userId: ""
         }
 
     componentDidMount() {
 
-        const urlOrders = "http://localhost:3014/orders";
+        const urlUsers = "/users";
+        let userId
 
-        fetch(urlOrders)
+        fetch(urlUsers)
         .then(response => {
             return response.json()
         })
-        .then(orders =>
+        .then(users =>
         {
-            let userOrders = [];
-            for (let i = 0; i < orders.length; i++)
-            {
-                if(orders[i].login === this.props.login)
+            for (let i = 0; i < users.length; i++) {
+                if(this.props.login.toString().localeCompare(users[i].login.toString()) === 0)
                 {
-                    userOrders.push(orders[i]);
+                    userId = users[i].user_id;
+
+                    const urlOrders = "/orders";
+
+                    fetch(urlOrders)
+                    .then(response => {
+                        return response.json()
+                    })
+                    .then(orders =>
+                    {
+                        console.log(orders)
+                        let userOrders = [];
+                        for (let i = 0; i < orders.length; i++)
+                        {
+                            if(orders[i].Users_user_id === userId)
+                            {
+                                userOrders.push(orders[i]);
+                            }
+                        }
+                        this.setState({
+                            orders: userOrders
+                        });
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+
+                    break;
                 }
             }
-            this.setState({
-                orders: userOrders
-            });
-
         })
         .catch(function(error) {
             console.log(error);
         });
+
+
+
 
     };
 
@@ -55,7 +81,7 @@ handleChangeCurrentOrderView = (currentOrderView) =>
     render() {
         const {login, setClearLogin, path, basketAmount, basketSum, currentUserPanelStep, setUserPanelStep,
             priceDisplay} = this.props
-        const {currentOrderView, orders} = this.state
+        const {currentOrderView, orders, userId} = this.state
         return (
 
             <>
@@ -99,20 +125,23 @@ handleChangeCurrentOrderView = (currentOrderView) =>
                                     <section className="user-panel-content-details">
                                         {(currentUserPanelStep === "data") &&
                                         <UserPanelData setUserPanelStep={setUserPanelStep}
-                                                       login={login}/>
+                                                       login={login}
+                                                       userId={userId}/>
                                         }
                                         {(currentUserPanelStep === "orders" && !currentOrderView) &&
                                         <UserPanelOrders setUserPanelStep={setUserPanelStep}
                                                          login={login}
                                                          priceDisplay={priceDisplay}
                                                          handleChangeCurrentOrderView={this.handleChangeCurrentOrderView}
-                                                         orders={orders}/>
+                                                         orders={orders}
+                                                         userId={userId}/>
                                         }
                                         {(currentOrderView && !(currentUserPanelStep === "data")) && <UserPanelOrderView priceDisplay={priceDisplay}
                                                                                  currentOrderView={currentOrderView}
                                                                                  login={login}
                                                                                  handleChangeCurrentOrderView={this.handleChangeCurrentOrderView}
-                                                                                 orders={orders}/>}
+                                                                                 orders={orders}
+                                                                                 userId={userId}/>}
                                     </section>
                                 </section>
 
