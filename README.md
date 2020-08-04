@@ -17,8 +17,8 @@ go see [mockup](https://fuksmarta.wixsite.com/website-1/sklep)
 - Sass
 - JavaScript
 - React, JSX
-- JSON Server
-- jQuery
+- JSON Server / MySQL
+- Express.js
 
 ## Installation:
 
@@ -26,17 +26,41 @@ go see [mockup](https://fuksmarta.wixsite.com/website-1/sklep)
   `git clone https://github.com/mfuks/copper_shop_template.git`
 - #### install all dependencies
   `npm install`
-- #### start JSON Server
-   in "data" folder:
-   
-  `json-server --watch products.json`
+- #### connect to database
 
-  `json-server --watch messages.json -p 3010`
-  
-  `json-server --watch users.json -p 3012`
-  
-  `json-server --watch orders.json -p 3014`
-  
+   on http://localhost:3306
+
+- #### start database
+   in "backend" folder:
+   
+   `node Backend.js`
+
 - #### preview
-   in "copper_shop_template" folder:
-  `npm start` and go to [http://localhost:3001/](http://localhost:3000/)
+   in "frontend" folder:
+  `npm start` and go to [http://localhost:3000/](http://localhost:3000/)
+
+## Screen view:
+
+- #### Home page / Home
+![home page](screen_view/home_page.png)
+
+- #### Shop / Sklep
+![shop](screen_view/shop.png)
+
+- #### Contact / Kontakt
+![contact](screen_view/contact.png)
+
+- #### About us / O nas
+![about us](screen_view/about_us.png)
+
+- #### Basket step 1 / Koszyk krok 1
+![basket step 1](screen_view/basket_step_1.png)
+
+- #### Basket step 2 / Koszyk krok 2
+![basket step 2](screen_view/basket_step_2.png)
+
+- #### Basket step 3 / Koszyk krok 32
+![basket step 3](screen_view/basket_step_3.png)
+
+- #### User panel - order details / Panel użytkownika - podgląd zamówienia
+![User panel - order details](screen_view/user_panel_order_details.png)
