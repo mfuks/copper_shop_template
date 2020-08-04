@@ -108,15 +108,16 @@ backend.get('/orders/add', function (req, res) {
 backend.get('/user_products', function (req, res) {
     connection.query('SELECT * FROM User_products', function(error, rows, fields)
     {
-        if(error) res.send('Error in the query')
-        else res.send('Successful query')
+        if(error) console.log('Error in the query')
+        else console.log('Successful query')
+        res.send([...rows])
     });
 });
 
 backend.get('/user_products/add', function (req, res) {
-    const{product_id, product_quantity, Orders_order_id} = req.query;
-    const insert_user_products = `INSERT INTO User_products (product_id, product_quantity, Orders_order_id)
-    VALUES('${product_id}', '${product_quantity}', '${Orders_order_id}')`;
+    const{product_id, product_quantity, Orders_order_id, product_price, product_code} = req.query;
+    const insert_user_products = `INSERT INTO User_products (product_id, product_quantity, Orders_order_id, product_price, product_code)
+    VALUES('${product_id}', '${product_quantity}', '${Orders_order_id}', '${product_price}', '${product_code}')`;
     connection.query(insert_user_products, function(error, rows, fields)
     {
         if(error) res.send('Error in the query')

@@ -5,7 +5,7 @@ import Navigation from "./navigation/Navigation";
 class Header extends Component
 {
     render() {
-        const {login, setClearLogin, path, basketSum, basketPath, basketAmount, setUserPanelStep} = this.props;
+        const {login, setClearLogin, path, basketSum, basketPath, basketAmount} = this.props;
         return (
             <>
                 <LogRegister login={login}
@@ -14,7 +14,6 @@ class Header extends Component
                              basketPath={basketPath}
                              basketSum={basketSum}
                              basketAmount={basketAmount}
-                             setUserPanelStep={setUserPanelStep}
                 />
                 <Navigation path={path}/>
             </>

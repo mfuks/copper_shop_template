@@ -6,7 +6,7 @@ class UserPanelOrders extends Component
 {
 
     render() {
-        const {priceDisplay, handleChangeCurrentOrderView, orders} = this.props
+        const {priceDisplay, handleChangeCurrentOrder, orders} = this.props
         return (
             <>
                 <section className="upo">
@@ -26,13 +26,13 @@ class UserPanelOrders extends Component
                                     {index + 1}.
                                 </td>
                                 <td className="product-col-l upo-code">
-                                    <p onClick={()=>handleChangeCurrentOrderView(element.id)}>{element.id}.</p>
+                                    <p onClick={()=>handleChangeCurrentOrder(element, index)}>{element.order_id}.</p>
                                 </td>
                                 <td className="product-col-m upo-date">
-                                    {element.date}
+                                    {element.order_date.toString().slice(0, 10)}
                                 </td>
                                 <td className="product-col-s upo-sum">
-                                    {priceDisplay(element.totalSum)}
+                                    {priceDisplay(element.total_sum)}
                                 </td>
                             </tr>)}
                         </tbody>

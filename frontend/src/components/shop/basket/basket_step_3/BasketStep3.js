@@ -41,8 +41,6 @@ class BasketStep3 extends Component
             this.setState({
                 users: [...users]
             });
-
-
         })
         .catch(function(error) {
             console.log(error);
@@ -82,9 +80,6 @@ class BasketStep3 extends Component
 
         const {products, users, lastOrderId} = this.state;
         const {setBasketStep, basketStep, basket, login, deliveryDetails, currentDeliveryType, currentDelivery, totalSum} = this.props;
-
-        console.log(lastOrderId)
-        console.log(this.state.lastOrderId)
 
         let newProductsList = [...products]
         let changeId = [];
@@ -128,7 +123,6 @@ class BasketStep3 extends Component
         if(j >= newProductsList.length)
             {
                 //order save
-
                 let user_id;
                 for (let m = 0; m < users.length; m++) {
 
@@ -148,7 +142,7 @@ class BasketStep3 extends Component
 
                         for (let n = 0; n < basket.length; n++) {
                             let urlUserProductsAdd = `http://localhost:5000/user_products/add?product_id=${basket[n].product.product_id}&`+
-                                `product_quantity=${basket[n].amount}&Orders_order_id=${+lastOrderId+1}`
+                                `product_quantity=${basket[n].amount}&Orders_order_id=${+lastOrderId+1}&product_price=${+basket[n].product.price}&product_code=${basket[n].product.product_code}`
                             fetch( urlUserProductsAdd )
                             .then(resp =>{
                                 if (!resp.ok) throw new Error("something is wrong...");
@@ -163,10 +157,8 @@ class BasketStep3 extends Component
                             if (!resp.ok) throw new Error("something is wrong...");
                         })
                         .catch(err => console.error(err));
-
                     }
                 }
-
 
                 setBasketStep(basketStep + 1);
                 this.props.basketSetClear();

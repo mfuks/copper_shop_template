@@ -75,9 +75,11 @@ class App extends Component
 
     setUserPanelStep = (currentStep) =>
     {
-        this.setState({
-            currentUserPanelStep: currentStep
-        });
+        if(!(this.state.currentUserPanelStep === currentStep) && currentStep){
+            this.setState({
+                currentUserPanelStep: currentStep
+            });
+        }
     };
 
     setLogin = (user) =>

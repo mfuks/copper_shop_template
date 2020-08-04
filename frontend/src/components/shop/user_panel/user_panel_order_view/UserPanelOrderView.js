@@ -9,58 +9,87 @@ import BasketTableSummary from "../../basket/basket_table/basket_table_summary/B
 class UserPanelOrderView extends Component
 {
     state = {
-        order: [],
-        orderDetails: "", //!
-        orderUserId: ""
+        products: [],
+        address: []
     }
 
     componentDidMount() {
+        const urlUserProducts = "/user_products";
 
-        const {orders} = this.props
-        let userOrders = [];
-
-        for (let i = 0; i < orders.length;i++)
+        fetch(urlUserProducts)
+        .then(response => {
+            return response.json()
+        })
+        .then(products =>
         {
-            if(orders[i].login === this.props.login)
+            let userOrder = [];
+            let i = 0;
+            for (; i < products.length; i++)
             {
-                userOrders.push(orders[i]);
+                if(+products[i].Orders_order_id === +this.props.currentOrder.order_id)
+                {
+                    userOrder.push(products[i]);
+                }
             }
-        }
-
-        for (let i = 0; i < userOrders.length; i++)
-        {
-            if(+userOrders[i].id === +this.props.currentOrderView)
+            if(i >= products.length)
             {
                 this.setState({
-                    order: [...userOrders[i].basket],
-                    orderDetails: userOrders[i],
-                    orderUserId: i
+                    products: userOrder
                 });
-                break;
             }
-        }
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+        const urlAddresses = "/addresses";
+
+        fetch(urlAddresses)
+        .then(response => {
+            return response.json()
+        })
+        .then(addresses =>
+        {
+            let i = 0;
+            for (; i < addresses.length; i++)
+            {
+                if(+addresses[i].Orders_order_id === +this.props.currentOrder.order_id)
+                {
+                    this.setState({
+                        address: addresses[i]
+                    });
+                    break;
+                }
+            }
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
     };
 
     componentWillUnmount()
     {
-        this.props.handleChangeCurrentOrderView("")
+        this.props.handleChangeCurrentOrder("")
     }
 
     handleGoBack = () =>
     {
-        this.props.handleChangeCurrentOrderView("")
+        this.props.handleChangeCurrentOrder("")
     }
 
     render() {
-        const {order, orderDetails, orderUserId} = this.state
-        const {priceDisplay, currentOrderView} = this.props
+        const {products, address} = this.state
+        const {priceDisplay, currentOrder, orderUserId} = this.props
         return (
             <>
                 <section className="upov">
                     <section className="upov-info">
-                        <p>zamówienie:&nbsp;{orderUserId + 1}</p>
-                        <p>kod zamówienia:&nbsp;{currentOrderView}</p>
-                        <p>data:&nbsp;{orderDetails.date}</p>
+                        {currentOrder &&
+                            <>
+                                <p>zamówienie:&nbsp;{orderUserId + 1}</p>
+                                <p>kod zamówienia:&nbsp;{currentOrder.order_id}</p>
+                                <p>data:&nbsp;{currentOrder.order_date.toString().slice(0, 10)}</p>
+                            </>}
                     </section>
                     <table className="upov-table">
                         <thead>
@@ -74,31 +103,31 @@ class UserPanelOrderView extends Component
                             </tr>
                         </thead>
                         <tbody>
-                        {order ? order.map((element,index)=>
+                        {products ? products.map((element,index)=>
                             <tr key={"basket-" + index}>
                                 <td className="product-col-s">
                                     {index + 1}.
                                 </td>
                                 <td className="product-col-l">
-                                    bransoletka&nbsp;{element.product.id}
+                                    bransoletka&nbsp;{element.product_id}
                                 </td>
                                 <td className="product-col-m">
-                                    {element.product.code}
+                                    {element.product_code}
                                 </td>
                                 <td className="product-col-s">
-                                    {element.amount}
+                                    {element.product_quantity}
                                 </td>
                                 <td className="product-col-m">
-                                    {priceDisplay(element.product.price)}
+                                    {priceDisplay(element.product_price)}
                                 </td>
                                 <td className="product-col-m">
-                                    {priceDisplay(element.total)}
+                                    {priceDisplay(+element.product_quantity * +element.product_price)}
                                 </td>
                             </tr>):
                             <tr/>}
                         </tbody>
                     </table>
-                    {orderDetails &&
+                    {(address && currentOrder) &&
                     <div className="upov-content">
                         <section className="upov-content-section">
                             <section className="basket-step-3-details">
@@ -106,28 +135,28 @@ class UserPanelOrderView extends Component
                                     <h4>
                                         Adres dostawy:
                                     </h4>
-                                    <p>{orderDetails.address.name}&nbsp;{orderDetails.address.surname}</p>
-                                    <p>{orderDetails.address.address}</p>
-                                    <p>{orderDetails.address.zipCode}&nbsp;{orderDetails.address.city}</p>
+                                    <p>{address.firstanem}&nbsp;{address.lastname}</p>
+                                    <p>{address.address}</p>
+                                    <p>{address.zipCode}&nbsp;{address.city}</p>
                                 </section>
                                 <section className="basket-step-3-details-content">
                                     <h4>
                                         Dane kontaktowe:
                                     </h4>
-                                    <p>email:&nbsp;{orderDetails.address.email}</p>
-                                    <p>telefon:&nbsp;{orderDetails.address.phone}</p>
+                                    <p>email:&nbsp;{address.email}</p>
+                                    <p>telefon:&nbsp;{address.phone}</p>
                                 </section>
                             </section>
                             <section className="basket-step-3-details-content-delivery">
                                 <h4>
-                                    Sposób dostawy:&nbsp;<span>{orderDetails.delivery}</span>
+                                    Sposób dostawy:&nbsp;<span>{currentOrder.delivery_type}</span>
                                 </h4>
                             </section>
                         </section>
                         <BasketTableSummary
-                            basketSum={(+orderDetails.totalSum - +orderDetails.deliveryCost).toString()}
-                            currentDelivery={orderDetails.deliveryCost}
-                            totalSum={orderDetails.totalSum}
+                            basketSum={(+currentOrder.total_sum - +currentOrder.delivery_cost).toString()}
+                            currentDelivery={currentOrder.delivery_cost}
+                            totalSum={currentOrder.total_sum}
                             priceDisplay={priceDisplay}/>
                     </div>}
                     <section className="upov-btns">

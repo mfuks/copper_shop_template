@@ -12,12 +12,14 @@ class UserPanel extends Component
 {
     state =
         {
-            currentOrderView: "",
+            orderUserId: "",
+            currentOrder: {},
             orders: [],
-            userId: ""
+            userId: "",
         }
 
     componentDidMount() {
+
 
         const urlUsers = "/users";
         let userId
@@ -41,7 +43,6 @@ class UserPanel extends Component
                     })
                     .then(orders =>
                     {
-                        console.log(orders)
                         let userOrders = [];
                         for (let i = 0; i < orders.length; i++)
                         {
@@ -65,23 +66,22 @@ class UserPanel extends Component
         .catch(function(error) {
             console.log(error);
         });
-
-
-
-
     };
 
-handleChangeCurrentOrderView = (currentOrderView) =>
+handleChangeCurrentOrder = (currentOrder, orderUserId) =>
 {
     this.setState({
-        currentOrderView: currentOrderView
+        currentOrder: currentOrder,
+        orderUserId: orderUserId
     })
 }
+
+
 
     render() {
         const {login, setClearLogin, path, basketAmount, basketSum, currentUserPanelStep, setUserPanelStep,
             priceDisplay} = this.props
-        const {currentOrderView, orders, userId} = this.state
+        const {currentOrder, orders, userId, orderUserId} = this.state
         return (
 
             <>
@@ -128,20 +128,21 @@ handleChangeCurrentOrderView = (currentOrderView) =>
                                                        login={login}
                                                        userId={userId}/>
                                         }
-                                        {(currentUserPanelStep === "orders" && !currentOrderView) &&
+                                        {(currentUserPanelStep === "orders" && !currentOrder.order_id) &&
                                         <UserPanelOrders setUserPanelStep={setUserPanelStep}
                                                          login={login}
                                                          priceDisplay={priceDisplay}
-                                                         handleChangeCurrentOrderView={this.handleChangeCurrentOrderView}
+                                                         handleChangeCurrentOrder={this.handleChangeCurrentOrder}
                                                          orders={orders}
                                                          userId={userId}/>
                                         }
-                                        {(currentOrderView && !(currentUserPanelStep === "data")) && <UserPanelOrderView priceDisplay={priceDisplay}
-                                                                                 currentOrderView={currentOrderView}
+                                        {(currentOrder.order_id && !(currentUserPanelStep === "data")) && <UserPanelOrderView priceDisplay={priceDisplay}
+                                                                                 currentOrder={currentOrder}
                                                                                  login={login}
-                                                                                 handleChangeCurrentOrderView={this.handleChangeCurrentOrderView}
+                                                                                 handleChangeCurrentOrder={this.handleChangeCurrentOrder}
                                                                                  orders={orders}
-                                                                                 userId={userId}/>}
+                                                                                 userId={userId}
+                                                                              orderUserId={orderUserId}/>}
                                     </section>
                                 </section>
 
