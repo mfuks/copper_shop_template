@@ -107,7 +107,8 @@ class BasketStep3 extends Component
                 {
                     if(newProductsList[j].product_id === changeId[k])
                     {
-                        let urlProductsUpdate = `http://localhost:5000/products/update?product_id=${newProductsList[j].product_id}&quantity=${newProductsList[j].quantity}`
+                        let urlProductsUpdate = `http://localhost:5000/products/update?product_id=${newProductsList[j].
+                            product_id}&quantity=${newProductsList[j].quantity}`
                         fetch(urlProductsUpdate)
                         .then(resp =>{
                             if (!resp.ok) {
@@ -139,10 +140,12 @@ class BasketStep3 extends Component
                             if (!resp.ok) throw new Error("something is wrong...");
                         })
                         .catch(err => console.error(err));
-
+gi
                         for (let n = 0; n < basket.length; n++) {
-                            let urlUserProductsAdd = `http://localhost:5000/user_products/add?product_id=${basket[n].product.product_id}&`+
-                                `product_quantity=${basket[n].amount}&Orders_order_id=${+lastOrderId+1}&product_price=${+basket[n].product.price}&product_code=${basket[n].product.product_code}`
+                            let urlUserProductsAdd = `http://localhost:5000/user_products/add?product_id=`+
+                                `${basket[n].product.product_id}&product_quantity=${basket[n].amount}&Orders_order_id=`+
+                                `${+lastOrderId+1}&product_price=${+basket[n].product.price}&product_code=`+
+                                `${basket[n].product.product_code}`
                             fetch( urlUserProductsAdd )
                             .then(resp =>{
                                 if (!resp.ok) throw new Error("something is wrong...");
