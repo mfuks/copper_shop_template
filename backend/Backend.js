@@ -18,7 +18,6 @@ connection.connect(function (error){
 
 backend.use(cors());
 
-
 //table Products
 backend.get('/products', function (req, res) {
 
