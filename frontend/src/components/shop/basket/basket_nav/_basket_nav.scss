@@ -24,15 +24,8 @@
         font-size: 1.2rem;
         font-weight: 600;
         height: 100%;
-        cursor: pointer;
         color: $color-background;
         @include flex-center;
-
-        //&:hover
-        //{
-        //  color: $color-main-cold;
-        //  background: $color-light-warm;
-        //}
       }
     }
   }
