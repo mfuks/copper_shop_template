@@ -39,28 +39,40 @@ go see [mockup](https://fuksmarta.wixsite.com/website-1/sklep)
    in "frontend" folder:
   `npm start` and go to [http://localhost:3000/](http://localhost:3000/)
 
+
+## Desktop Demo 
+
+- #### general view
+![](views/demo/general_view.gif)
+
+- #### shopping
+![](views/demo/shopping.gif)
+
+- #### user panel
+![](views/demo/user_panel.gif)
+
 ## Screen view:
 
 - #### Home page / Home
-![home page](screen_view/home_page.png)
+![home page](views/screen_view/home_page.png)
 
 - #### Shop / Sklep
-![shop](screen_view/shop.png)
+![shop](views/screen_view/shop.png)
 
 - #### Contact / Kontakt
-![contact](screen_view/contact.png)
+![contact](views/screen_view/contact.png)
 
 - #### About us / O nas
-![about us](screen_view/about_us.png)
+![about us](views/screen_view/about_us.png)
 
 - #### Basket step 1 / Koszyk krok 1
-![basket step 1](screen_view/basket_step_1.png)
+![basket step 1](views/screen_view/basket_step_1.png)
 
 - #### Basket step 2 / Koszyk krok 2
-![basket step 2](screen_view/basket_step_2.png)
+![basket step 2](views/screen_view/basket_step_2.png)
 
 - #### Basket step 3 / Koszyk krok 32
-![basket step 3](screen_view/basket_step_3.png)
+![basket step 3](views/screen_view/basket_step_3.png)
 
 - #### User panel - order details / Panel użytkownika - podgląd zamówienia
-![User panel - order details](screen_view/user_panel_order_details.png)
+![User panel - order details](views/screen_view/user_panel_order_details.png)

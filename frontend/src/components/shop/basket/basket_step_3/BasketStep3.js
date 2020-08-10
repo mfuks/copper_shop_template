@@ -140,7 +140,6 @@ class BasketStep3 extends Component
                             if (!resp.ok) throw new Error("something is wrong...");
                         })
                         .catch(err => console.error(err));
-gi
                         for (let n = 0; n < basket.length; n++) {
                             let urlUserProductsAdd = `http://localhost:5000/user_products/add?product_id=`+
                                 `${basket[n].product.product_id}&product_quantity=${basket[n].amount}&Orders_order_id=`+
